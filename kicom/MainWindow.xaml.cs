@@ -92,5 +92,80 @@ namespace kicom {
             this.DataContext = this;
             InitializeComponent();
         }
+
+        /// <summary>
+        /// 컬러 프래임 데이터를 비트맵으로 전환 [Save Color Frame to bitmap(jpeg)]
+        /// </summary>
+        /// <param name="slender"></param>
+        /// <param name="e"></param>
+        private void SaveColorMap(object slender, ColorFrameArrivedEventArgs e) {
+
+            // 스냅샷을 찍어야 할 때만 컬러 프래임의 정보를 가져옴
+            if (this.needSnapShot) {
+                try {
+                    if (this.needSnapShot) {
+                        if (this.snapShotWait != 0) {
+                            this.snapShotWait--;
+                        }
+                        else {
+                            using (ColorFrame colorFrame = e.FrameReference.AcquireFrame()) {
+                                if (colorFrame != null) {
+                                    FrameDescription colorFrameDescription = colorFrame.FrameDescription;
+
+                                    using (KinectBuffer colorBuffer = colorFrame.LockRawImageBuffer()) {
+
+                                        this.colorBitmap.Lock();
+
+                                        // verify data and write the new color frame data to the display bitmap
+                                        if ((colorFrameDescription.Width == this.colorBitmap.PixelWidth) && (colorFrameDescription.Height == this.colorBitmap.PixelHeight)) {
+                                            colorFrame.CopyConvertedFrameDataToIntPtr(
+                                                this.colorBitmap.BackBuffer,
+                                                (uint)(colorFrameDescription.Width * colorFrameDescription.Height * 4),
+                                                ColorImageFormat.Bgra);
+
+                                            this.colorBitmap.AddDirtyRect(new Int32Rect(0, 0, this.colorBitmap.PixelWidth, this.colorBitmap.PixelHeight));
+                                        }
+
+                                        this.colorBitmap.Unlock();
+                                    }
+                                }
+                            }
+                            
+                            // Jpeg 확장자로 데이터를 인코딩시켜주늩 인코더 객체 생성
+                            BitmapEncoder encoder = new JpegBitmapEncoder();
+                            encoder.Frames.Add(BitmapFrame.Create(this.colorBitmap));
+
+                            string date = DateTime.Now.ToString("yyyy'-'MM'-'dd", CultureInfo.CurrentUICulture.DateTimeFormat);
+                            string time = DateTime.Now.ToString("hh'-'mm'-'ss", CultureInfo.CurrentUICulture.DateTimeFormat);
+                            string myPhotos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+
+                            // 지정한 히스토리 폴더 패스에 년-월-일-시-분-초 형식으로 저장
+                            string path = System.IO.Path.Combine(historyFolderPath, "[" + date + "]_" + time + ".jpeg");
+                            string log = string.Format("{0}\t{1}\t{2}", date + time, "스냅샷이 촬영되어 히스토리 파일에 저장 되었습니다.", path);
+                            
+                            using (FileStream fs = new FileStream(path, FileMode.Create)) {
+                                // 이미지 파일 저장
+                                encoder.Save(fs);
+                                fs.Close();
+                                // 로그 작성
+                                stringToLog(log);
+
+                                VisitorSimpleData VSD = new VisitorSimpleData(true, path);
+
+                                // ========================================
+                                // 오브젝트 반환
+                                // ========================================
+
+                                // 변수 초기화
+                                this.needSnapShot = false;
+                                this.snapShotWait = 7;
+                            }
+                        }
+                    }
+                }
+                catch (IOException){
+                }
+            }
+        }
     }
 }
