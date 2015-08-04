@@ -167,5 +167,29 @@ namespace kicom {
                 }
             }
         }
+
+        /// <summary>
+        /// Basic Function for WPF - When Closing Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainWindow_Closing(object sender, CancelEventArgs e) {
+
+            if (this.CFReader != null) {
+                this.CFReader.Dispose();
+                this.CFReader = null;
+            }
+
+            if (this.BFReader != null) {
+                this.BFReader.Dispose();
+                this.BFReader = null;
+            }
+
+            if (this.kinect != null) {
+                this.kinect.Close();
+                this.kinect = null;
+            }
+
+        }
     }
 }
