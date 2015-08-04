@@ -93,6 +93,42 @@ namespace kicom {
             InitializeComponent();
         }
 
+
+        /// <summary>
+        /// Observe Function - Always
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ObserveDoor(object sender, BodyFrameArrivedEventArgs e) {
+            using (BodyFrame bodyFrame = e.FrameReference.AcquireFrame()) {
+
+                // When have a Body Frame
+                if (bodyFrame != null) {
+
+                    // Re Loading Body Data
+                    bodyFrame.GetAndRefreshBodyData(this.bodies);
+
+                    if (this.bodies == null) {
+                        this.bodies = new Body[bodyFrame.BodyCount];
+                    }
+
+                    // compare pre-frame and current-frame
+                    this.dumpCount = 0;
+
+                    foreach (Body t in bodies) {
+                        if (t.IsTracked) { this.dumpCount++; }
+                    }
+
+                    if (this.dumpCount > this.preBodyCount && !this.needSnapShot) {
+                        this.needSnapShot = true;
+                    }
+
+                    this.preBodyCount = this.dumpCount;
+
+                }
+            }
+
+        }
         /// <summary>
         /// 컬러 프래임 데이터를 비트맵으로 전환 [Save Color Frame to bitmap(jpeg)]
         /// </summary>
