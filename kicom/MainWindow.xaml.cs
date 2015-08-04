@@ -191,5 +191,17 @@ namespace kicom {
             }
 
         }
+
+        /// <summary>
+        /// 문자열을 밭아 로그 파일에 로그기록을 작성하는 함수
+        /// </summary>
+        /// <param name="_string"></param>
+        private void stringToLog(string _string) {
+            using (FileStream fs = File.Open(logFolderPath, FileMode.Append, FileAccess.Write)) {
+                using (StreamWriter logWriter = new StreamWriter(fs)) {
+                    logWriter.WriteLine(_string);
+                }
+            }
+        }
     }
 }
