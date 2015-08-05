@@ -7,6 +7,7 @@ using Microsoft.ProjectOxford.Face;
 using Microsoft.ProjectOxford.Face.Contract;
 using System.IO;
 using System.Collections;
+using System.Threading;
 
 namespace FaceAPI
 {
@@ -17,6 +18,7 @@ namespace FaceAPI
         private DBManagement dbManagement = null;
         private Person[] persons = null;
         private System.Timers.Timer aTimer = null;
+        private Semaphore mutex = null;
 
         public FaceAnalysis(string folderPath)
         {
@@ -28,15 +30,19 @@ namespace FaceAPI
             this.aTimer.Elapsed += aTimer_Elapsed;
             this.aTimer.Interval = 30 * 60 * 1000;
             this.aTimer.Enabled = true;
+
+            this.mutex = new Semaphore(1, 1);
         }
 
         //타이머 Elapsed 함수
         void aTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            lock (this)
-            {
-                init();
-            }
+            //Mutext Wait
+            mutex.WaitOne();
+            init();
+
+            //Mutext Release
+            mutex.Release();
         }
 
         //Person의 초기화 함수
@@ -118,6 +124,9 @@ namespace FaceAPI
             if (this.persons == null)
                 throw new Exception("Person 객체가 생성되지 않았습니다");
 
+            //Mutex Wait
+            this.mutex.WaitOne();
+
             string filepath = info.filepath;
 
             List<Result> ret = new List<Result>();
@@ -142,6 +151,10 @@ namespace FaceAPI
                     }
                 }
             }
+
+            //Mutext Relase
+            this.mutex.Release();
+
             return ret.ToArray();   
         }
 
