@@ -33,14 +33,13 @@ namespace kicom {
         }
     }
 
-    class Result
-    {
+    // To XMLWriter
+    class Result {
         public string name { get; set; }
         public string filepath { get; set; }
         public string relation { get; set; }
 
-        public Result(string name, string filepath, string relation)
-        {
+        public Result(string name, string filepath, string relation) {
             this.name = name;
             this.filepath = filepath;
             this.relation = relation;
