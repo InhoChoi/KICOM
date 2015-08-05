@@ -63,8 +63,8 @@ namespace kicom {
         public MainWindow() {
             
             // 필요 변수 초기화
-            historyFolderPath = AppDomain.CurrentDomain.BaseDirectory + @"..\..\History\"; 
-            logFolderPath = AppDomain.CurrentDomain.BaseDirectory + @"..\..\Log\log.txt";
+            historyFolderPath = AppDomain.CurrentDomain.BaseDirectory + @".\History\"; 
+            logFolderPath = AppDomain.CurrentDomain.BaseDirectory + @".\Log\log.txt";
 
             stringToLog("hahah");
             Console.WriteLine(historyFolderPath);
