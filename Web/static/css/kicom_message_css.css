@@ -98,13 +98,13 @@
     text-align: center;
 }
 
-#container > #content > #wrap_content > #input_form > #message {
+#container > #content > #wrap_content > #input_form > #message_box {
     
     width: 400px;
     height: 80px;
 }
 
-#container > #content > #wrap_content > #input_form > #button {
+#container > #content > #wrap_content > #input_form > #send_button {
 
     width: 80px;
     height: 85px;
