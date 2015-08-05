@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko"  xml:lang="ko">
+<meta http-equiv="Content-Type" Content="text/html; charset=utf-8" />
+<html lang="en">
+<html>
+    <head>
+        <title>KICOM</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/kicom_main_css.css') }}">
+        <link href="http://fonts.googleapis.com/css?family=Finger+Paint" rel="stylesheet" type="text/css"> 
+    </head>
+    <body>
+        <div id="container">
+            <header id="explain">
+                <div id="title">
+                    KICOM
+                </div>
+                <div id="subtitle">
+                    Kinect 2.0 Smartdoor Security System
+                </div>
+                <div id="login_info">WELCOME "{{ id }}" !</div>
+            </header>
+            <nav id="menu">
+                <ul>
+                    <li><a href="list">VISITORS</a></li>
+                    <li><a href="message">MESSAGE</a></li>
+                    <li><a href="logout">LOGOUT</a></li>
+                </ul>
+            </nav>
+            <div id="content">
+                <div id="content_main">
+                    <h1>WELCOME TO VISIT</h1>
+                    <h1>KICOM's SECURE HOMEPAGE</h1>
+                    <h2>You can guard your house!</h2>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+    
+    
