@@ -4,18 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FaceAPI
-{
-    class Person
-    {
+namespace kicom {
+
+    // To FaceAPI
+    class Person {
         public string name { get; set; }
         public string imgname { get; set; }
         public string relation { get; set; }
         public string etc { get; set; }
         public string faceid { get; set; }
 
-        public Person(string name, string imgname, string relation, string etc, string faceid = null)
-        {
+        public Person(string name, string imgname, string relation, string etc, string faceid = null) {
             this.name = name;
             this.imgname = imgname;
             this.relation = relation;
@@ -24,13 +23,11 @@ namespace FaceAPI
         }
     }
 
-    class VisitorInfo
-    {
+    class VisitorInfo {
         public string filepath { get; set; }
         public Boolean stranger { get; set; }
 
-        public VisitorInfo(string filepath, Boolean stranger)
-        {
+        public VisitorInfo(Boolean stranger, string filepath) {
             this.filepath = filepath;
             this.stranger = stranger;
         }

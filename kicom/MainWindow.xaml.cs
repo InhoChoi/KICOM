@@ -19,17 +19,6 @@ using System.ComponentModel;
 
 namespace kicom {
 
-    // 얼굴의 기본적인 해석 정보를 넘기기위한 클래스
-    public class VisitorSimpleData {
-        public bool isSuspicious;
-        public string photoPath;
-
-        public VisitorSimpleData(bool _isSuspicious, string _photoPath) {
-            isSuspicious = _isSuspicious;
-            photoPath = _photoPath;
-        }
-    }
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -190,7 +179,7 @@ namespace kicom {
                                 // 로그 작성
                                 stringToLog(log);
 
-                                VisitorSimpleData VSD = new VisitorSimpleData(true, path);
+                                VisitorInfo VSD = new VisitorInfo(true, path);
 
                                 // ========================================
                                 // 오브젝트 반환
