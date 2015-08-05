@@ -1,0 +1,91 @@
+#container {
+    
+    margin: 10px;
+}
+#container > #explain {
+    
+    padding-top: 40px;
+}
+#container > #explain > #title {
+    
+    text-align: center;
+    padding-right: 20%;
+    font-size: 600%;
+    font-family: 'Finger Paint', cursive;
+}
+#container > #explain > #subtitle {
+    
+    text-align: center;
+    padding-left: 25%;
+    padding-bottom: 1%;
+    font-size: 150%;
+    font-family: 'Finger Paint', cursive;
+}
+
+#container > #explain > #login_info {
+    
+    text-align: center;
+    margin-left: 35%;
+}
+
+/* 수평 메뉴 */
+#container > #menu > ul {
+    
+    float: right;
+    overflow: hidden;
+    margin-right: 20%;
+}
+#container > #menu > ul > li {
+    
+    list-style-type: none;
+    float: left;
+}
+#container > #menu > ul > li > a{
+    
+    display: block;
+    width: 60px;
+    text-align: center;
+    border: 1px solid black;
+    padding: 10px 20px;
+}
+#container > #menu > ul > li > a:hover{
+    
+	background:black;
+	color:white;
+}
+#container > #menu > ul > li:first-child > a {
+    
+    border-radius:8px 0 0 8px;
+}
+#container > #menu > ul > li:last-child > a {
+    
+    border-radius:0 8px 8px 0;
+}
+#container > #content {
+    
+    height: 610px;
+    position: relative;
+    top: 70px;
+    border: 1px solid black;
+}
+
+#container > #content > #table {
+    
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#container > #content > #table > #visitors_table {
+    
+    width: 700px;
+    height: 500px;
+    display: inline-table;
+    vertical-align: middle;
+    text-align: center;
+}
+#table > #visitors_table > tr, td {
+    
+    border: 1px solid black;
+}
