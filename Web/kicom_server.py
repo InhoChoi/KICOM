@@ -32,11 +32,20 @@ def main():
 
 @app.route('/list')
 def list():
-  return render_template('kicom_list.html')
+  return render_template('kicom_list.html', id = session['id'])
 
 @app.route('/message')
 def message():
-  return render_template('kicom_message.html')
+  return render_template('kicom_message.html', id = session['id'])
+
+@app.route('/sendMessage', methods = ['POST'])
+def sendMessage():
+  if request.method == 'POST':
+    getMessage = request.form['message_box'] + '\n'
+    f = open("./messageLog.txt", 'a')
+    f.write(getMessage)
+    f.close()
+    return render_template('kicom_send_message.html', id = session['id'], userMessage = getMessage)
 
 if __name__ == '__main__':
   app.run(debug=True)
