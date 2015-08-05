@@ -7,6 +7,7 @@
     <head>
         <title>KICOM</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/kicom_message_css.css') }}">
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='javascript/kicom_message_js.js') }}"></script>
         <link href="http://fonts.googleapis.com/css?family=Finger+Paint" rel="stylesheet" type="text/css"> 
     </head>
@@ -19,7 +20,7 @@
                 <div id="subtitle">
                     Kinect 2.0 Smartdoor Security System
                 </div>
-                <div id="login_info">WELCOME "{{ username }}" !</div>
+                <div id="login_info">WELCOME "{{ id }}" !</div>
             </header>
             <nav id="menu">
                 <ul>
@@ -35,9 +36,9 @@
                     Just click "SEND" button.
                 </div>
                 <div id="wrap_content">
-                    <form id="input_form">
+                    <form id="input_form" method="post" action="sendMessage">
                         <textarea id="message_box" name="message_box" placeholder="message"></textarea>
-                        <button type="button" id="send_button" name="send_button">SEND</button>
+                        <button type="submit" id="send_button" name="send_button">SEND</button>
                     </form>
                 </div>
             </div>
