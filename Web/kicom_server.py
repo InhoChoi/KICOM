@@ -15,7 +15,7 @@ app.config['SECRET_KEY'] = 'kicom_connect'
 def login_form():
   return render_template('kicom_login.html')
 
-@app.route('/main', methods=['POST'])
+@app.route('/main', methods = ['POST'])
 def main():
   if request.method == 'POST':
     if(request.form['id'] == 'root'
@@ -23,7 +23,7 @@ def main():
       session['logged_in'] = True
       session['id'] = request.form['id']
       
-      return render_template('kicom_main.html', id=session['id'])
+      return render_template('kicom_main.html', id = session['id'])
  
     else:
       return '잘못된 접근'
@@ -36,6 +36,7 @@ def list():
 
 @app.route('/message')
 def message():
-    return render_template('kicom_message.html')
+  return render_template('kicom_message.html')
+
 if __name__ == '__main__':
   app.run(debug=True)
