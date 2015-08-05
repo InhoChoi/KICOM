@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace FaceAPI
+namespace kicom
 {
     /*
      *  Database 접근 관련 클래스

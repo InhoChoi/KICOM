@@ -12,19 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Kinect;
+using System.IO;
+using System.Globalization;
+using System.ComponentModel;
 
 namespace kicom {
-
-    // 얼굴의 기본적인 해석 정보를 넘기기위한 클래스
-    public class VisitorSimpleData {
-        public bool isSuspicious;
-        public string photoPath;
-
-        public VisitorSimpleData(bool _isSuspicious, string _photoPath) {
-            isSuspicious = _isSuspicious;
-            photoPath = _photoPath;
-        }
-    }
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -59,8 +52,8 @@ namespace kicom {
         public MainWindow() {
             
             // 필요 변수 초기화
-            historyFolderPath = AppDomain.CurrentDomain.BaseDirectory + @"..\..\History\"; 
-            logFolderPath = AppDomain.CurrentDomain.BaseDirectory + @"..\..\Log\log.txt";
+            historyFolderPath = AppDomain.CurrentDomain.BaseDirectory + @".\History\"; 
+            logFolderPath = AppDomain.CurrentDomain.BaseDirectory + @".\Log\log.txt";
 
             stringToLog("hahah");
             Console.WriteLine(historyFolderPath);
@@ -93,6 +86,42 @@ namespace kicom {
             InitializeComponent();
         }
 
+
+        /// <summary>
+        /// Observe Function - Always
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ObserveDoor(object sender, BodyFrameArrivedEventArgs e) {
+            using (BodyFrame bodyFrame = e.FrameReference.AcquireFrame()) {
+
+                // When have a Body Frame
+                if (bodyFrame != null) {
+
+                    // Re Loading Body Data
+                    bodyFrame.GetAndRefreshBodyData(this.bodies);
+
+                    if (this.bodies == null) {
+                        this.bodies = new Body[bodyFrame.BodyCount];
+                    }
+
+                    // compare pre-frame and current-frame
+                    this.dumpCount = 0;
+
+                    foreach (Body t in bodies) {
+                        if (t.IsTracked) { this.dumpCount++; }
+                    }
+
+                    if (this.dumpCount > this.preBodyCount && !this.needSnapShot) {
+                        this.needSnapShot = true;
+                    }
+
+                    this.preBodyCount = this.dumpCount;
+
+                }
+            }
+
+        }
         /// <summary>
         /// 컬러 프래임 데이터를 비트맵으로 전환 [Save Color Frame to bitmap(jpeg)]
         /// </summary>
@@ -150,7 +179,7 @@ namespace kicom {
                                 // 로그 작성
                                 stringToLog(log);
 
-                                VisitorSimpleData VSD = new VisitorSimpleData(true, path);
+                                VisitorInfo VSD = new VisitorInfo(true, path);
 
                                 // ========================================
                                 // 오브젝트 반환
