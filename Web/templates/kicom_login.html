@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko"  xml:lang="ko">
+<meta http-equiv="Content-Type" Content="text/html; charset=utf-8" />
+<html lang="en">
+<html>
+    <head>
+        <title>KICOM LOGIN PAGE</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/kicom_login_css.css') }}">
+         <link href="http://fonts.googleapis.com/css?family=Finger+Paint" rel="stylesheet" type="text/css"> 
+    </head>
+        
+    <body>
+        <form method="post" action="/main">
+            <div id="container">
+                <div id="box">
+                    <div id="title">
+                        <h1>KICOM CAN KEEP YOUR HOUSE</h1>
+                    </div>
+                    <div id="subtitle">
+                        <h2>Please login</h2>
+                    </div>
+                </div>
+                <div id="login_form">
+                    <input type="text" name="id" placeholder="ID">
+                    <input type="password" name="password" placeholder="PASSWORD">
+                    <button type="submit">로그인</button> 
+                </div>
+            </div>
+        </form>
+    </body>
+</html>
