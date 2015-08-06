@@ -124,6 +124,7 @@
     height: 550px;
     padding-top: 10px;
     float: left;
+    text-align: center;
     border: 1px solid black;
 }
 
@@ -144,6 +145,7 @@
     height: 550px;
     padding-top: 10px;
     float: left;
+    text-align: center;
     border: 1px solid black;
 }
 
@@ -164,6 +166,7 @@
     height: 550px;
     padding-top: 10px;
     float: left;
+    text-align: center;
     border: 1px solid black;
 }
 
@@ -184,5 +187,6 @@
     height: 550px;
     padding-top: 10px;
     float: left;
+    text-align: center;
     border: 1px solid black;
 }
