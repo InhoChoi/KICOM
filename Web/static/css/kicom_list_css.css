@@ -76,16 +76,3 @@
     vertical-align: middle;
     text-align: center;
 }
-
-#container > #content > #table > #visitors_table {
-    
-    width: 700px;
-    height: 500px;
-    display: inline-table;
-    vertical-align: middle;
-    text-align: center;
-}
-#table > #visitors_table > tr, td {
-    
-    border: 1px solid black;
-}

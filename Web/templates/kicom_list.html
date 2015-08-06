@@ -7,6 +7,8 @@
     <head>
         <title>KICOM</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/kicom_list_css.css') }}">
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='javascript/kicom_list_js.js') }}"></script>
         <link href="http://fonts.googleapis.com/css?family=Finger+Paint" rel="stylesheet" type="text/css"> 
     </head>
     <body>
@@ -28,28 +30,7 @@
                 </ul>
             </nav>
             <div id="content">
-                <div id="table">
-                    <table id="visitors_table" >
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </div>
+                <div id="table"></div>
             </div>
         </div>
     </body>
