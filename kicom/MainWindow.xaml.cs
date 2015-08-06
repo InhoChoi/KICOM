@@ -356,7 +356,7 @@ namespace kicom {
         }
 
         private void imageButton_Copy_Click(object sender, RoutedEventArgs e) {
-            throw new NotImplementedException();
+            WindowState = WindowState.Maximized;
         }
 
         private void Move_Home(object sender, RoutedEventArgs e) {
