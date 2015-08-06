@@ -125,7 +125,7 @@ namespace kicom
                 throw new Exception("Person 객체가 생성되지 않았습니다");
 
             //Mutex Wait
-            this.mutex.WaitOne();
+                this.mutex.WaitOne();
 
             string filepath = info.filepath;
 
@@ -145,6 +145,7 @@ namespace kicom
                         {
                             string imgpath = fileMangemnet.getFilePath(person.imgname);
                             Result result = new Result(person.name, imgpath, person.relation);
+                            Console.WriteLine("dsfsdfds");
                             ret.Add(result);
                         }
 

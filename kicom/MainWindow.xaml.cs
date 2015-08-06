@@ -46,6 +46,9 @@ namespace kicom {
         private BodyFrameReader BFReader = null;
         private Body[] bodies = null;
 
+        // 4. FaceVerify
+        private FaceAnalysis faceAnalysis = null;
+
         /// <summary>
         /// 생성자 - 초기 변수 & 객체 초기화
         /// </summary>
@@ -82,6 +85,9 @@ namespace kicom {
 
                 this.kinect.Open();
             }
+
+            faceAnalysis = new FaceAnalysis(@".");
+
             this.DataContext = this;
             InitializeComponent();
         }
@@ -127,7 +133,7 @@ namespace kicom {
         /// </summary>
         /// <param name="slender"></param>
         /// <param name="e"></param>
-        private void SaveColorMap(object slender, ColorFrameArrivedEventArgs e) {
+        private async void SaveColorMap(object slender, ColorFrameArrivedEventArgs e) {
 
             // 스냅샷을 찍어야 할 때만 컬러 프래임의 정보를 가져옴
             if (this.needSnapShot) {
@@ -181,9 +187,9 @@ namespace kicom {
 
                                 VisitorInfo VSD = new VisitorInfo(true, path);
 
-                                // ========================================
-                                // 오브젝트 반환
-                                // ========================================
+                                if (faceAnalysis != null) {
+                                    await faceAnalysis.verify(VSD);
+                                }
 
                                 // 변수 초기화
                                 this.needSnapShot = false;
