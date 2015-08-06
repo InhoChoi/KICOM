@@ -16,6 +16,10 @@ using Microsoft.Kinect;
 using System.IO;
 using System.Globalization;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using System.Windows.Interop;
+using kicom.Pages;
 
 namespace kicom {
 
@@ -53,7 +57,8 @@ namespace kicom {
         /// 생성자 - 초기 변수 & 객체 초기화
         /// </summary>
         public MainWindow() {
-            
+            this.SourceInitialized += InitializeWindowSource;
+
             // 필요 변수 초기화
             historyFolderPath = AppDomain.CurrentDomain.BaseDirectory + @".\History\"; 
             logFolderPath = AppDomain.CurrentDomain.BaseDirectory + @".\Log\log.txt";
@@ -92,6 +97,101 @@ namespace kicom {
             InitializeComponent();
         }
 
+        private const int WM_SYSCOMMAND = 0x112;
+        private HwndSource hwndSource;
+
+
+        private void InitializeWindowSource(object sender, EventArgs e)
+        {
+	        hwndSource = PresentationSource.FromVisual((Visual)sender) as HwndSource;
+	        hwndSource.AddHook(new HwndSourceHook(WndProc));
+        }
+
+        private IntPtr retInt = IntPtr.Zero;
+        private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+	        return IntPtr.Zero;
+        }
+
+        public enum ResizeDirection
+        {
+	        Left = 1,
+	        Right = 2,
+	        Top = 3,
+	        TopLeft = 4,
+	        TopRight = 5,
+	        Bottom = 6,
+	        BottomLeft = 7,
+	        BottomRight = 8
+        }
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+
+        private void ResizeWindow(ResizeDirection direction)
+        {
+	        SendMessage(hwndSource.Handle, WM_SYSCOMMAND, new IntPtr(61440 + (int)direction), IntPtr.Zero);
+        }
+
+        private void ResetCursor(object sender, MouseEventArgs e)
+        {
+	        if (Mouse.LeftButton != MouseButtonState.Pressed) {
+		        this.Cursor = Cursors.Arrow;
+	        }
+        }
+
+        private void Resize(object sender, MouseButtonEventArgs e)
+        {
+	        if (this.WindowState == WindowState.Normal) {
+		        Rectangle clickedRectangle = sender as Rectangle;
+		        switch (clickedRectangle.Name) {
+			        case "GripTop":
+				        ResizeWindow(ResizeDirection.Top);
+				        break; // TODO: might not be correct. Was : Exit Select
+
+				        break;
+			        case "GripBottom":
+				        ResizeWindow(ResizeDirection.Bottom);
+				        break; // TODO: might not be correct. Was : Exit Select
+
+				        break;
+			        case "GripLeft":
+				        ResizeWindow(ResizeDirection.Left);
+				        break; // TODO: might not be correct. Was : Exit Select
+
+				        break;
+			        case "GripRight":
+				        ResizeWindow(ResizeDirection.Right);
+				        break; // TODO: might not be correct. Was : Exit Select
+
+				        break;
+			        case "GripTopLeft":
+				        ResizeWindow(ResizeDirection.TopLeft);
+				        break; // TODO: might not be correct. Was : Exit Select
+
+				        break;
+			        case "GripTopRight":
+				        ResizeWindow(ResizeDirection.TopRight);
+				        break; // TODO: might not be correct. Was : Exit Select
+
+				        break;
+			        case "GripBottomLeft":
+				        ResizeWindow(ResizeDirection.BottomLeft);
+				        break; // TODO: might not be correct. Was : Exit Select
+
+				        break;
+			        case "GripBottomRight":
+				        ResizeWindow(ResizeDirection.BottomRight);
+				        break; // TODO: might not be correct. Was : Exit Select
+
+				        break;
+			        default:
+				        break; // TODO: might not be correct. Was : Exit Select
+
+				        break;
+		        }
+	        }
+        }
 
         /// <summary>
         /// Observe Function - Always
@@ -237,6 +337,21 @@ namespace kicom {
                     logWriter.WriteLine(_string);
                 }
             }
+        }
+
+        public BitmapImage ImageLoad(string Path)
+        {
+	        BitmapImage mImage = new BitmapImage();
+	        mImage.BeginInit();
+	        mImage.UriSource = new Uri(Path);
+	        mImage.CacheOption = BitmapCacheOption.OnDemand;
+	        mImage.EndInit();
+
+	        return mImage;
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e) {
+            MyView.Source = ImageLoad("pack://application:,,,/Resource/Settings-64.png");
         }
     }
 }
