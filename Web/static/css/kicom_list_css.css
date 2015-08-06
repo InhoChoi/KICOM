@@ -50,8 +50,8 @@
 }
 #container > #menu > ul > li > a:hover{
     
-	background:black;
-	color:white;
+    background:black;
+    color:white;
 }
 #container > #menu > ul > li:first-child > a {
     
@@ -64,15 +64,125 @@
 #container > #content {
     
     height: 610px;
+    width: 100%;
     position: relative;
-    top: 70px;
+    top: 10px;
     border: 1px solid black;
+    display: inline-flex;
 }
 
 #container > #content > #table {
     
     width: 100%;
-    display: inline-block;
-    vertical-align: middle;
+    margin: 0 auto;
+    height: 100%;
+    display: inline-flex;
+}
+
+#container > #content > #table > #name {
+    
+    width: 100%;
+    height: 100%;
+    float: left;
+}
+
+#container > #content > #table > #relation {
+    
+    width: 100%;
+    height: 100%;
+    float: left;
+}
+
+#container > #content > #table > #date {
+    
+    width: 100%;
+    height: 100%;
+    float: left;
+}
+
+#container > #content > #table > #photo {
+    
+    width: 100%;
+    height: 100%;
+    float: left;
+}
+
+#container > #content > #table > #name > #name_tag {
+    
+    width: 100%;
+    height: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    float: left;
     text-align: center;
+    border: 1px solid black;
+}
+
+#container > #content > #table > #name > #name_content {
+    
+    width: 100%;
+    height: 550px;
+    padding-top: 10px;
+    float: left;
+    border: 1px solid black;
+}
+
+#container > #content > #table > #relation > #relation_tag {
+    
+    width: 100%;
+    height: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    float: left;
+    text-align: center;
+    border: 1px solid black;
+}
+
+#container > #content > #table > #relation > #relation_content {
+    
+    width: 100%;
+    height: 550px;
+    padding-top: 10px;
+    float: left;
+    border: 1px solid black;
+}
+
+#container > #content > #table > #date > #date_tag {
+    
+    width: 100%;
+    height: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    float: left;
+    text-align: center;
+    border: 1px solid black;
+}
+
+#container > #content > #table > #date > #date_content {
+    
+    width: 100%;
+    height: 550px;
+    padding-top: 10px;
+    float: left;
+    border: 1px solid black;
+}
+
+#container > #content > #table > #photo > #photo_tag{
+    
+    width: 100%;
+    height: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    float: left;
+    text-align: center;
+    border: 1px solid black;
+}
+
+#container > #content > #table > #photo > #photo_content{
+    
+    width: 100%;
+    height: 550px;
+    padding-top: 10px;
+    float: left;
+    border: 1px solid black;
 }
