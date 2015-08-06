@@ -1,0 +1,12 @@
+<xml version='1.0'>
+	<Info>
+		<Name>jiyoung</Name>
+		<Relation>dauther</Relation>
+		<Photo_Path>static/image/testimage.png</Photo_Path>
+	</Info>
+	<Info>
+		<Name>sang</Name>
+		<Relation>son</Relation>
+		<Photo_Path>static/image/testimage2.png</Photo_Path>
+	</Info>
+</xml>
