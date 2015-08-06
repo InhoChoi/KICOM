@@ -351,7 +351,28 @@ namespace kicom {
         }
 
         private void button_Click(object sender, RoutedEventArgs e) {
-            MyView.Source = ImageLoad("pack://application:,,,/Resource/Settings-64.png");
+            Application.Current.Shutdown();
+            //MyView.Source = ImageLoad("pack://application:,,,/Resource/Settings-64.png");
+        }
+
+        private void imageButton_Copy_Click(object sender, RoutedEventArgs e) {
+            WindowState = WindowState.Maximized;
+        }
+
+        private void Move_Home(object sender, RoutedEventArgs e) {
+            throw new NotImplementedException();
+        }
+
+        private void Move_History(object sender, RoutedEventArgs e) {
+            throw new NotImplementedException();
+        }
+
+        private void Move_Log(object sender, RoutedEventArgs e) {
+            throw new NotImplementedException();
+        }
+
+        private void Mov_Setting(object sender, RoutedEventArgs e) {
+            throw new NotImplementedException();
         }
     }
 }
