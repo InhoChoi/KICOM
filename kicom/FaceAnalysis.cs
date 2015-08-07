@@ -37,18 +37,18 @@ namespace kicom
         //타이머 Elapsed 함수
         void aTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            //Mutext Wait
-            mutex.WaitOne();
             init();
-
-            //Mutext Release
-            mutex.Release();
         }
 
         //Person의 초기화 함수
         private async void init()
         {
+            //Mutext Wait
+            mutex.WaitOne();
             this.persons = await this.getFacesFromDB();
+
+            //Mutext Release
+            mutex.Release();
         }
 
         // 사진 이미지를 이용하여 Face 정보 획득
