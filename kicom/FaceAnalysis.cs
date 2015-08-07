@@ -130,10 +130,21 @@ namespace kicom
             this.mutex.WaitOne();
 
             string filepath = info.filepath;
-            List<Result> ret = new List<Result>();
+            //List<Result> ret = new List<Result>();
             Face[] faces = await this.UploadAndDetectFaces(filepath);
-            //Person[] persons = await this.getFacesFromDB();
 
+            //얼굴이 존재하지 않을 경우
+            if (faces.Length == 0)
+            {
+                //Mutext Relase
+                this.mutex.Release();
+
+                Result result = new Result("Unknown", filepath, "Unknown");
+                XMLwriter.pushXMLQueue(result);
+                return;
+            }
+
+            // DB에 사람들과 비교하는 부분
             foreach (Face face in faces)
             {
                 foreach (Person person in this.persons)
@@ -142,16 +153,26 @@ namespace kicom
                     {
                         Guid guid = new Guid(person.faceid);
                         VerifyResult verifyresult = await faceServiceClient.VerifyAsync(face.FaceId, guid);
+
+                        //DB에 저장한 사람들과 일치한 경우
                         if (verifyresult.IsIdentical)
                         {
-                            string imgpath = fileMangemnet.getFilePath(person.imgname);
-                            Result result = new Result(person.name, imgpath, person.relation);
-                            ret.Add(result);
+                            //Mutext Relase
+                            this.mutex.Release();
+
+                            Result result = new Result(person.name, filepath, person.relation);
+                            XMLwriter.pushXMLQueue(result);
+                            return;
+                            //ret.Add(result);
                         }
 
                     }
                 }
             }
+
+            //DB에 사람들과 일치하지 않는 경우
+            Result unknown = new Result("Unknown", filepath, "Unknown");
+            XMLwriter.pushXMLQueue(unknown);
 
             //Mutext Relase
             this.mutex.Release();
