@@ -146,46 +146,37 @@ namespace kicom {
 				        ResizeWindow(ResizeDirection.Top);
 				        break; // TODO: might not be correct. Was : Exit Select
 
-				        break;
 			        case "GripBottom":
 				        ResizeWindow(ResizeDirection.Bottom);
 				        break; // TODO: might not be correct. Was : Exit Select
 
-				        break;
 			        case "GripLeft":
 				        ResizeWindow(ResizeDirection.Left);
 				        break; // TODO: might not be correct. Was : Exit Select
 
-				        break;
 			        case "GripRight":
 				        ResizeWindow(ResizeDirection.Right);
 				        break; // TODO: might not be correct. Was : Exit Select
 
-				        break;
 			        case "GripTopLeft":
 				        ResizeWindow(ResizeDirection.TopLeft);
 				        break; // TODO: might not be correct. Was : Exit Select
 
-				        break;
 			        case "GripTopRight":
 				        ResizeWindow(ResizeDirection.TopRight);
 				        break; // TODO: might not be correct. Was : Exit Select
 
-				        break;
 			        case "GripBottomLeft":
 				        ResizeWindow(ResizeDirection.BottomLeft);
 				        break; // TODO: might not be correct. Was : Exit Select
 
-				        break;
 			        case "GripBottomRight":
 				        ResizeWindow(ResizeDirection.BottomRight);
 				        break; // TODO: might not be correct. Was : Exit Select
 
-				        break;
 			        default:
 				        break; // TODO: might not be correct. Was : Exit Select
 
-				        break;
 		        }
 	        }
         }
@@ -281,6 +272,7 @@ namespace kicom {
                                 fs.Close();
                                 // 로그 작성
                                 stringToLog(log);
+                                WriteImageList.pushList(path);
 
                                 VisitorInfo VSD = new VisitorInfo(true, path);
 

@@ -99,6 +99,7 @@
     <Compile Include="Pages\Setting.xaml.cs">
       <DependentUpon>Setting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WriteImageList.cs" />
     <Compile Include="XMLWriter.cs" />
     <Page Include="ImageButton.xaml">
       <SubType>Designer</SubType>
