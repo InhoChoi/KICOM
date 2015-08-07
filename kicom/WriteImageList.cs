@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,16 +8,30 @@ using System.Xml;
 
 namespace kicom {
     public class WriteImageList {
-        private static WriteImageList _uniqueInstance = new WriteImageList();
-        private static Queue<string> writerQueue = new Queue<string>();
+        private static WriteImageList UniqueInstance = new WriteImageList();
+        private static Queue<string> ListingQueue = new Queue<string>();
 
         private WriteImageList() {
-            XmlTextWriter maker = new XmlTextWriter("Imagedata.xml", System.Text.Encoding.UTF8);
-            maker.Close();
+            FileInfo _fileinfo = new FileInfo("Imagedata.xml");
+
+            if (!_fileinfo.Exists) {
+                Console.WriteLine("dahdlkfjadkjlfnakjdgfnafkjgnajkfgnjkadfnksjdfndkjsnfkjsdnfj");
+                using (XmlTextWriter writer = new XmlTextWriter("Imagedata.xml", System.Text.Encoding.UTF8)) {
+                    writer.WriteStartDocument(true);
+                    writer.Formatting = Formatting.Indented;
+                    //writer.Indentation = 2;
+                    writer.WriteStartElement("Image");
+                    writer.WriteStartElement("Images");
+                    writer.WriteEndElement();
+                    writer.WriteEndElement();
+                    writer.Close();
+                }
+            }
+            
         }
 
         public static WriteImageList GetInstance() {
-            return _uniqueInstance;
+            return UniqueInstance;
         }
 
         private async Task addImageListTask() {
@@ -26,9 +41,9 @@ namespace kicom {
             }
         }
 
-        public static bool pushList(string _data) {
-            if (writerQueue != null) {
-                writerQueue.Enqueue(_data);
+        public bool pushList(string _data) {
+            if (ListingQueue != null) {
+                ListingQueue.Enqueue(_data);
                 return true;
             }
             return false;
@@ -36,7 +51,7 @@ namespace kicom {
 
 
         private async Task<bool> OverWriting() {
-            if (writerQueue.Any()) {
+            if (ListingQueue.Any()) {
                     XmlDocument xmlDoc;
                     XmlElement xmlEle;
                     XmlNode newNode;

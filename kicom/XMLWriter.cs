@@ -27,7 +27,7 @@ namespace kicom {
             }
         }
 
-        public static bool pushXMLQueue(Result _data) {
+        public bool pushXMLQueue(Result _data) {
             if (writerQueue == null) return false;
             writerQueue.Enqueue(_data);
             return true;
