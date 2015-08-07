@@ -22,7 +22,39 @@ namespace kicom.Pages
     {
         public History()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+
+            try
+            {
+                BindImages(); // Bind Image in Constructor
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);  
+            }
+        }
+
+        /// <summary>
+        /// Bind Image in List Box Control
+        /// </summary>
+        private void BindImages()
+        {
+            try
+            {
+                // Store Data in List Object
+                List<ImageEntity> ListImageObj = ImageView.GetAllImagesData();
+
+                // Check List Object Count
+                if (ListImageObj.Count > 0)
+                {
+                    // Bind Data in List Box Control.
+                    LsImageGallery.DataContext = ListImageObj;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
