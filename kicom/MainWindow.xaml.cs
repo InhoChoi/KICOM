@@ -355,7 +355,6 @@ namespace kicom {
         }
 
         private void imageButton_Copy_Click(object sender, RoutedEventArgs e) {
-            WindowState = WindowState.Maximized;
         }
 
         private void Move_Home(object sender, RoutedEventArgs e) {
@@ -376,6 +375,10 @@ namespace kicom {
 
         private void Close_Button(object sender, RoutedEventArgs e) {
             Application.Current.Shutdown();
+        }
+
+        private void Max_Button(object sender, RoutedEventArgs e) {
+            WindowState = WindowState.Maximized;
         }
     }
 }
