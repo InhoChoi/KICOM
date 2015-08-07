@@ -38,6 +38,7 @@ namespace kicom {
         private string logFolderPath;
         private bool isSuspicious = true;
         private bool bodyEixst = false;
+        private int[] blackBuffer;
 
         private WriteImageList imageListwriter = null;
 
@@ -260,6 +261,7 @@ namespace kicom {
                     }
                 }
             }
+
             // 스냅샷을 찍어야 할 때만 컬러 프래임의 정보를 가져옴
             if (this.needSnapShot) {
                 try {

@@ -26,7 +26,7 @@
 
         <!-- 본체 -->
         <Grid Grid.RowSpan="2">
-            <Viewbox HorizontalAlignment="Center" Margin="160,66,163,27" Width="277" RenderTransformOrigin="0.506,0.517">
+            <Viewbox Grid.Row="2" HorizontalAlignment="Center" Margin="100,100,100,200">
                 <Image Source="{Binding ImageSource}" Stretch="UniformToFill" />
             </Viewbox>
             <Button x:Name="Home_Button" FontSize="16" Content="Home" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Width="auto" Click="Move_Home" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>
