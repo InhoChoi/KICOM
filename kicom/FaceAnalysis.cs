@@ -28,7 +28,9 @@ namespace kicom
 
             this.aTimer = new System.Timers.Timer(10000);
             this.aTimer.Elapsed += aTimer_Elapsed;
-            this.aTimer.Interval = 30 * 60 * 1000;
+
+            //The face ID will expire 24 hours after detection.
+            this.aTimer.Interval = 24 * 60 * 60 * 1000;
             this.aTimer.Enabled = true;
 
             this.mutex = new Semaphore(1, 1);
