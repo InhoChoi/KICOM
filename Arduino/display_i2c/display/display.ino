@@ -14,8 +14,8 @@ void setup()
   lcd.init();                      // initialize the lcd 
  
   // Print a message to the LCD.
-  // lcd.backlight();
-  lcd.print("Hello, World");
+  lcd.backlight();
+  // lcd.print("Hello, World");
 }
 
 void loop()
