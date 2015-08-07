@@ -108,7 +108,7 @@ namespace kicom
 
                     dbManagement.insert(person);
                 }
-                else 
+                else
                 {
                     throw new Exception("사진속의 얼굴이 하나이상이거나 없습니다");
                 }
@@ -127,7 +127,7 @@ namespace kicom
                 throw new Exception("Person 객체가 생성되지 않았습니다");
 
             //Mutex Wait
-                this.mutex.WaitOne();
+            this.mutex.WaitOne();
 
             string filepath = info.filepath;
 
@@ -158,7 +158,7 @@ namespace kicom
             //Mutext Relase
             this.mutex.Release();
 
-            return ret.ToArray();   
+            return ret.ToArray();
         }
 
     }
