@@ -15,7 +15,7 @@ void setup()
  
   // Print a message to the LCD.
   lcd.backlight();
-  lcd.print("Hello, World");
+  // lcd.print("Hello, World");
 }
 
 void loop()

@@ -101,20 +101,17 @@ namespace kicom {
         private HwndSource hwndSource;
 
 
-        private void InitializeWindowSource(object sender, EventArgs e)
-        {
+        private void InitializeWindowSource(object sender, EventArgs e) {
 	        hwndSource = PresentationSource.FromVisual((Visual)sender) as HwndSource;
 	        hwndSource.AddHook(new HwndSourceHook(WndProc));
         }
 
         private IntPtr retInt = IntPtr.Zero;
-        private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
-        {
+        private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled) {
 	        return IntPtr.Zero;
         }
 
-        public enum ResizeDirection
-        {
+        public enum ResizeDirection {
 	        Left = 1,
 	        Right = 2,
 	        Top = 3,
@@ -358,7 +355,6 @@ namespace kicom {
         }
 
         private void Move_Home(object sender, RoutedEventArgs e) {
-            throw new NotImplementedException();
         }
 
         private void Move_History(object sender, RoutedEventArgs e) {
@@ -379,6 +375,11 @@ namespace kicom {
 
         private void Max_Button(object sender, RoutedEventArgs e) {
             WindowState = WindowState.Maximized;
+        }
+
+        private void Min_Button(object sender, RoutedEventArgs e) {
+            WindowState = WindowState.Normal;
+            
         }
     }
 }
