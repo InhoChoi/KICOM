@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,12 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace kicom.Pages {
+namespace kicom.Pages
+{
     /// <summary>
-    /// Home.xaml에 대한 상호 작용 논리
+    /// Log.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class Home : UserControl {
-        public Home() {
+    public partial class Log : UserControl
+    {
+        public Log()
+        {
             InitializeComponent();
         }
     }
