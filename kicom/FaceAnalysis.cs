@@ -19,6 +19,7 @@ namespace kicom
         private Person[] persons = null;
         private System.Timers.Timer aTimer = null;
         private Semaphore mutex = null;
+        private XMLwriter xmLwriterInstance = null;
 
 
         public FaceAnalysis(string folderPath)
@@ -33,6 +34,9 @@ namespace kicom
             //The face ID will expire 24 hours after detection.
             this.aTimer.Interval = 24 * 60 * 60 * 1000;
             this.aTimer.Enabled = true;
+
+            // xmlwriter를 인스턴스화
+            xmLwriterInstance = XMLwriter.GetInstance();
 
             init();
         }
@@ -141,7 +145,7 @@ namespace kicom
                 this.mutex.Release();
 
                 Result result = new Result("Unknown", filepath, "Unknown");
-                XMLwriter.pushXMLQueue(result);
+                xmLwriterInstance.pushXMLQueue(result);
                 return;
             }
 
@@ -162,7 +166,7 @@ namespace kicom
                             this.mutex.Release();
 
                             Result result = new Result(person.name, filepath, person.relation);
-                            XMLwriter.pushXMLQueue(result);
+                            xmLwriterInstance.pushXMLQueue(result);
                             return;
                             //ret.Add(result);
                         }
@@ -173,7 +177,7 @@ namespace kicom
 
             //DB에 사람들과 일치하지 않는 경우
             Result unknown = new Result("Unknown", filepath, "Unknown");
-            XMLwriter.pushXMLQueue(unknown);
+            xmLwriterInstance.pushXMLQueue(unknown);
 
             //Mutext Relase
             this.mutex.Release();

@@ -38,6 +38,8 @@ namespace kicom {
         private string logFolderPath;
         private bool isSuspicious = true;
 
+        private WriteImageList imageListwriter = null;
+
         // 1. 키넥트 센서
         private KinectSensor kinect = null;
 
@@ -92,6 +94,9 @@ namespace kicom {
             }
 
             faceAnalysis = new FaceAnalysis(@".");
+
+            // 이미지 작성자의 인스턴스화
+            imageListwriter = WriteImageList.GetInstance();
 
             this.DataContext = this;
             InitializeComponent();
@@ -272,7 +277,7 @@ namespace kicom {
                                 fs.Close();
                                 // 로그 작성
                                 stringToLog(log);
-                                WriteImageList.pushList(path);
+                                imageListwriter.pushList(path);
 
                                 VisitorInfo VSD = new VisitorInfo(true, path);
 
