@@ -4,16 +4,14 @@
 //
 // *********************************************************
 
-namespace Microsoft.ProjectOxford.Face
-{
+namespace Microsoft.ProjectOxford.Face {
     using System;
     using System.Net;
 
     /// <summary>
     /// The Exception will be shown to client.
     /// </summary>
-    public class ClientException : Exception
-    {
+    public class ClientException : Exception {
         /// <summary>
         /// Initializes a new instance of the <see cref="ClientException"/> class.
         /// </summary>
@@ -27,10 +25,8 @@ namespace Microsoft.ProjectOxford.Face
         /// </summary>
         /// <param name="message">The corresponding error message.</param>
         public ClientException(string message)
-            : base(message)
-        {
-            this.Error = new ClientError()
-            {
+            : base(message) {
+            this.Error = new ClientError() {
                 Code = HttpStatusCode.InternalServerError.ToString(),
                 Message = message
             };
@@ -42,12 +38,10 @@ namespace Microsoft.ProjectOxford.Face
         /// <param name="message">The corresponding error message.</param>
         /// <param name="httpStatus">The Http Status code.</param>
         public ClientException(string message, HttpStatusCode httpStatus)
-            : base(message)
-        {
+            : base(message) {
             this.HttpStatus = httpStatus;
 
-            this.Error = new ClientError()
-            {
+            this.Error = new ClientError() {
                 Code = this.HttpStatus.ToString(),
                 Message = message
             };
@@ -59,10 +53,8 @@ namespace Microsoft.ProjectOxford.Face
         /// <param name="message">The corresponding error message.</param>
         /// <param name="innerException">The inner exception.</param>
         public ClientException(string message, Exception innerException)
-            : base(message, innerException)
-        {
-            this.Error = new ClientError()
-            {
+            : base(message, innerException) {
+            this.Error = new ClientError() {
                 Code = HttpStatusCode.InternalServerError.ToString(),
                 Message = message
             };
@@ -76,12 +68,10 @@ namespace Microsoft.ProjectOxford.Face
         /// <param name="httpStatus">The http status.</param>
         /// <param name="innerException">The inner exception.</param>
         public ClientException(string message, string errorCode, HttpStatusCode httpStatus, Exception innerException)
-            : base(message, innerException)
-        {
+            : base(message, innerException) {
             this.HttpStatus = httpStatus;
 
-            this.Error = new ClientError()
-            {
+            this.Error = new ClientError() {
                 Code = errorCode,
                 Message = message
             };
@@ -92,8 +82,7 @@ namespace Microsoft.ProjectOxford.Face
         /// </summary>
         /// <param name="error">The error entity.</param>
         /// <param name="httpStatus">The http status.</param>
-        public ClientException(ClientError error, HttpStatusCode httpStatus)
-        {
+        public ClientException(ClientError error, HttpStatusCode httpStatus) {
             this.Error = error;
             this.HttpStatus = httpStatus;
         }
@@ -119,11 +108,9 @@ namespace Microsoft.ProjectOxford.Face
         /// </summary>
         /// <param name="message">The corresponding error message.</param>
         /// <returns>Client Exception Instance.</returns>
-        public static ClientException BadRequest(string message)
-        {
+        public static ClientException BadRequest(string message) {
             return new ClientException(
-                new ClientError()
-                {
+                new ClientError() {
                     Code = ((int)HttpStatusCode.BadRequest).ToString(),
                     Message = message
                 },

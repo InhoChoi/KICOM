@@ -9,7 +9,7 @@
     <UserControl.Resources>
         <DataTemplate x:Key="ImageGalleryDataTemplate">
             <Grid>
-                <Border BorderBrush="#FFFF9800" BorderThickness="3"  Width="120" Height="120" Padding="10" Margin="15" CornerRadius="10">
+                <Border BorderBrush="#FFFF9800" BorderThickness="0"  Width="120" Height="120" Padding="10" Margin="15" CornerRadius="10">
                     <!--Bind Image Path in Image Control-->
                     <Image Source="{Binding ImagePath}" Stretch="Fill"  HorizontalAlignment="Center">
                         <!--View Large Image on Image Control Tooltip-->

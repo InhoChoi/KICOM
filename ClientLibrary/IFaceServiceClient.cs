@@ -4,8 +4,7 @@
 //
 // *********************************************************
 
-namespace Microsoft.ProjectOxford.Face
-{
+namespace Microsoft.ProjectOxford.Face {
     using System;
     using System.IO;
     using System.Threading.Tasks;
@@ -14,8 +13,7 @@ namespace Microsoft.ProjectOxford.Face
     /// <summary>
     /// The face service client proxy interface.
     /// </summary>
-    public interface IFaceServiceClient
-    {
+    public interface IFaceServiceClient {
         /// <summary>
         /// Detects an URL asynchronously.
         /// </summary>

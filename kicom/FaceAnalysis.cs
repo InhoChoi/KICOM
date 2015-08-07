@@ -9,10 +9,8 @@ using System.IO;
 using System.Collections;
 using System.Threading;
 
-namespace kicom
-{
-    class FaceAnalysis
-    {
+namespace kicom {
+    class FaceAnalysis {
         private readonly IFaceServiceClient faceServiceClient = new FaceServiceClient("e6edd17d1bbd4ca69d14ccf572e9af20");
         private FileManagement fileMangemnet = null;
         private DBManagement dbManagement = null;
@@ -22,8 +20,7 @@ namespace kicom
         private XMLwriter xmLwriterInstance = null;
 
 
-        public FaceAnalysis(string folderPath)
-        {
+        public FaceAnalysis(string folderPath) {
             this.fileMangemnet = new FileManagement(folderPath);
             this.dbManagement = new DBManagement(folderPath);
             this.mutex = new Semaphore(1, 1);
@@ -42,14 +39,12 @@ namespace kicom
         }
 
         //타이머 Elapsed 함수
-        void aTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
+        void aTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e) {
             init();
         }
 
         //Person의 초기화 함수
-        private async void init()
-        {
+        private async void init() {
             //Mutext Wait
             mutex.WaitOne();
             this.persons = await this.getFacesFromDB();
@@ -59,19 +54,15 @@ namespace kicom
         }
 
         // 사진 이미지를 이용하여 Face 정보 획득
-        private async Task<Face[]> UploadAndDetectFaces(string imageFilePath)
-        {
-            try
-            {
-                using (Stream imageFileStream = File.OpenRead(imageFilePath))
-                {
+        private async Task<Face[]> UploadAndDetectFaces(string imageFilePath) {
+            try {
+                using (Stream imageFileStream = File.OpenRead(imageFilePath)) {
                     Face[] faces = await faceServiceClient.DetectAsync(imageFileStream);
 
                     return faces;
                 }
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 Console.WriteLine(e.ToString());
                 return new Face[0];
             }
@@ -79,12 +70,10 @@ namespace kicom
         }
 
         //저장소의 이미지파일과 DB의 내용을 이용하여 Person 작성
-        public async Task<Person[]> getFacesFromDB()
-        {
+        public async Task<Person[]> getFacesFromDB() {
             Person[] persons = dbManagement.select();
 
-            foreach (Person person in persons)
-            {
+            foreach (Person person in persons) {
                 if (fileMangemnet.exists(person.imgname))
                 {
                     string filepath = fileMangemnet.getFilePath(person.imgname);
@@ -99,13 +88,10 @@ namespace kicom
         }
 
         //저장소에 이미지 저장 및 DB 저장
-        public async void register(string name, string filepath, string realtion, string etc)
-        {
-            if (System.IO.File.Exists(filepath))
-            {
+        public async void register(string name, string filepath, string realtion, string etc) {
+            if (System.IO.File.Exists(filepath)) {
                 Face[] faces = await this.UploadAndDetectFaces(filepath);
-                if (faces.Length == 1)
-                {
+                if (faces.Length == 1) {
                     string filename = Path.GetFileName(filepath);
                     fileMangemnet.copyFrom(filepath);
                     Console.WriteLine(filename);
@@ -113,20 +99,17 @@ namespace kicom
 
                     dbManagement.insert(person);
                 }
-                else
-                {
+                else {
                     throw new Exception("사진속의 얼굴이 하나이상이거나 없습니다");
                 }
             }
-            else
-            {
+            else {
                 throw new Exception(filepath + " 파일이 존재하지 않습니다");
             }
         }
 
         // 저장소에 등록된 사람들인지 아닌지 확인
-        public async void verify(VisitorInfo info)
-        {
+        public async void verify(VisitorInfo info) {
 
             if (this.persons == null)
                 throw new Exception("Person 객체가 생성되지 않았습니다");
@@ -139,8 +122,7 @@ namespace kicom
             Face[] faces = await this.UploadAndDetectFaces(filepath);
 
             //얼굴이 존재하지 않을 경우
-            if (faces.Length == 0)
-            {
+            if (faces.Length == 0) {
                 //Mutext Relase
                 this.mutex.Release();
 
@@ -150,18 +132,14 @@ namespace kicom
             }
 
             // DB에 사람들과 비교하는 부분
-            foreach (Face face in faces)
-            {
-                foreach (Person person in this.persons)
-                {
-                    if (person.faceid != null)
-                    {
+            foreach (Face face in faces) {
+                foreach (Person person in this.persons) {
+                    if (person.faceid != null) {
                         Guid guid = new Guid(person.faceid);
                         VerifyResult verifyresult = await faceServiceClient.VerifyAsync(face.FaceId, guid);
 
                         //DB에 저장한 사람들과 일치한 경우
-                        if (verifyresult.IsIdentical)
-                        {
+                        if (verifyresult.IsIdentical) {
                             //Mutext Relase
                             this.mutex.Release();
 

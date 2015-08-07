@@ -4,8 +4,7 @@
 //
 // *********************************************************
 
-namespace Microsoft.ProjectOxford.Face
-{
+namespace Microsoft.ProjectOxford.Face {
     using System;
     using System.Dynamic;
     using System.IO;
@@ -21,8 +20,7 @@ namespace Microsoft.ProjectOxford.Face
     /// <summary>
     /// The face service client proxy implementation.
     /// </summary>
-    public class FaceServiceClient : IFaceServiceClient
-    {
+    public class FaceServiceClient : IFaceServiceClient {
         #region private members
 
         /// <summary>
@@ -85,8 +83,7 @@ namespace Microsoft.ProjectOxford.Face
         /// </summary>
         private static CamelCasePropertyNamesContractResolver defaultResolver = new CamelCasePropertyNamesContractResolver();
 
-        private static JsonSerializerSettings settings = new JsonSerializerSettings()
-        {
+        private static JsonSerializerSettings settings = new JsonSerializerSettings() {
             DateFormatHandling = DateFormatHandling.IsoDateFormat,
             NullValueHandling = NullValueHandling.Ignore,
             ContractResolver = defaultResolver
@@ -100,8 +97,7 @@ namespace Microsoft.ProjectOxford.Face
         /// Initializes a new instance of the <see cref="FaceServiceClient"/> class.
         /// </summary>
         /// <param name="subscriptionKey">The subscription key.</param>
-        public FaceServiceClient(string subscriptionKey)
-        {
+        public FaceServiceClient(string subscriptionKey) {
             this.subscriptionKey = subscriptionKey;
         }
 
@@ -116,8 +112,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <param name="analyzesGender">If set to <c>true</c> [analyzes gender].</param>
         /// <param name="analyzesHeadPose">If set to <c>true</c> [analyzes head pose].</param>
         /// <returns>The detected faces.</returns>
-        public async Task<Face[]> DetectAsync(string url, bool analyzesFaceLandmarks = false, bool analyzesAge = false, bool analyzesGender = false, bool analyzesHeadPose = false)
-        {
+        public async Task<Face[]> DetectAsync(string url, bool analyzesFaceLandmarks = false, bool analyzesAge = false, bool analyzesGender = false, bool analyzesHeadPose = false) {
             var requestUrl = string.Format(
                 "{0}/{1}?analyzesFaceLandmarks={2}&analyzesAge={3}&analyzesGender={4}&analyzesHeadPose={5}&{6}={7}",
                 ServiceHost,
@@ -141,8 +136,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <param name="analyzesGender">If set to <c>true</c> [analyzes gender].</param>
         /// <param name="analyzesHeadPose">If set to <c>true</c> [analyzes head pose].</param>
         /// <returns>The detected faces.</returns>
-        public async Task<Face[]> DetectAsync(Stream imageStream, bool analyzesFaceLandmarks = false, bool analyzesAge = false, bool analyzesGender = false, bool analyzesHeadPose = false)
-        {
+        public async Task<Face[]> DetectAsync(Stream imageStream, bool analyzesFaceLandmarks = false, bool analyzesAge = false, bool analyzesGender = false, bool analyzesHeadPose = false) {
             var requestUrl = string.Format(
                 "{0}/{1}?analyzesFaceLandmarks={2}&analyzesAge={3}&analyzesGender={4}&analyzesHeadPose={5}&{6}={7}",
                 ServiceHost,
@@ -163,8 +157,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <param name="faceId1">The face id 1.</param>
         /// <param name="faceId2">The face id 2.</param>
         /// <returns>The verification result.</returns>
-        public async Task<VerifyResult> VerifyAsync(Guid faceId1, Guid faceId2)
-        {
+        public async Task<VerifyResult> VerifyAsync(Guid faceId1, Guid faceId2) {
             var requestUrl = string.Format("{0}/{1}?{2}={3}", ServiceHost, VerificationsQuery, SubscriptionKeyName, this.subscriptionKey);
 
             return await this.SendRequestAsync<object, VerifyResult>(HttpMethod.Post, requestUrl, new { faceId1 = faceId1, faceId2 = faceId2 });
@@ -177,8 +170,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <param name="faceIds">The face ids.</param>
         /// <param name="maxNumOfCandidatesReturned">The maximum number of candidates returned for each face.</param>
         /// <returns>The identification results</returns>
-        public async Task<IdentifyResult[]> IdentifyAsync(string personGroupId, Guid[] faceIds, int maxNumOfCandidatesReturned = 1)
-        {
+        public async Task<IdentifyResult[]> IdentifyAsync(string personGroupId, Guid[] faceIds, int maxNumOfCandidatesReturned = 1) {
             var requestUrl = string.Format("{0}/{1}?{2}={3}", ServiceHost, IdentificationsQuery, SubscriptionKeyName, this.subscriptionKey);
 
             return await this.SendRequestAsync<object, IdentifyResult[]>(HttpMethod.Post, requestUrl, new { personGroupId = personGroupId, faceIds = faceIds, maxNumOfCandidatesReturned = maxNumOfCandidatesReturned });
@@ -191,8 +183,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <param name="name">The name.</param>
         /// <param name="userData">The user data.</param>
         /// <returns>Task object.</returns>
-        public async Task CreatePersonGroupAsync(string personGroupId, string name, string userData = null)
-        {
+        public async Task CreatePersonGroupAsync(string personGroupId, string name, string userData = null) {
             var requestUrl = string.Format("{0}/{1}/{2}?{3}={4}", ServiceHost, PersonGroupsQuery, personGroupId, SubscriptionKeyName, this.subscriptionKey);
 
             await this.SendRequestAsync<object, object>(HttpMethod.Put, requestUrl, new { name = name, userData = userData });
@@ -203,8 +194,7 @@ namespace Microsoft.ProjectOxford.Face
         /// </summary>
         /// <param name="personGroupId">The person group id.</param>
         /// <returns>The person group entity.</returns>
-        public async Task<PersonGroup> GetPersonGroupAsync(string personGroupId)
-        {
+        public async Task<PersonGroup> GetPersonGroupAsync(string personGroupId) {
             var requestUrl = string.Format("{0}/{1}/{2}?{3}={4}", ServiceHost, PersonGroupsQuery, personGroupId, SubscriptionKeyName, this.subscriptionKey);
 
             return await this.SendRequestAsync<object, PersonGroup>(HttpMethod.Get, requestUrl, null);
@@ -217,8 +207,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <param name="name">The name.</param>
         /// <param name="userData">The user data.</param>
         /// <returns>Task object.</returns>
-        public async Task UpdatePersonGroupAsync(string personGroupId, string name, string userData = null)
-        {
+        public async Task UpdatePersonGroupAsync(string personGroupId, string name, string userData = null) {
             var requestUrl = string.Format("{0}/{1}/{2}?{3}={4}", ServiceHost, PersonGroupsQuery, personGroupId, SubscriptionKeyName, this.subscriptionKey);
 
             await this.SendRequestAsync<object, object>(new HttpMethod("PATCH"), requestUrl, new { name = name, userData = userData });
@@ -229,8 +218,7 @@ namespace Microsoft.ProjectOxford.Face
         /// </summary>
         /// <param name="personGroupId">The person group id.</param>
         /// <returns>Task object.</returns>
-        public async Task DeletePersonGroupAsync(string personGroupId)
-        {
+        public async Task DeletePersonGroupAsync(string personGroupId) {
             var requestUrl = string.Format("{0}/{1}/{2}?{3}={4}", ServiceHost, PersonGroupsQuery, personGroupId, SubscriptionKeyName, this.subscriptionKey);
 
             await this.SendRequestAsync<object, object>(HttpMethod.Delete, requestUrl, null);
@@ -240,8 +228,7 @@ namespace Microsoft.ProjectOxford.Face
         /// Gets all person groups asynchronously.
         /// </summary>
         /// <returns>Person group entity array.</returns>
-        public async Task<PersonGroup[]> GetPersonGroupsAsync()
-        {
+        public async Task<PersonGroup[]> GetPersonGroupsAsync() {
             var requestUrl = string.Format(
                 "{0}/{1}?{2}={3}",
                 ServiceHost,
@@ -257,8 +244,7 @@ namespace Microsoft.ProjectOxford.Face
         /// </summary>
         /// <param name="personGroupId">The person group id.</param>
         /// <returns>Task object.</returns>
-        public async Task TrainPersonGroupAsync(string personGroupId)
-        {
+        public async Task TrainPersonGroupAsync(string personGroupId) {
             var requestUrl = string.Format("{0}/{1}/{2}/{3}?{4}={5}", ServiceHost, PersonGroupsQuery, personGroupId, TrainingQuery, SubscriptionKeyName, this.subscriptionKey);
 
             await this.SendRequestAsync<object, object>(HttpMethod.Post, requestUrl, null);
@@ -269,8 +255,7 @@ namespace Microsoft.ProjectOxford.Face
         /// </summary>
         /// <param name="personGroupId">The person group id.</param>
         /// <returns>The person group training status.</returns>
-        public async Task<TrainingStatus> GetPersonGroupTrainingStatusAsync(string personGroupId)
-        {
+        public async Task<TrainingStatus> GetPersonGroupTrainingStatusAsync(string personGroupId) {
             var requestUrl = string.Format("{0}/{1}/{2}/{3}?{4}={5}", ServiceHost, PersonGroupsQuery, personGroupId, TrainingQuery, SubscriptionKeyName, this.subscriptionKey);
 
             return await this.SendRequestAsync<object, TrainingStatus>(HttpMethod.Get, requestUrl, null);
@@ -284,8 +269,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <param name="name">The name.</param>
         /// <param name="userData">The user data.</param>
         /// <returns>The CreatePersonResult entity.</returns>
-        public async Task<CreatePersonResult> CreatePersonAsync(string personGroupId, Guid[] faceIds, string name, string userData = null)
-        {
+        public async Task<CreatePersonResult> CreatePersonAsync(string personGroupId, Guid[] faceIds, string name, string userData = null) {
             var requestUrl = string.Format("{0}/{1}/{2}/{3}?{4}={5}", ServiceHost, PersonGroupsQuery, personGroupId, PersonsQuery, SubscriptionKeyName, this.subscriptionKey);
 
             return await this.SendRequestAsync<object, CreatePersonResult>(HttpMethod.Post, requestUrl, new { faceIds = faceIds, name = name, userData = userData });
@@ -297,8 +281,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <param name="personGroupId">The person group id.</param>
         /// <param name="personId">The person id.</param>
         /// <returns>The person entity.</returns>
-        public async Task<Person> GetPersonAsync(string personGroupId, Guid personId)
-        {
+        public async Task<Person> GetPersonAsync(string personGroupId, Guid personId) {
             var requestUrl = string.Format("{0}/{1}/{2}/{3}/{4}?{5}={6}", ServiceHost, PersonGroupsQuery, personGroupId, PersonsQuery, personId, SubscriptionKeyName, this.subscriptionKey);
 
             return await this.SendRequestAsync<object, Person>(HttpMethod.Get, requestUrl, null);
@@ -313,8 +296,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <param name="name">The name.</param>
         /// <param name="userData">The user data.</param>
         /// <returns>Task object.</returns>
-        public async Task UpdatePersonAsync(string personGroupId, Guid personId, Guid[] faceIds, string name, string userData = null)
-        {
+        public async Task UpdatePersonAsync(string personGroupId, Guid personId, Guid[] faceIds, string name, string userData = null) {
             var requestUrl = string.Format("{0}/{1}/{2}/{3}/{4}?{5}={6}", ServiceHost, PersonGroupsQuery, personGroupId, PersonsQuery, personId, SubscriptionKeyName, this.subscriptionKey);
 
             await this.SendRequestAsync<object, object>(new HttpMethod("PATCH"), requestUrl, new { faceIds = faceIds, name = name, userData = userData });
@@ -326,8 +308,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <param name="personGroupId">The person group id.</param>
         /// <param name="personId">The person id.</param>
         /// <returns>Task object.</returns>
-        public async Task DeletePersonAsync(string personGroupId, Guid personId)
-        {
+        public async Task DeletePersonAsync(string personGroupId, Guid personId) {
             var requestUrl = string.Format("{0}/{1}/{2}/{3}/{4}?{5}={6}", ServiceHost, PersonGroupsQuery, personGroupId, PersonsQuery, personId, SubscriptionKeyName, this.subscriptionKey);
 
             await this.SendRequestAsync<object, object>(HttpMethod.Delete, requestUrl, null);
@@ -340,8 +321,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <returns>
         /// The person entity array.
         /// </returns>
-        public async Task<Person[]> GetPersonsAsync(string personGroupId)
-        {
+        public async Task<Person[]> GetPersonsAsync(string personGroupId) {
             var requestUrl = string.Format(
                 "{0}/{1}/{2}/{3}?{4}={5}",
                 ServiceHost,
@@ -364,8 +344,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <returns>
         /// Task object.
         /// </returns>
-        public async Task AddPersonFaceAsync(string personGroupId, Guid personId, Guid faceId, string userData = null)
-        {
+        public async Task AddPersonFaceAsync(string personGroupId, Guid personId, Guid faceId, string userData = null) {
             var requestUrl = string.Format("{0}/{1}/{2}/{3}/{4}/{5}/{6}?{7}={8}", ServiceHost, PersonGroupsQuery, personGroupId, PersonsQuery, personId, FacesQuery, faceId, SubscriptionKeyName, this.subscriptionKey);
 
             await this.SendRequestAsync<object, object>(HttpMethod.Put, requestUrl, new { userData = userData });
@@ -380,8 +359,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <returns>
         /// The person face entity.
         /// </returns>
-        public async Task<PersonFace> GetPersonFaceAsync(string personGroupId, Guid personId, Guid faceId)
-        {
+        public async Task<PersonFace> GetPersonFaceAsync(string personGroupId, Guid personId, Guid faceId) {
             var requestUrl = string.Format("{0}/{1}/{2}/{3}/{4}/{5}/{6}?{7}={8}", ServiceHost, PersonGroupsQuery, personGroupId, PersonsQuery, personId, FacesQuery, faceId, SubscriptionKeyName, this.subscriptionKey);
 
             return await this.SendRequestAsync<object, PersonFace>(HttpMethod.Get, requestUrl, null);
@@ -397,8 +375,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <returns>
         /// Task object.
         /// </returns>
-        public async Task UpdatePersonFaceAsync(string personGroupId, Guid personId, Guid faceId, string userData)
-        {
+        public async Task UpdatePersonFaceAsync(string personGroupId, Guid personId, Guid faceId, string userData) {
             var requestUrl = string.Format("{0}/{1}/{2}/{3}/{4}/{5}/{6}?{7}={8}", ServiceHost, PersonGroupsQuery, personGroupId, PersonsQuery, personId, FacesQuery, faceId, SubscriptionKeyName, this.subscriptionKey);
 
             await this.SendRequestAsync<object, object>(new HttpMethod("PATCH"), requestUrl, new { userData = userData });
@@ -413,8 +390,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <returns>
         /// Task object.
         /// </returns>
-        public async Task DeletePersonFaceAsync(string personGroupId, Guid personId, Guid faceId)
-        {
+        public async Task DeletePersonFaceAsync(string personGroupId, Guid personId, Guid faceId) {
             var requestUrl = string.Format("{0}/{1}/{2}/{3}/{4}/{5}/{6}?{7}={8}", ServiceHost, PersonGroupsQuery, personGroupId, PersonsQuery, personId, FacesQuery, faceId, SubscriptionKeyName, this.subscriptionKey);
 
             await this.SendRequestAsync<object, object>(HttpMethod.Delete, requestUrl, null);
@@ -428,8 +404,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <returns>
         /// Task object.
         /// </returns>
-        public async Task<SimilarFace[]> FindSimilarAsync(Guid faceId, Guid[] faceIds)
-        {
+        public async Task<SimilarFace[]> FindSimilarAsync(Guid faceId, Guid[] faceIds) {
             var requestUrl = string.Format("{0}/findsimilars?{1}={2}", ServiceHost, SubscriptionKeyName, this.subscriptionKey);
 
             return await this.SendRequestAsync<object, SimilarFace[]>(HttpMethod.Post, requestUrl, new { faceId = faceId, faceIds = faceIds });
@@ -442,8 +417,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <returns>
         /// Task object.
         /// </returns>
-        public async Task<GroupResult> GroupAsync(Guid[] faceIds)
-        {
+        public async Task<GroupResult> GroupAsync(Guid[] faceIds) {
             var requestUrl = string.Format("{0}/groupings?{1}={2}", ServiceHost, SubscriptionKeyName, this.subscriptionKey);
 
             return await this.SendRequestAsync<object, GroupResult>(HttpMethod.Post, requestUrl, new { faceIds = faceIds });
@@ -451,47 +425,37 @@ namespace Microsoft.ProjectOxford.Face
         #endregion
 
         #region the json client
-        private async Task<TResponse> SendRequestAsync<TRequest, TResponse>(HttpMethod httpMethod, string requestUrl, TRequest requestBody)
-        {
+        private async Task<TResponse> SendRequestAsync<TRequest, TResponse>(HttpMethod httpMethod, string requestUrl, TRequest requestBody) {
             var request = new HttpRequestMessage(httpMethod, ServiceHost);
             request.RequestUri = new Uri(requestUrl);
-            if (requestBody != null)
-            {
-                if (requestBody is Stream)
-                {
+            if (requestBody != null) {
+                if (requestBody is Stream) {
                     request.Content = new StreamContent(requestBody as Stream);
                     request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
                 }
-                else
-                {
+                else {
                     request.Content = new StringContent(JsonConvert.SerializeObject(requestBody, settings), Encoding.UTF8, JsonHeader);
                 }
             }
 
             HttpResponseMessage response = await httpClient.SendAsync(request);
-            if (response.IsSuccessStatusCode)
-            {
+            if (response.IsSuccessStatusCode) {
                 string responseContent = null;
-                if (response.Content != null)
-                {
+                if (response.Content != null) {
                     responseContent = await response.Content.ReadAsStringAsync();
                 }
 
-                if (!string.IsNullOrWhiteSpace(responseContent))
-                {
+                if (!string.IsNullOrWhiteSpace(responseContent)) {
                     return JsonConvert.DeserializeObject<TResponse>(responseContent, settings);
                 }
 
                 return default(TResponse);
             }
-            else
-            {
-                if (response.Content != null && response.Content.Headers.ContentType.MediaType.Contains(JsonHeader))
-                {
+            else {
+                if (response.Content != null && response.Content.Headers.ContentType.MediaType.Contains(JsonHeader)) {
                     var errorObjectString = await response.Content.ReadAsStringAsync();
                     ClientError errorCollection = JsonConvert.DeserializeObject<ClientError>(errorObjectString);
-                    if (errorCollection != null)
-                    {
+                    if (errorCollection != null) {
                         throw new ClientException(errorCollection, response.StatusCode);
                     }
                 }

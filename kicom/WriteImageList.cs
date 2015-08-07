@@ -15,7 +15,6 @@ namespace kicom {
             FileInfo _fileinfo = new FileInfo("Imagedata.xml");
 
             if (!_fileinfo.Exists) {
-                Console.WriteLine("dahdlkfjadkjlfnakjdgfnafkjgnajkfgnjkadfnksjdfndkjsnfkjsdnfj");
                 using (XmlTextWriter writer = new XmlTextWriter("Imagedata.xml", System.Text.Encoding.UTF8)) {
                     writer.WriteStartDocument(true);
                     writer.Formatting = Formatting.Indented;
@@ -27,7 +26,9 @@ namespace kicom {
                     writer.Close();
                 }
             }
-            
+
+            addImageListTask();
+
         }
 
         public static WriteImageList GetInstance() {

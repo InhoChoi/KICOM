@@ -6,8 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace kicom
-{
+namespace kicom {
     /*
      *  Database 접근 관련 클래스
      *  SQLite 데이터 접근을 위한 Reference 추가 필요
@@ -22,35 +21,30 @@ namespace kicom
      *  Private query() - qeury문 실행하기 위한 private 매서드
      */
 
-    class DBManagement
-    {
+    class DBManagement {
         //DB 저장될 경로
         private const string dbname = @"db.db";
         private string dbPath = null;
         private string strConn = null;
 
         //생성자 - 셋팅값이 없을 경우
-        public DBManagement()
-        {
+        public DBManagement() {
             this.dbPath = @".\db.db";
             this.strConn = @"Data Source=.\db.db";
             createDB();
         }
 
         //생성자 dbPath를 매개변수를 작동될경우
-        public DBManagement(string dbSavePath)
-        {
+        public DBManagement(string dbSavePath) {
             this.dbPath = Path.Combine(dbSavePath, dbname);
             this.strConn = string.Format(@"Data Source={0}", this.dbPath);
             createDB();
         }
 
         //DB FILE 생성 및 TABLE 생성
-        private void createDB()
-        {
+        private void createDB() {
             //DB FILE 존재 유무 확인
-            if (!System.IO.File.Exists(this.dbPath))
-            {
+            if (!System.IO.File.Exists(this.dbPath)) {
                 //DB 파일 생성
                 SQLiteConnection.CreateFile(this.dbPath);
 
@@ -68,8 +62,7 @@ namespace kicom
         }
 
         // DB 내용 삭제 - 이름으로 삭제
-        public void delete(string name)
-        {
+        public void delete(string name) {
             string sql = "DELETE FROM Person WHERE Name='";
             sql += name;
             sql += "';";
@@ -77,21 +70,18 @@ namespace kicom
         }
 
         // DB 안에 있는 내용 모두 삭제
-        public void deleteAll()
-        {
+        public void deleteAll() {
             string sql = "DELETE FROM Person";
             this.query(sql);
         }
 
         //Insert 오버로딩 - Person 클래스 객체 이용
-        public void insert(Person person)
-        {
+        public void insert(Person person) {
             this.insert(person.name, person.imgname, person.relation, person.etc);
         }
 
         // DB 내용 추가
-        public void insert(string name, string imgname, string relation, string etc)
-        {
+        public void insert(string name, string imgname, string relation, string etc) {
             string sql = "INSERT INTO Person (Name,ImgName,Relation,ETC) VALUES(";
             sql += "'" + name + "',";
             sql += "'" + imgname + "',";
@@ -102,19 +92,16 @@ namespace kicom
         }
 
         //DB의 값을 얻기 위한 매서드
-        public Person[] select()
-        {
+        public Person[] select() {
             List<Person> list = new List<Person>();
-            using (var conn = new SQLiteConnection(this.strConn))
-            {
+            using (var conn = new SQLiteConnection(this.strConn)) {
                 conn.Open();
                 string sql = "SELECT * FROM Person";
 
                 //SQLiteDataReader를 이용하여 연결 모드로 데이타 읽기
                 SQLiteCommand cmd = new SQLiteCommand(sql, conn);
                 SQLiteDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
+                while (rdr.Read()) {
                     string name = rdr["Name"].ToString();
                     string imgname = rdr["ImgName"].ToString();
                     string relation = rdr["Relation"].ToString();
@@ -129,23 +116,18 @@ namespace kicom
             return list.ToArray();
         }
 
-        private void query(string sql)
-        {
-            try
-            {
+        private void query(string sql) {
+            try {
                 //sql command가 null이 아닐경우
-                if (sql != null)
-                {
-                    using (SQLiteConnection conn = new SQLiteConnection(this.strConn))
-                    {
+                if (sql != null) {
+                    using (SQLiteConnection conn = new SQLiteConnection(this.strConn)) {
                         conn.Open();
                         SQLiteCommand cmd = new SQLiteCommand(sql, conn);
                         cmd.ExecuteNonQuery();
                     }
                 }
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 Console.WriteLine(e.ToString());
             }
 

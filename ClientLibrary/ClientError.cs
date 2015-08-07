@@ -4,23 +4,20 @@
 //
 // *********************************************************
 
-namespace Microsoft.ProjectOxford.Face
-{
+namespace Microsoft.ProjectOxford.Face {
     using System;
 
     /// <summary>
     /// Container of ClientError and Error Entity.
     /// </summary>
-    public class ClientError
-    {
+    public class ClientError {
         /// <summary>
         /// Gets or sets error code in error entity.
         /// </summary>
         /// <value>
         /// The code of client error.
         /// </value>
-        public string Code
-        {
+        public string Code {
             get;
             set;
         }
@@ -31,8 +28,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <value>
         /// The message.
         /// </value>
-        public string Message
-        {
+        public string Message {
             get;
             set;
         }
@@ -43,8 +39,7 @@ namespace Microsoft.ProjectOxford.Face
         /// <value>
         /// The request identifier.
         /// </value>
-        public Guid RequestId
-        {
+        public Guid RequestId {
             get;
             set;
         }
