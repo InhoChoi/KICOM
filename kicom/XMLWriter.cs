@@ -28,6 +28,15 @@ namespace kicom {
             }
         }
 
+        private static bool pushXMLQueue(Result _data) {
+            if (writerQueue != null) {
+                writerQueue.Enqueue(_data);
+                return true;
+            }
+            return false;
+        }
+
+
         private async Task<bool> OverWriting() {
             if (writerQueue.Any()) {
                 using (XmlTextWriter writer = new XmlTextWriter("broadcast.xml", System.Text.Encoding.UTF8)) {

@@ -17,7 +17,6 @@
             <local:ImageButton x:Name="imageButton_Copy" Width="20" Height="20" HorizontalAlignment="Right" Margin="0,5,35,0" VerticalAlignment="Top" ImgDown="Resource/expanding2.png" imgNormal="Resource/expanding2.png" ImgOver="Resource/expanding2.png" ImgDisabled="Resource/expanding2.png" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="imageButton_Copy_Click"/>
         </Grid>
 
-
         <!-- 본체 -->
         <Grid Grid.RowSpan="2">
             <ContentPresenter x:Name="PageView" Margin="0,0,0.333,0"/>
