@@ -20,6 +20,7 @@ namespace kicom
         private System.Timers.Timer aTimer = null;
         private Semaphore mutex = null;
 
+
         public FaceAnalysis(string folderPath)
         {
             this.fileMangemnet = new FileManagement(folderPath);
