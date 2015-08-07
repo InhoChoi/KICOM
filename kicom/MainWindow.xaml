@@ -13,8 +13,8 @@
 
         <!-- 매뉴 바 -->
         <Grid x:Name="GridTop" Grid.RowSpan="1" Margin="0,0,0.333,0.333">
-            <local:ImageButton x:Name="imageButton" Width="20" Height="20" HorizontalAlignment="Right" Margin="0,5,5,0" VerticalAlignment="Top" ImgDown="Resource/delete8.png" imgNormal="Resource/delete8.png" ImgOver="Resource/delete8.png" ImgDisabled="Resource/delete8.png" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="button_Click"/>
-            <local:ImageButton x:Name="imageButton_Copy" Width="20" Height="20" HorizontalAlignment="Right" Margin="0,5,35,0" VerticalAlignment="Top" ImgDown="Resource/expanding2.png" imgNormal="Resource/expanding2.png" ImgOver="Resource/expanding2.png" ImgDisabled="Resource/expanding2.png" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="imageButton_Copy_Click"/>
+            <local:ImageButton x:Name="imageButton" Width="20" Height="20" HorizontalAlignment="Right" Margin="0,5,5,0" VerticalAlignment="Top" ImgDown="Resource/delete8.png" imgNormal="Resource/delete8.png" ImgOver="Resource/delete8.png" ImgDisabled="Resource/delete8.png" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Close_Button"/>
+            <local:ImageButton x:Name="imageButton_Copy" Width="20" Height="20" HorizontalAlignment="Right" Margin="0,5,35,0" VerticalAlignment="Top" ImgDown="Resource/expanding2.png" imgNormal="Resource/expanding2.png" ImgOver="Resource/expanding2.png" ImgDisabled="Resource/expanding2.png" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Max"/>
         </Grid>
 
         <!-- 본체 -->
