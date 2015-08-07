@@ -37,6 +37,7 @@ namespace kicom {
         private string historyFolderPath;
         private string logFolderPath;
         private bool isSuspicious = true;
+        private bool bodyEixst = false;
 
         private WriteImageList imageListwriter = null;
 
@@ -211,6 +212,13 @@ namespace kicom {
                         if (t.IsTracked) { this.dumpCount++; }
                     }
 
+                    if (dumpCount == 0) {
+                        bodyEixst = false;
+                    }
+                    else {
+                        bodyEixst = true;
+                    }
+
                     if (this.dumpCount > this.preBodyCount && !this.needSnapShot) {
                         this.needSnapShot = true;
                     }
@@ -227,7 +235,31 @@ namespace kicom {
         /// <param name="slender"></param>
         /// <param name="e"></param>
         private async void SaveColorMap(object slender, ColorFrameArrivedEventArgs e) {
+            
+            using (ColorFrame colorFrame = e.FrameReference.AcquireFrame()) {
+                if (colorFrame != null) {
+                    FrameDescription colorFrameDescription = colorFrame.FrameDescription;
 
+                    using (KinectBuffer colorBuffer = colorFrame.LockRawImageBuffer()) {
+
+                        this.colorBitmap.Lock();
+
+                        // verify data and write the new color frame data to the display bitmap
+                        if ((colorFrameDescription.Width == this.colorBitmap.PixelWidth) &&
+                            (colorFrameDescription.Height == this.colorBitmap.PixelHeight)) {
+                            colorFrame.CopyConvertedFrameDataToIntPtr(
+                                this.colorBitmap.BackBuffer,
+                                (uint) (colorFrameDescription.Width*colorFrameDescription.Height*4),
+                                ColorImageFormat.Bgra);
+
+                            this.colorBitmap.AddDirtyRect(new Int32Rect(0, 0, this.colorBitmap.PixelWidth,
+                                this.colorBitmap.PixelHeight));
+                        }
+
+                        this.colorBitmap.Unlock();
+                    }
+                }
+            }
             // 스냅샷을 찍어야 할 때만 컬러 프래임의 정보를 가져옴
             if (this.needSnapShot) {
                 try {
@@ -236,29 +268,6 @@ namespace kicom {
                             this.snapShotWait--;
                         }
                         else {
-                            using (ColorFrame colorFrame = e.FrameReference.AcquireFrame()) {
-                                if (colorFrame != null) {
-                                    FrameDescription colorFrameDescription = colorFrame.FrameDescription;
-
-                                    using (KinectBuffer colorBuffer = colorFrame.LockRawImageBuffer()) {
-
-                                        this.colorBitmap.Lock();
-
-                                        // verify data and write the new color frame data to the display bitmap
-                                        if ((colorFrameDescription.Width == this.colorBitmap.PixelWidth) && (colorFrameDescription.Height == this.colorBitmap.PixelHeight)) {
-                                            colorFrame.CopyConvertedFrameDataToIntPtr(
-                                                this.colorBitmap.BackBuffer,
-                                                (uint)(colorFrameDescription.Width * colorFrameDescription.Height * 4),
-                                                ColorImageFormat.Bgra);
-
-                                            this.colorBitmap.AddDirtyRect(new Int32Rect(0, 0, this.colorBitmap.PixelWidth, this.colorBitmap.PixelHeight));
-                                        }
-
-                                        this.colorBitmap.Unlock();
-                                    }
-                                }
-                            }
-                            
                             // Jpeg 확장자로 데이터를 인코딩시켜주늩 인코더 객체 생성
                             BitmapEncoder encoder = new JpegBitmapEncoder();
                             encoder.Frames.Add(BitmapFrame.Create(this.colorBitmap));
@@ -342,6 +351,12 @@ namespace kicom {
 	        mImage.EndInit();
 
 	        return mImage;
+        }
+
+        public ImageSource ImageSource{
+            get {
+                return this.colorBitmap;
+            }
         }
 
         private void button_Click(object sender, RoutedEventArgs e) {

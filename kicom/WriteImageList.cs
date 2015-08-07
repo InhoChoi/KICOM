@@ -16,7 +16,7 @@ namespace kicom {
 
             if (!_fileinfo.Exists) {
                 using (XmlTextWriter writer = new XmlTextWriter("ImageData.xml", System.Text.Encoding.UTF8)) {
-                    writer.WriteStartDocument(true);
+                    writer.WriteStartDocument();
                     writer.Formatting = Formatting.Indented;
                     //writer.Indentation = 2;
                     writer.WriteStartElement("Images");

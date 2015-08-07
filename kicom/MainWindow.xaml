@@ -5,7 +5,11 @@
     xmlns:Pages="clr-namespace:kicom.Pages" x:Class="kicom.MainWindow"
     Title="Kicom - Client" Height="350" Width="525"
     Closing="MainWindow_Closing" AllowsTransparency="True" ResizeMode="CanResize" MinWidth="600" MinHeight="300" WindowStyle="None" Background="#FF202020">
-
+    <Window.Resources>
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -16,14 +20,15 @@
         <Grid x:Name="GridTop" Grid.RowSpan="1" Margin="0,0,0.333,0.333">
             <local:ImageButton Width="20" Height="20" HorizontalAlignment="Right" Margin="0,5,5,0" VerticalAlignment="Top" ImgDown="Resource/delete8.png" imgNormal="Resource/delete8.png" ImgOver="Resource/delete8.png" ImgDisabled="Resource/delete8.png" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Close_Button"/>
             <local:ImageButton Width="20" Height="20" HorizontalAlignment="Right" Margin="0,5,35,0" VerticalAlignment="Top" ImgDown="Resource/expanding2.png" imgNormal="Resource/expanding2.png" ImgOver="Resource/expanding2.png" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Max_Button"/>
-            <local:ImageButton Width="20" Height="20" HorizontalAlignment="Right" Margin="0,5,35,0" VerticalAlignment="Top" ImgDown="Resource/Download-64.png" imgNormal="Resource/Download-64.png" ImgOver="Resource/Download-64.png" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Min_Button"/>
+            <!--<local:ImageButton Width="20" Height="20" HorizontalAlignment="Right" Margin="0,5,35,0" VerticalAlignment="Top" ImgDown="Resource/Download-64.png" imgNormal="Resource/Download-64.png" ImgOver="Resource/Download-64.png" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Min_Button"/>-->
         </Grid>
-        
+
 
         <!-- 본체 -->
         <Grid Grid.RowSpan="2">
-            <Pages:History />
-            <ContentPresenter x:Name="PageView"/>
+            <Viewbox HorizontalAlignment="Center" Margin="160,66,163,27" Width="277" RenderTransformOrigin="0.506,0.517">
+                <Image Source="{Binding ImageSource}" Stretch="UniformToFill" />
+            </Viewbox>
             <Button x:Name="Home_Button" FontSize="16" Content="Home" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Width="auto" Click="Move_Home" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>
             <Button x:Name="Log_Button" FontSize="16" Content="Log" HorizontalAlignment="Left" Margin="124,34,0,0" VerticalAlignment="Top" Width="auto" Click="Move_History" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>
             <Button x:Name="History_Button" FontSize="16" Content="History" HorizontalAlignment="Left" Margin="63,34,0,0" VerticalAlignment="Top" Width="auto" Click="Move_Log" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>

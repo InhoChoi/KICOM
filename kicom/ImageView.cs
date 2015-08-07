@@ -16,6 +16,7 @@ namespace kicom {
                 // Query for retriving all Images data from XML
                 var Query = from Q in XDoc.Descendants("Image")
                             select new ImageEntity {
+                                
                                 ImagePath = Q.Element("ImagePath").Value
                             };
 
