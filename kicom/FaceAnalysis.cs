@@ -19,12 +19,15 @@ namespace kicom
         private Person[] persons = null;
         private System.Timers.Timer aTimer = null;
         private Semaphore mutex = null;
+        private SmartDoorSecurity.XMLwriter xmlWriter = null;
 
         public FaceAnalysis(string folderPath)
         {
             this.fileMangemnet = new FileManagement(folderPath);
             this.dbManagement = new DBManagement(folderPath);
-            init();
+            this.mutex = new Semaphore(1, 1);
+
+
 
             this.aTimer = new System.Timers.Timer(10000);
             this.aTimer.Elapsed += aTimer_Elapsed;
@@ -33,7 +36,10 @@ namespace kicom
             this.aTimer.Interval = 24 * 60 * 60 * 1000;
             this.aTimer.Enabled = true;
 
-            this.mutex = new Semaphore(1, 1);
+
+            this.xmlWriter = SmartDoorSecurity.XMLwriter.GetInstance();
+
+            init();
         }
 
         //타이머 Elapsed 함수
