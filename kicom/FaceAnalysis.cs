@@ -19,7 +19,7 @@ namespace kicom
         private Person[] persons = null;
         private System.Timers.Timer aTimer = null;
         private Semaphore mutex = null;
-        private SmartDoorSecurity.XMLwriter xmlWriter = null;
+        private XMLwriter xmlWriter = null;
 
         public FaceAnalysis(string folderPath)
         {
@@ -37,7 +37,7 @@ namespace kicom
             this.aTimer.Enabled = true;
 
 
-            this.xmlWriter = SmartDoorSecurity.XMLwriter.GetInstance();
+            this.xmlWriter = XMLwriter.GetInstance();
 
             init();
         }
