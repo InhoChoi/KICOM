@@ -6,7 +6,45 @@
              xmlns:local="clr-namespace:kicom.Pages"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
+    <UserControl.Resources>
+        <DataTemplate x:Key="ImageGalleryDataTemplate">
+            <Grid>
+                <Border BorderBrush="#FFFF9800" BorderThickness="3"  Width="120" Height="120" Padding="10" Margin="15" CornerRadius="10">
+                    <!--Bind Image Path in Image Control-->
+                    <Image Source="{Binding ImagePath}" Stretch="Fill"  HorizontalAlignment="Center">
+                        <!--View Large Image on Image Control Tooltip-->
+                        <Image.ToolTip>
+                            <Grid>
+                                <Image Source="{Binding ImagePath}" Stretch="Fill" HorizontalAlignment="Center" Height="200" Width="200"></Image>
+                            </Grid>
+                        </Image.ToolTip>
+
+                    </Image>
+
+                </Border>
+            </Grid>
+        </DataTemplate>
+
+        <ItemsPanelTemplate x:Key="ImageGalleryItemsPanelTemplate">
+
+            <!--Display Images on UniformGrid Panel-->
+            <UniformGrid Columns="4" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+
+        </ItemsPanelTemplate>
+
+
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot">
+
+        <ListBox x:Name="LsImageGallery"  ItemsSource="{Binding}" ItemTemplate="{DynamicResource ImageGalleryDataTemplate}" ItemsPanel="{DynamicResource ImageGalleryItemsPanelTemplate}">
+            <ListBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF1E2A2F" Offset="1"/>
+                </LinearGradientBrush>
+            </ListBox.Background>
+        </ListBox>
+
     </Grid>
 </UserControl>
