@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace kicom {
 
     // To FaceAPI
-    class Person {
+    public class Person {
         public string name { get; set; }
         public string imgname { get; set; }
         public string relation { get; set; }
@@ -24,7 +24,7 @@ namespace kicom {
         }
     }
 
-    class VisitorInfo {
+    public class VisitorInfo {
         public string filepath { get; set; }
         public Boolean stranger { get; set; }
 
@@ -35,7 +35,7 @@ namespace kicom {
     }
 
     // To XMLWriter
-    class Result {
+    public class Result {
         public string name { get; set; }
         public string filepath { get; set; }
         public string relation { get; set; }
