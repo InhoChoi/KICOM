@@ -120,7 +120,7 @@ namespace kicom
         }
 
         // 저장소에 등록된 사람들인지 아닌지 확인
-        public async Task<Result[]> verify(VisitorInfo info)
+        public async void verify(VisitorInfo info)
         {
 
             if (this.persons == null)
@@ -147,7 +147,6 @@ namespace kicom
                         {
                             string imgpath = fileMangemnet.getFilePath(person.imgname);
                             Result result = new Result(person.name, imgpath, person.relation);
-                            Console.WriteLine("dsfsdfds");
                             ret.Add(result);
                         }
 
@@ -157,8 +156,6 @@ namespace kicom
 
             //Mutext Relase
             this.mutex.Release();
-
-            return ret.ToArray();
         }
 
     }
