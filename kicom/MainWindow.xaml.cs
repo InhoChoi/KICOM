@@ -288,7 +288,7 @@ namespace kicom {
                                 VisitorInfo VSD = new VisitorInfo(true, path);
 
                                 if (faceAnalysis != null) {
-                                    await faceAnalysis.verify(VSD);
+                                    faceAnalysis.verify(VSD);
                                 }
 
                                 // 변수 초기화
