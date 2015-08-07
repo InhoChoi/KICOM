@@ -351,7 +351,6 @@ namespace kicom {
         }
 
         private void button_Click(object sender, RoutedEventArgs e) {
-            Application.Current.Shutdown();
             //MyView.Source = ImageLoad("pack://application:,,,/Resource/Settings-64.png");
         }
 
@@ -373,6 +372,10 @@ namespace kicom {
 
         private void Mov_Setting(object sender, RoutedEventArgs e) {
             throw new NotImplementedException();
+        }
+
+        private void Close_Button(object sender, RoutedEventArgs e) {
+            Application.Current.Shutdown();
         }
     }
 }
