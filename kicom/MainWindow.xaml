@@ -22,6 +22,7 @@
 
         <!-- 본체 -->
         <Grid Grid.RowSpan="2">
+            <Pages:History />
             <ContentPresenter x:Name="PageView"/>
             <Button x:Name="Home_Button" FontSize="16" Content="Home" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Width="auto" Click="Move_Home" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>
             <Button x:Name="Log_Button" FontSize="16" Content="Log" HorizontalAlignment="Left" Margin="124,34,0,0" VerticalAlignment="Top" Width="auto" Click="Move_History" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>
