@@ -20,8 +20,6 @@ namespace kicom {
                     writer.Formatting = Formatting.Indented;
                     //writer.Indentation = 2;
                     writer.WriteStartElement("Images");
-                    writer.WriteStartElement("Image");
-                    writer.WriteEndElement();
                     writer.WriteEndElement();
                     writer.Close();
                 }
@@ -61,8 +59,10 @@ namespace kicom {
                 xmlDoc = new XmlDocument();
                 xmlDoc.Load("ImageData.xml"); // XML문서 로딩
 
-                newNode = xmlDoc.SelectSingleNode("Images/Image"); // 추가할 부모 Node 찾기
-
+                newNode = xmlDoc.SelectSingleNode("Images"); // 추가할 부모 Node 찾기
+                xmlEle = xmlDoc.CreateElement("Image");
+                newNode.AppendChild(xmlEle);
+                newNode = newNode.LastChild;
                 xmlEle = xmlDoc.CreateElement("ImagePath"); // 추가할 Node 생성
                 xmlEle.InnerText = ListingQueue.Peek();
                 ListingQueue.Dequeue();

@@ -87,7 +87,7 @@
     </Compile>
     <Compile Include="ImageEntity.cs" />
     <Compile Include="ImageView.cs" />
-    <Compile Include="Pages\History.xaml.cs">
+    <Compile Include="History.xaml.cs">
       <DependentUpon>History.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home.xaml.cs">
@@ -121,7 +121,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\History.xaml">
+    <Page Include="History.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

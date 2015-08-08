@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="kicom.History"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:kicom"
+             mc:Ignorable="d" Width="auto" Height="auto">
+    <UserControl.Resources>
+        <ItemsPanelTemplate x:Key="ImageGalleryItemsPanelTemplate">
+            <UniformGrid Columns="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></UniformGrid>
+        </ItemsPanelTemplate>
+
+        <DataTemplate x:Key="ListImageDataTemplate">
+            <Grid HorizontalAlignment="Left" >
+                <Border Padding="5" Margin="10" BorderBrush="Orange">
+                    <!--Bind Image Path in Image Control-->
+                    <Image VerticalAlignment="Center" Source="{Binding ImagePath}" Stretch="Fill"  HorizontalAlignment="Center" Width="192" Height="108">
+                        <!--View Large Image on Image Control Tooltip-->
+                        <Image.ToolTip>
+                            <StackPanel Background="Black">
+                                <Image Source="{Binding ImagePath}" Stretch="Fill" HorizontalAlignment="Center" Width="384" Height="216"></Image>
+                                <TextBlock Text="{Binding ImagePath}" Foreground="White" Background="Black" Height="20" FontWeight="SemiBold" Margin="15,0,15,0"></TextBlock>
+                            </StackPanel>
+                        </Image.ToolTip>
+                    </Image>
+                </Border>
+                <StackPanel VerticalAlignment="Bottom" Background="Black" Opacity="0.70" Width="200">
+                    <TextBlock Text="{Binding ImagePath}" Foreground="White" Height="20" Margin="15,0,15,0" FontWeight="SemiBold"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <ListBox x:Name="lbImageGallery" Background="{x:Null}"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding}" ItemsPanel="{DynamicResource ImageGalleryItemsPanelTemplate}" ItemTemplate="{StaticResource ListImageDataTemplate}" BorderBrush="{x:Null}">
+        </ListBox>
+    </Grid>
+</UserControl>

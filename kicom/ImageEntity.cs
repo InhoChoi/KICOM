@@ -7,11 +7,11 @@ namespace kicom {
     public class ImageEntity {
         #region Property
 
-      
         public String ImagePath {
             get;
             set;
         }
+
         #endregion
     }
 }
