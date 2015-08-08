@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:kicom.Pages"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="400">
-    <Grid>
+    <Grid Background="Aquamarine">
             
     </Grid>
 </UserControl>

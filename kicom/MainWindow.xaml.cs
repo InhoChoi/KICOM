@@ -384,7 +384,7 @@ namespace kicom {
         }
 
         private void Close_Button(object sender, RoutedEventArgs e) {
-            Application.Current.Shutdown();
+            Application.Current.Shutdown(); 
         }
 
         private void Max_Button(object sender, RoutedEventArgs e) {
@@ -394,6 +394,11 @@ namespace kicom {
         private void Min_Button(object sender, RoutedEventArgs e) {
             WindowState = WindowState.Normal;
             
+        }
+
+        private void Setting_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
