@@ -66,8 +66,6 @@ namespace kicom {
             // 필요 변수 초기화
             historyFolderPath = AppDomain.CurrentDomain.BaseDirectory + @".\History\"; 
             logFolderPath = AppDomain.CurrentDomain.BaseDirectory + @".\Log\log.txt";
-
-            stringToLog("hahah");
             Console.WriteLine(historyFolderPath);
             // Get Default KinectSensor
             this.kinect = KinectSensor.GetDefault();
@@ -365,24 +363,6 @@ namespace kicom {
             //MyView.Source = ImageLoad("pack://application:,,,/Resource/Settings-64.png");
         }
 
-        private void imageButton_Copy_Click(object sender, RoutedEventArgs e) {
-        }
-
-        private void Move_Home(object sender, RoutedEventArgs e) {
-        }
-
-        private void Move_History(object sender, RoutedEventArgs e) {
-            throw new NotImplementedException();
-        }
-
-        private void Move_Log(object sender, RoutedEventArgs e) {
-            throw new NotImplementedException();
-        }
-
-        private void Mov_Setting(object sender, RoutedEventArgs e) {
-            throw new NotImplementedException();
-        }
-
         private void Close_Button(object sender, RoutedEventArgs e) {
             Application.Current.Shutdown(); 
         }
@@ -396,8 +376,7 @@ namespace kicom {
             
         }
 
-        private void Setting_Loaded(object sender, RoutedEventArgs e)
-        {
+        private void Setting_Loaded(object sender, RoutedEventArgs e) {
 
         }
     }
