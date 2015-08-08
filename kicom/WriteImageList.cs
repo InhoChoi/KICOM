@@ -27,7 +27,7 @@ namespace kicom {
                 }
             }
 
-            addImageListTask();
+            //addImageListTask();
 
         }
 
@@ -37,39 +37,41 @@ namespace kicom {
 
         private async Task addImageListTask() {
             while (true) {
-                var result = await OverWriting();
-                await Task.Delay(1000);
+                //var result = await OverWriting();
+                //await Task.Delay(1000);
             }
         }
 
         public bool pushList(string _data) {
             if (ListingQueue != null) {
                 ListingQueue.Enqueue(_data);
+                OverWriting();
                 return true;
             }
             return false;
         }
 
-
-        private async Task<bool> OverWriting() {
+        private bool OverWriting() {
+        //private async Task<bool> OverWriting() {
             if (ListingQueue.Any()) {
-                    XmlDocument xmlDoc;
-                    XmlElement xmlEle;
-                    XmlNode newNode;
+                XmlDocument xmlDoc;
+                XmlElement xmlEle;
+                XmlNode newNode;
 
-                    xmlDoc = new XmlDocument();
-                    xmlDoc.Load("ImageData.xml"); // XML문서 로딩
+                xmlDoc = new XmlDocument();
+                xmlDoc.Load("ImageData.xml"); // XML문서 로딩
 
-                    newNode = xmlDoc.SelectSingleNode("Images/Image"); // 추가할 부모 Node 찾기
+                newNode = xmlDoc.SelectSingleNode("Images/Image"); // 추가할 부모 Node 찾기
 
-                    xmlEle = xmlDoc.CreateElement("ImagePath"); // 추가할 Node 생성
+                xmlEle = xmlDoc.CreateElement("ImagePath"); // 추가할 Node 생성
+                xmlEle.InnerText = ListingQueue.Peek();
+                ListingQueue.Dequeue();
+                newNode.AppendChild(xmlEle); // 위에서 찾은 부모 Node에 자식 노드로 추가..
 
-                    newNode.AppendChild(xmlEle); // 위에서 찾은 부모 Node에 자식 노드로 추가..
+                xmlDoc.Save("ImageData.xml"); // XML문서 저장..
+                xmlDoc = null;
 
-                    xmlDoc.Save("ImageData.xml"); // XML문서 저장..
-                    xmlDoc = null;
-
-                    return true;
+                return true;
             }
             return false;
         }

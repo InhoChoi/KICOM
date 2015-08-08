@@ -13,7 +13,7 @@ namespace kicom {
         private static Queue<Result> writerQueue = new Queue<Result>();
 
         private XMLwriter() {
-            OverWriteXml();
+            //OverWriteXml();
         }
 
         public static XMLwriter GetInstance() {
@@ -22,22 +22,24 @@ namespace kicom {
 
         private async Task OverWriteXml() {
             while (true) {
-                var result = await OverWriting();
-                await Task.Delay(1000);
+                //var result = await OverWriting();
+                //await Task.Delay(1000);
             }
         }
 
         public bool pushXMLQueue(Result _data) {
             if (writerQueue == null) return false;
             writerQueue.Enqueue(_data);
+            OverWriting();
             return true;
         }
-        
-        public async Task<bool> OverWriting() {
+
+        public bool OverWriting() {
+        //public async Task<bool> OverWriting() {
             if (!writerQueue.Any()) return false;
 
             using (XmlTextWriter writer = new XmlTextWriter("broadcast.xml", System.Text.Encoding.UTF8)) {
-                writer.WriteStartDocument(true);
+                writer.WriteStartDocument();
                 writer.Formatting = Formatting.Indented;
                 writer.Indentation = 2;
                 writer.WriteStartElement("Info");
@@ -51,7 +53,6 @@ namespace kicom {
                 writer.WriteString(writerQueue.Peek().filepath);
                 writer.WriteEndElement();
                 writer.WriteEndElement();
-                writer.WriteStartDocument();
                 writer.Close();
 
                 writerQueue.Dequeue();
