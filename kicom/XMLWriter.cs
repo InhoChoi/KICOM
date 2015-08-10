@@ -11,7 +11,6 @@ namespace kicom {
         //private static Singleton _uniqueInstance;
         private static XMLwriter _uniqueInstance = new XMLwriter();
         private static Queue<Result> writerQueue = new Queue<Result>();
-        private Queue<Result> history = new Queue<Result>();
 
         private XMLwriter() {
             //OverWriteXml();
@@ -36,7 +35,7 @@ namespace kicom {
         }
 
         public bool OverWriting() {
-            //public async Task<bool> OverWriting() {
+        //public async Task<bool> OverWriting() {
             if (!writerQueue.Any()) return false;
 
             using (XmlTextWriter writer = new XmlTextWriter("broadcast.xml", System.Text.Encoding.UTF8)) {
@@ -71,38 +70,9 @@ namespace kicom {
                 writer.WriteStartElement("Result");
                 foreach (Result result in results) {
                     writer.WriteStartElement("Info");
-                    writer.WriteElementString("Name", result.name);
-                    writer.WriteElementString("Relation", result.relation);
-                    writer.WriteElementString("Photo_Path", result.filepath);
-                    writer.WriteElementString("Date", System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss"));
-                    writer.WriteEndElement();
-                }
-                writer.WriteEndElement();
-                writer.Close();
-            }
-        }
-
-        public void HistoryWriting(Result[] results) {
-            foreach (Result result in results) {
-                history.Enqueue(result);
-            }
-            //20개 갯수맞추기
-            while (true) {
-                if (history.Count <= 20) {
-                    break;
-                }
-                history.Dequeue();
-            }
-            using (XmlTextWriter writer = new XmlTextWriter("history.xml", System.Text.Encoding.UTF8)) {
-                writer.WriteStartDocument();
-                writer.Formatting = Formatting.Indented;
-                writer.Indentation = 2;
-                writer.WriteStartElement("History");
-                foreach (Result result in Enumerable.Reverse(history)) {
-                    writer.WriteStartElement("Info");
-                    writer.WriteElementString("Name", result.name);
-                    writer.WriteElementString("Relation", result.relation);
-                    writer.WriteElementString("Photo_Path", result.filepath);
+                    writer.WriteElementString("Name",result.name);
+                    writer.WriteElementString("Relation",result.relation);
+                    writer.WriteElementString("Photo_Path",result.filepath);
                     writer.WriteElementString("Date", System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss"));
                     writer.WriteEndElement();
                 }
