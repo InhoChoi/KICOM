@@ -4,7 +4,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-from flask import Flask, render_template, request, session, jsonify
+from flask import Flask, render_template, request, session, jsonify, url_for, redirect
 
 app = Flask(__name__)
 app.config['SESSION_TYPE'] = 'memcached'
@@ -46,6 +46,12 @@ def sendMessage():
     f.write(getMessage)
     f.close()
     return render_template('kicom_send_message.html', id = session['id'], userMessage = getMessage)
+
+@app.route('/logout')
+def logout():
+  session['logged_in'] = False
+  session.pop('id', None)
+  return render_template('kicom_login.html')
 
 if __name__ == '__main__':
   app.run(debug=True)
