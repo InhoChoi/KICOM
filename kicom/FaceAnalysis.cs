@@ -110,6 +110,7 @@ namespace kicom {
 
         // 저장소에 등록된 사람들인지 아닌지 확인
         public async void verify(VisitorInfo info) {
+            string date = System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
 
             if (this.persons == null)
                 throw new Exception("Person 객체가 생성되지 않았습니다");
@@ -129,7 +130,7 @@ namespace kicom {
                 //Mutext Relase
                 this.mutex.Release();
 
-                Result result = new Result("No face", filepath, "No face");
+                Result result = new Result("No face", filepath, "No face", date);
                 results.Add(result);
                 xmLwriterInstance.HistoryWriting(results.ToArray());
                 xmLwriterInstance.AlertWriting(results.ToArray());
@@ -150,7 +151,7 @@ namespace kicom {
 
                         //DB에 저장한 사람들과 일치한 경우
                         if (verifyresult.IsIdentical) {
-                            Result result = new Result(person.name, filepath, person.relation);
+                            Result result = new Result(person.name, filepath, person.relation), date;
 
                             verifed = true;
                             results.Add(result);
@@ -158,7 +159,7 @@ namespace kicom {
                     }
                 }
                 if (verifed == false) {
-                    Result result = new Result("Unknown", filepath, "Unknown");
+                    Result result = new Result("Unknown", filepath, "Unknown", date);
                     results.Add(result);
                 }
                 else {
