@@ -122,7 +122,7 @@ namespace kicom {
             Face[] faces = await this.UploadAndDetectFaces(filepath);
 
 
-            //List<Result> results = new List<Result>();
+            List<Result> results = new List<Result>();
 
             //얼굴이 존재하지 않을 경우
             if (faces.Length == 0) {
@@ -130,13 +130,16 @@ namespace kicom {
                 this.mutex.Release();
 
                 Result result = new Result("No face", filepath, "No face");
-                //results.Add(result);
+                results.Add(result);
+                xmLwriterInstance.HistoryWriting(results.ToArray());
+                xmLwriterInstance.ResultsXmlWriting(results.ToArray());
 
-                xmLwriterInstance.pushXMLQueue(result);
+                //xmLwriterInstance.pushXMLQueue(result);
                 return;
             }
             
-            //Boolean verifed = false;
+
+            Boolean verifed = false;
 
             // DB에 사람들과 비교하는 부분
             foreach (Face face in faces) {
@@ -147,31 +150,24 @@ namespace kicom {
 
                         //DB에 저장한 사람들과 일치한 경우
                         if (verifyresult.IsIdentical) {
-                            //Mutext Relase
-                            this.mutex.Release();
-
                             Result result = new Result(person.name, filepath, person.relation);
-                            
-                            //verifed = true;
-                            //results.Add(result);
 
-                            xmLwriterInstance.pushXMLQueue(result);
-                            return;
+                            verifed = true;
+                            results.Add(result);
                         }
                     }
                 }
-                //if (verifed == false) {
-                //    Result result = new Result("Unknown", filepath, "Unknown");
-                //    results.Add(result);
-                //}
-                //else {
-                //    verifed = true;
-                //}
+                if (verifed == false) {
+                    Result result = new Result("Unknown", filepath, "Unknown");
+                    results.Add(result);
+                }
+                else {
+                    verifed = true;
+                }
             }
 
-            // DB에 사람들과 일치하지 않는 경우
-            Result unknown = new Result("Unknown", filepath, "Unknown");
-            xmLwriterInstance.pushXMLQueue(unknown);
+            xmLwriterInstance.HistoryWriting(results.ToArray());
+            xmLwriterInstance.ResultsXmlWriting(results.ToArray());
 
             //Mutext Relase
             this.mutex.Release();
