@@ -60,5 +60,28 @@ namespace kicom {
                 return true;
             }
         }
+
+        //Result가 여러개 있을 경우의 Xml Writer
+        public void XmlWrting(Result[] results) {
+            using (XmlTextWriter writer = new XmlTextWriter("broadcast.xml", System.Text.Encoding.UTF8)) {
+                writer.WriteStartDocument();
+                writer.Formatting = Formatting.Indented;
+                writer.Indentation = 2;
+                foreach (Result result in results) {
+                    writer.WriteStartElement("Info");
+                    writer.WriteStartElement("Name");
+                    writer.WriteString(result.name);
+                    writer.WriteEndElement();
+                    writer.WriteStartElement("Relation");
+                    writer.WriteString(result.relation);
+                    writer.WriteEndElement();
+                    writer.WriteStartElement("Photo_Path");
+                    writer.WriteString(result.filepath);
+                    writer.WriteEndElement();
+                    writer.WriteEndElement();
+                }
+                writer.Close();
+            }
+        }
     }
 }
