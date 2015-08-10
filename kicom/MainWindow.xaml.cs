@@ -57,10 +57,23 @@ namespace kicom {
         // 4. FaceVerify
         private FaceAnalysis faceAnalysis = null;
 
+        // 5. Arduino HardWare
+        private ArduinoSerial arduinoSerial = null;
+        private FileTrigger fileTrigger = null;
+
         /// <summary>
         /// 생성자 - 초기 변수 & 객체 초기화
         /// </summary>
         public MainWindow() {
+            // Arduino 초기화 부분
+            try {
+                arduinoSerial = new ArduinoSerial();
+                fileTrigger = new FileTrigger(@"../../../Web/", "messageLog.txt", arduinoSerial);
+            }
+            catch(Exception e) {
+                Console.WriteLine(e.ToString());
+            }
+
             this.SourceInitialized += InitializeWindowSource;
 
             // 필요 변수 초기화
