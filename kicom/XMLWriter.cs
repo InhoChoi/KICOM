@@ -62,21 +62,24 @@ namespace kicom {
         }
 
         //Result가 여러개 있을 경우의 Xml Writer
-        public void ResultsXmlWriting(Result[] results) {
+        public void XmlWrting(Result[] results) {
             using (XmlTextWriter writer = new XmlTextWriter("broadcast.xml", System.Text.Encoding.UTF8)) {
                 writer.WriteStartDocument();
                 writer.Formatting = Formatting.Indented;
                 writer.Indentation = 2;
-                writer.WriteStartElement("Result");
                 foreach (Result result in results) {
                     writer.WriteStartElement("Info");
-                    writer.WriteElementString("Name",result.name);
-                    writer.WriteElementString("Relation",result.relation);
-                    writer.WriteElementString("Photo_Path",result.filepath);
-                    writer.WriteElementString("Date", System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss"));
+                    writer.WriteStartElement("Name");
+                    writer.WriteString(result.name);
+                    writer.WriteEndElement();
+                    writer.WriteStartElement("Relation");
+                    writer.WriteString(result.relation);
+                    writer.WriteEndElement();
+                    writer.WriteStartElement("Photo_Path");
+                    writer.WriteString(result.filepath);
+                    writer.WriteEndElement();
                     writer.WriteEndElement();
                 }
-                writer.WriteEndElement();
                 writer.Close();
             }
         }
