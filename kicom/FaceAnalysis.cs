@@ -132,7 +132,7 @@ namespace kicom {
                 Result result = new Result("No face", filepath, "No face");
                 results.Add(result);
                 xmLwriterInstance.HistoryWriting(results.ToArray());
-                xmLwriterInstance.ResultsXmlWriting(results.ToArray());
+                xmLwriterInstance.AlertWriting(results.ToArray());
 
                 //xmLwriterInstance.pushXMLQueue(result);
                 return;
@@ -167,7 +167,7 @@ namespace kicom {
             }
 
             xmLwriterInstance.HistoryWriting(results.ToArray());
-            xmLwriterInstance.ResultsXmlWriting(results.ToArray());
+            xmLwriterInstance.AlertWriting(results.ToArray());
 
             //Mutext Relase
             this.mutex.Release();
