@@ -393,5 +393,9 @@ namespace kicom {
         private void unMaximaizeKicom(object sender, RoutedEventArgs e) {
             WindowState = WindowState.Normal;
         }
+
+        private void moveSetting(object sender, RoutedEventArgs e) {
+            throw new NotImplementedException();
+        }
     }
 }
