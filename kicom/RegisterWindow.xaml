@@ -1,8 +1,23 @@
 ﻿<Window x:Class="kicom.RegisterWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="RegisterWindow" Height="300" Width="300">
+        Title="RegisterWindow" Height="462" Width="466">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="128*"/>
+            <RowDefinition Height="55*"/>
+        </Grid.RowDefinitions>
+        <Image  x:Name="FacePhoto" Stretch="Uniform" Margin="0,0,0,30" Grid.Row="0"/>
+        <Button Grid.Row="0" x:Name="BrowseButton" Margin="20,0,20,5" Height="20" 
+                VerticalAlignment="Bottom" Content="Image Select"
+                Click="BrowseButton_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="20,4,0,90" Grid.Row="1" TextWrapping="Wrap" Text="Name"/>
+        <TextBlock HorizontalAlignment="Left" Margin="20,31,0,63" Grid.Row="1" TextWrapping="Wrap" Text="Relation"/>
+        <TextBlock HorizontalAlignment="Left" Margin="20,67,0,27" Grid.Row="1" TextWrapping="Wrap" Text="ETC"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="79,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193" Grid.Row="1" Name="Name_tb"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="79,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193" Grid.Row="1" Name="Relation_tb"/>
+        <TextBox HorizontalAlignment="Left" Height="36" Margin="79,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193" Grid.Row="1" Name="ETC_tb"/>
+        <Button Content="Register" HorizontalAlignment="Left" Margin="363,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.667,0.1" Click="Register_Click"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="363,47,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Cancel_Click"/>
     </Grid>
 </Window>
