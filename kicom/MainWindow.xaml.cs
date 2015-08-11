@@ -372,12 +372,6 @@ namespace kicom {
             //MyView.Source = ImageLoad("pack://application:,,,/Resource/Settings-64.png");
         }
 
-        private void Register_Click(object sender, RoutedEventArgs e) {
-            RegisterWindow windows = new RegisterWindow();
-            windows.faceAnyalysis = this.faceAnalysis;
-            windows.Show();
-        }
-
         private void CloseKicom(object sender, RoutedEventArgs e) {
             Application.Current.Shutdown();
         }
@@ -410,10 +404,14 @@ namespace kicom {
             this.History_icon_blue.Visibility = Visibility.Visible;
             this.History_text.Foreground = Brushes.DodgerBlue;
             
-            this.SettingButton.Background = Brushes.Transparent;
-            this.Setting_icon_white.Visibility = Visibility.Hidden;
-            this.Setting_icon_blue.Visibility = Visibility.Visible;
-            this.Setting_text.Foreground = Brushes.DodgerBlue;
+            this.RegisterButton.Background = Brushes.Transparent;
+            this.Register_icon_white.Visibility = Visibility.Hidden;
+            this.Register_icon_blue.Visibility = Visibility.Visible;
+            this.Register_text.Foreground = Brushes.DodgerBlue;
+
+            this.HomePage.Visibility = Visibility.Visible;
+            this.HistoryPage.Visibility = Visibility.Hidden;
+            this.RegisterPage.Visibility = Visibility.Hidden;
         }
 
         private void MoveHistory(object sender, RoutedEventArgs e) {
@@ -427,17 +425,21 @@ namespace kicom {
             this.Home_icon_blue.Visibility = Visibility.Visible;
             this.Home_text.Foreground = Brushes.DodgerBlue;
             
-            this.SettingButton.Background = Brushes.Transparent;
-            this.Setting_icon_white.Visibility = Visibility.Hidden;
-            this.Setting_icon_blue.Visibility = Visibility.Visible;
-            this.Setting_text.Foreground = Brushes.DodgerBlue;
+            this.RegisterButton.Background = Brushes.Transparent;
+            this.Register_icon_white.Visibility = Visibility.Hidden;
+            this.Register_icon_blue.Visibility = Visibility.Visible;
+            this.Register_text.Foreground = Brushes.DodgerBlue;
+
+            this.HomePage.Visibility = Visibility.Hidden;
+            this.HistoryPage.Visibility = Visibility.Visible;
+            this.RegisterPage.Visibility = Visibility.Hidden;
         }
 
-        private void MoveSetting(object sender, RoutedEventArgs e) {
-            this.SettingButton.Background = Brushes.DodgerBlue;
-            this.Setting_icon_white.Visibility = Visibility.Visible;
-            this.Setting_icon_blue.Visibility = Visibility.Hidden;
-            this.Setting_text.Foreground = Brushes.White;
+        private void MoveRegister(object sender, RoutedEventArgs e) {
+            this.RegisterButton.Background = Brushes.DodgerBlue;
+            this.Register_icon_white.Visibility = Visibility.Visible;
+            this.Register_icon_blue.Visibility = Visibility.Hidden;
+            this.Register_text.Foreground = Brushes.White;
             
             this.HistoryButton.Background = Brushes.Transparent;
             this.History_icon_white.Visibility = Visibility.Hidden;
@@ -448,6 +450,10 @@ namespace kicom {
             this.Home_icon_white.Visibility = Visibility.Hidden;
             this.Home_icon_blue.Visibility = Visibility.Visible;
             this.Home_text.Foreground = Brushes.DodgerBlue;
+
+            this.HomePage.Visibility = Visibility.Hidden;
+            this.HistoryPage.Visibility = Visibility.Hidden;
+            this.RegisterPage.Visibility = Visibility.Visible;
         }
     }
 }

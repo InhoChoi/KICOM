@@ -99,11 +99,11 @@
                                             </Button>
                                         </Grid>
                                         <Grid Column="2">
-                                            <Button x:Name="SettingButton" Click="MoveSetting" Background="{x:Null}" BorderThickness="0">
+                                            <Button x:Name="RegisterButton" Click="MoveRegister" Background="{x:Null}" BorderThickness="0">
                                                 <Grid VerticalAlignment="Center">
-                                                    <Image x:Name="Setting_icon_white" Source="Resource/setting_white.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" Visibility="Hidden" />
-                                                    <Image x:Name="Setting_icon_blue" Source="Resource/setting_blue.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" />
-                                                    <Label x:Name="Setting_text" Content="Setting" Foreground="DodgerBlue" FontFamily="Microsoft JhengHei UI" FontSize="28" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,-2,0,2.333" FontWeight="Bold"/>
+                                                    <Image x:Name="Register_icon_white" Source="Resource/register_white.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" Visibility="Hidden" />
+                                                    <Image x:Name="Register_icon_blue" Source="Resource/register_blue.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" />
+                                                    <Label x:Name="Register_text" Content="Register" Foreground="DodgerBlue" FontFamily="Microsoft JhengHei UI" FontSize="28" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,-2,0,2.333" FontWeight="Bold"/>
                                                 </Grid>
                                             </Button>
                                         </Grid>
@@ -126,9 +126,9 @@
                                             </ImageBrush>
                                         </Grid.Background>
                                         <!-- 유저 컨트롤 페이지 -->
-                                        <pages:Home Visibility="Hidden" />
-                                        <local:History Visibility="Visible" />
-                                        <pages:Setting Visibility="Hidden" />
+                                        <pages:Home x:Name="HomePage" Visibility="Hidden" />
+                                        <local:History x:Name="HistoryPage" Visibility="Visible" />
+                                        <local:RegisterWindow x:Name="RegisterPage" Visibility="Hidden" />
                                     </Grid>
                                 </Border>
                             </Grid>
