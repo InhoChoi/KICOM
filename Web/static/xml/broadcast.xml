@@ -1,14 +1,9 @@
-<xml version='1.0'>
-	<Info>
-		<Name>jiyoung</Name>
-		<Relation>dauther</Relation>
-		<Date></Date>
-		<Photo_Path>static/image/testimage.png</Photo_Path>
-	</Info>
-	<Info>
-		<Name>sang</Name>
-		<Relation>son</Relation>
-		<Date></Date>
-		<Photo_Path>static/image/testimage2.png</Photo_Path>
-	</Info>
-</xml>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Result>
+  <Info>
+    <Name>Unknown</Name>
+    <Relation>Unknown</Relation>
+    <Photo_Path>C:\Users\inho\Documents\GitHub\kicom\kicom\bin\Debug\.\History\[2015-08-11]_05-42-15.jpeg</Photo_Path>
+    <Date>2015-08-11 05:42:22</Date>
+  </Info>
+</Result>
