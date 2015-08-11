@@ -372,27 +372,26 @@ namespace kicom {
             //MyView.Source = ImageLoad("pack://application:,,,/Resource/Settings-64.png");
         }
 
-        private void Close_Button(object sender, RoutedEventArgs e) {
-            Application.Current.Shutdown();
-        }
-
-        private void Max_Button(object sender, RoutedEventArgs e) {
-            WindowState = WindowState.Maximized;
-        }
-
-        private void Min_Button(object sender, RoutedEventArgs e) {
-            WindowState = WindowState.Normal;
-
-        }
-
-        private void Setting_Loaded(object sender, RoutedEventArgs e) {
-
-        }
-
         private void Register_Click(object sender, RoutedEventArgs e) {
             RegisterWindow windows = new RegisterWindow();
             windows.faceAnyalysis = this.faceAnalysis;
             windows.Show();
+        }
+
+        private void closeKicom(object sender, RoutedEventArgs e) {
+            Application.Current.Shutdown();
+        }
+        
+        private void minimaizeKicoom(object sender, RoutedEventArgs e) {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void maximaizeKicom(object sender, RoutedEventArgs e) {
+            WindowState = WindowState.Maximized;
+        }
+        
+        private void unMaximaizeKicom(object sender, RoutedEventArgs e) {
+            WindowState = WindowState.Normal;
         }
     }
 }
