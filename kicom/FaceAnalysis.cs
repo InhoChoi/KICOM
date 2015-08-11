@@ -122,23 +122,13 @@ namespace kicom {
             //List<Result> ret = new List<Result>();
             Face[] faces = await this.UploadAndDetectFaces(filepath);
 
-<<<<<<< HEAD
-=======
-
             List<Result> results = new List<Result>();
 
->>>>>>> NewXmlFunction
             //얼굴이 존재하지 않을 경우
             if (faces.Length == 0) {
                 //Mutext Relase
                 //this.mutex.Release();
 
-<<<<<<< HEAD
-                Result result = new Result("Unknown", filepath, "Unknown");
-                xmLwriterInstance.pushXMLQueue(result);
-                return;
-            }
-=======
                 Result result = new Result("No face", filepath, "No face", date);
                 results.Add(result);
                 xmLwriterInstance.HistoryWriting(results.ToArray());
@@ -150,7 +140,6 @@ namespace kicom {
             
 
             Boolean verifed = false;
->>>>>>> NewXmlFunction
 
             // DB에 사람들과 비교하는 부분
             foreach (Face face in faces) {
@@ -162,26 +151,14 @@ namespace kicom {
                         //DB에 저장한 사람들과 일치한 경우
                         if (verifyresult.IsIdentical) {
                             Result result = new Result(person.name, filepath, person.relation);
-<<<<<<< HEAD
-                            xmLwriterInstance.pushXMLQueue(result);
-                            return;
-                            //ret.Add(result);
-=======
 
                             verifed = true;
                             results.Add(result);
->>>>>>> NewXmlFunction
                         }
 
                     }
                 }
-<<<<<<< HEAD
-            }
 
-            //DB에 사람들과 일치하지 않는 경우
-            Result unknown = new Result("Unknown", filepath, "Unknown");
-            xmLwriterInstance.pushXMLQueue(unknown);
-=======
                 if (verifed == false) {
                     Result result = new Result("Unknown", filepath, "Unknown", date);
                     results.Add(result);
@@ -193,7 +170,6 @@ namespace kicom {
 
             xmLwriterInstance.HistoryWriting(results.ToArray());
             xmLwriterInstance.AlertWriting(results.ToArray());
->>>>>>> NewXmlFunction
 
             //Mutext Relase
             //this.mutex.Release();

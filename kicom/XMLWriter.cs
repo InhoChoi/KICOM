@@ -11,11 +11,7 @@ namespace kicom {
 
         //private static Singleton _uniqueInstance;
         private static XMLwriter _uniqueInstance = new XMLwriter();
-<<<<<<< HEAD
-        private static Queue<Result> writerQueue = new Queue<Result>();
-=======
         private static Queue<Result> history = new Queue<Result>();
->>>>>>> NewXmlFunction
 
         private XMLwriter() {
             this.ReadingHistory();
@@ -25,56 +21,9 @@ namespace kicom {
             return _uniqueInstance;
         }
 
-<<<<<<< HEAD
-        private async Task OverWriteXml() {
-            while (true) {
-                //var result = await OverWriting();
-                //await Task.Delay(1000);
-            }
-        }
-
-        public bool pushXMLQueue(Result _data) {
-            if (writerQueue == null) return false;
-            writerQueue.Enqueue(_data);
-            OverWriting();
-            return true;
-        }
-
-        public bool OverWriting() {
-        //public async Task<bool> OverWriting() {
-            if (!writerQueue.Any()) return false;
-
-            using (XmlTextWriter writer = new XmlTextWriter("broadcast.xml", System.Text.Encoding.UTF8)) {
-                writer.WriteStartDocument();
-                writer.Formatting = Formatting.Indented;
-                writer.Indentation = 2;
-                writer.WriteStartElement("Info");
-                writer.WriteStartElement("Name");
-                writer.WriteString(writerQueue.Peek().name);
-                writer.WriteEndElement();
-                writer.WriteStartElement("Relation");
-                writer.WriteString(writerQueue.Peek().relation);
-                writer.WriteEndElement();
-                writer.WriteStartElement("Photo_Path");
-                writer.WriteString(writerQueue.Peek().filepath);
-                writer.WriteEndElement();
-                writer.WriteEndElement();
-                writer.Close();
-
-                writerQueue.Dequeue();
-
-                return true;
-            }
-        }
-
-        //Result가 여러개 있을 경우의 Xml Writer
-        public void XmlWrting(Result[] results) {
-            using (XmlTextWriter writer = new XmlTextWriter("broadcast.xml", System.Text.Encoding.UTF8)) {
-=======
         //Result가 여러개 있을 경우의 Xml Writer
         public void AlertWriting(Result[] results) {
             using (XmlTextWriter writer = new XmlTextWriter("../../../Web/static/xml/broadcast.xml", System.Text.Encoding.UTF8)) {
->>>>>>> NewXmlFunction
                 writer.WriteStartDocument();
                 writer.Formatting = Formatting.Indented;
                 writer.Indentation = 2;
@@ -89,8 +38,6 @@ namespace kicom {
                     writer.WriteStartElement("Photo_Path");
                     writer.WriteString(result.filepath);
                     writer.WriteEndElement();
-<<<<<<< HEAD
-=======
                 }
                 writer.WriteEndElement();
                 writer.Close();
@@ -155,7 +102,6 @@ namespace kicom {
                     else {
                         writer.WriteElementString("Date", System.DateTime.Now.ToString(result.date));
                     }
->>>>>>> NewXmlFunction
                     writer.WriteEndElement();
                 }
                 writer.Close();
