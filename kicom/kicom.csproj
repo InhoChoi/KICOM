@@ -181,25 +181,26 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\expanding2.png" />
+    <Resource Include="Resource\AddList.png" />
+    <Resource Include="Resource\camera_blue.png" />
+    <Resource Include="Resource\camera_white.png" />
+    <Resource Include="Resource\Close.png" />
+    <Resource Include="Resource\Contacts.png" />
+    <Resource Include="Resource\Download.png" />
+    <Resource Include="Resource\Home.png" />
+    <Resource Include="Resource\house_blue.png" />
+    <Resource Include="Resource\house_white.png" />
+    <Resource Include="Resource\locked_blue.png" />
+    <Resource Include="Resource\locked_white.png" />
+    <Resource Include="Resource\Maximize.png" />
+    <Resource Include="Resource\Minimaize.png" />
+    <Resource Include="Resource\Refresh.png" />
+    <Resource Include="Resource\setting_blue.png" />
+    <Resource Include="Resource\setting_white.png" />
+    <Resource Include="Resource\surveillance.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Add List-64.png" />
-    <Resource Include="Resource\Contacts Filled-64.png" />
-    <Resource Include="Resource\Delete Sign-64.png" />
-    <Resource Include="Resource\Download-64.png" />
-    <Resource Include="Resource\Home Filled-64.png" />
-    <Resource Include="Resource\Refresh Filled-64.png" />
-    <Resource Include="Resource\Settings-64.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\delete8.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\surveillance85.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\surveillance85 %281%29.png" />
+    <Resource Include="Resource\Background.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.97.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.97.0\build\net45\System.Data.SQLite.Core.targets')" />

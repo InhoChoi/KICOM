@@ -14,11 +14,11 @@
             <Grid HorizontalAlignment="Center" >
                 <Border Padding="5" Margin="10" BorderBrush="Orange">
                     <!--Bind Image Path in Image Control-->
-                    <Image VerticalAlignment="Center" Source="{Binding ImagePath}" Stretch="Fill"  HorizontalAlignment="Center" Width="192" Height="108">
+                    <Image VerticalAlignment="Center" Source="{Binding ImagePath}" Stretch="Fill"  HorizontalAlignment="Center" Width="384" Height="216">
                         <!--View Large Image on Image Control Tooltip-->
                         <Image.ToolTip>
                             <StackPanel Background="Black">
-                                <Image Source="{Binding ImagePath}" Stretch="Fill" HorizontalAlignment="Center" Width="384" Height="216"></Image>
+                                <Image Source="{Binding ImagePath}" Stretch="Fill" HorizontalAlignment="Center" Width="768" Height="432"></Image>
                                 <TextBlock Text="{Binding ImagePath}" Foreground="White" Background="Black" Height="20" FontWeight="SemiBold" Margin="15,0,15,0"></TextBlock>
                             </StackPanel>
                         </Image.ToolTip>
@@ -32,8 +32,10 @@
 
     </UserControl.Resources>
 
-    <Grid>
-        <ListBox x:Name="lbImageGallery" Background="{x:Null}"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding}" ItemsPanel="{DynamicResource ImageGalleryItemsPanelTemplate}" ItemTemplate="{StaticResource ListImageDataTemplate}" BorderBrush="{x:Null}">
-        </ListBox>
+    <Grid Width="auto">
+        <ScrollViewer>
+            <ListBox HorizontalAlignment="Center" x:Name="lbImageGallery" Background="{x:Null}"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding}" ItemsPanel="{DynamicResource ImageGalleryItemsPanelTemplate}" ItemTemplate="{StaticResource ListImageDataTemplate}" BorderBrush="{x:Null}">
+            </ListBox>
+        </ScrollViewer>
     </Grid>
 </UserControl>

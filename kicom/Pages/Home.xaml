@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:kicom.Pages"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Background="#FFCA6C6C">
-            
+    <Grid>
+        <Label Content="Home" FontSize="100" Foreground="White"/>
     </Grid>
 </UserControl>
