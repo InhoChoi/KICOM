@@ -388,14 +388,35 @@ namespace kicom {
 
         private void maximaizeKicom(object sender, RoutedEventArgs e) {
             WindowState = WindowState.Maximized;
+            this.Maximaize.Visibility = Visibility.Hidden;
+            this.unMaximaize.Visibility = Visibility.Visible;
         }
         
         private void unMaximaizeKicom(object sender, RoutedEventArgs e) {
             WindowState = WindowState.Normal;
+            this.Maximaize.Visibility = Visibility.Visible;
+            this.unMaximaize.Visibility = Visibility.Hidden;
+        }
+
+        private void moveHome(object sender, RoutedEventArgs e) {
+            this.HomeButton.Background = Brushes.DodgerBlue;
+            this.Home_icon_white.Visibility = Visibility.Visible;
+            this.Home_icon_blue.Visibility = Visibility.Hidden;
+            this.Home_text.Foreground = Brushes.White;
+        }
+
+        private void moveHistory(object sender, RoutedEventArgs e) {
+            this.HistoryButton.Background = Brushes.DodgerBlue;
+            this.History_icon_white.Visibility = Visibility.Visible;
+            this.History_icon_blue.Visibility = Visibility.Hidden;
+            this.History_text.Foreground = Brushes.White;
         }
 
         private void moveSetting(object sender, RoutedEventArgs e) {
-            throw new NotImplementedException();
+            this.SettingButton.Background = Brushes.DodgerBlue;
+            this.Setting_icon_white.Visibility = Visibility.Visible;
+            this.Setting_icon_blue.Visibility = Visibility.Hidden;
+            this.Setting_text.Foreground = Brushes.White;
         }
     }
 }

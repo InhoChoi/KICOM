@@ -73,7 +73,7 @@
                             </Grid.RowDefinitions>
                             <!-- 좌측 세부 메뉴 바 -->
                             <Grid Row="1" Column="1">
-                                <Border BorderThickness="0,0,0,2" BorderBrush="DodgerBlue">
+                                <Border BorderThickness="0,0,0,3" BorderBrush="DodgerBlue">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
@@ -81,26 +81,29 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Grid Column="0">
-                                            <Button Click="moveSetting" Background="DodgerBlue" BorderBrush="DodgerBlue">
+                                            <Button x:Name="HomeButton" Click="moveHome" Background="DodgerBlue" BorderThickness="0">
                                                 <Grid>
-                                                    <Image Source="Resource/house_white.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" />
-                                                    <Label Content="Home" Foreground="White" FontFamily="Microsoft JhengHei UI" FontSize="28" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,-2,0,2.333" FontWeight="Bold"/>
+                                                    <Image x:Name="Home_icon_white" Source="Resource/house_white.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" />
+                                                    <Image x:Name="Home_icon_blue" Source="Resource/house_blue.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" Visibility="Hidden"/>
+                                                    <Label x:Name="Home_text" Content="Home" Foreground="White" FontFamily="Microsoft JhengHei UI" FontSize="28" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,-2,0,2.333" FontWeight="Bold"/>
                                                 </Grid>
                                             </Button>
                                         </Grid>
                                         <Grid Column="1">
-                                            <Button Click="moveSetting" Background="{x:Null}" BorderBrush="{x:Null}">
+                                            <Button x:Name="HistoryButton" Click="moveHistory" Background="{x:Null}" BorderThickness="0">
                                                 <Grid VerticalAlignment="Center">
-                                                    <Image Source="Resource/camera_blue.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" />
-                                                    <Label Content="History" Foreground="DodgerBlue" FontFamily="Microsoft JhengHei UI" FontSize="28" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,-2,0,2.333" FontWeight="Bold"/>
+                                                    <Image x:Name="History_icon_white" Source="Resource/camera_white.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" Visibility="Hidden"/>
+                                                    <Image x:Name="History_icon_blue" Source="Resource/camera_blue.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" />
+                                                    <Label x:Name="History_text" Content="History" Foreground="DodgerBlue" FontFamily="Microsoft JhengHei UI" FontSize="28" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,-2,0,2.333" FontWeight="Bold"/>
                                                 </Grid>
                                             </Button>
                                         </Grid>
                                         <Grid Column="2">
-                                            <Button Click="moveSetting" Background="{x:Null}" BorderBrush="{x:Null}">
+                                            <Button x:Name="SettingButton" Click="moveSetting" Background="{x:Null}" BorderThickness="0">
                                                 <Grid VerticalAlignment="Center">
-                                                    <Image Source="Resource/setting_blue.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" />
-                                                    <Label Content="Setting" Foreground="DodgerBlue" FontFamily="Microsoft JhengHei UI" FontSize="28" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,-2,0,2.333" FontWeight="Bold"/>
+                                                    <Image x:Name="Setting_icon_white" Source="Resource/setting_white.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" Visibility="Hidden" />
+                                                    <Image x:Name="Setting_icon_blue" Source="Resource/setting_blue.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" />
+                                                    <Label x:Name="Setting_text" Content="Setting" Foreground="DodgerBlue" FontFamily="Microsoft JhengHei UI" FontSize="28" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,-2,0,2.333" FontWeight="Bold"/>
                                                 </Grid>
                                             </Button>
                                         </Grid>
