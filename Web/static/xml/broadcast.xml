@@ -1,14 +1,8 @@
 <xml version='1.0'>
 	<Info>
-		<Name>jiyoung</Name>
+		<Name>ji</Name>
 		<Relation>dauther</Relation>
-		<Date></Date>
+		<Date>null</Date>
 		<Photo_Path>static/image/testimage.png</Photo_Path>
-	</Info>
-	<Info>
-		<Name>sang</Name>
-		<Relation>son</Relation>
-		<Date></Date>
-		<Photo_Path>static/image/testimage2.png</Photo_Path>
 	</Info>
 </xml>
