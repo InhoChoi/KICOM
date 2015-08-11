@@ -39,11 +39,13 @@ namespace kicom {
         public string name { get; set; }
         public string filepath { get; set; }
         public string relation { get; set; }
+        public string date { get; set; }
 
-        public Result(string name, string filepath, string relation) {
+        public Result(string name, string filepath, string relation,string date=null) {
             this.name = name;
             this.filepath = filepath;
             this.relation = relation;
+            this.date = date;
         }
     }
 }

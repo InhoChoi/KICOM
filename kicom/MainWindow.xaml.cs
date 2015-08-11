@@ -70,14 +70,14 @@ namespace kicom {
                 arduinoSerial = new ArduinoSerial();
                 fileTrigger = new FileTrigger(@"../../../Web/", "messageLog.txt", arduinoSerial);
             }
-            catch(Exception e) {
+            catch (Exception e) {
                 Console.WriteLine(e.ToString());
             }
 
             this.SourceInitialized += InitializeWindowSource;
 
             // 필요 변수 초기화
-            historyFolderPath = AppDomain.CurrentDomain.BaseDirectory + @".\History\"; 
+            historyFolderPath = AppDomain.CurrentDomain.BaseDirectory + @".\History\";
             logFolderPath = AppDomain.CurrentDomain.BaseDirectory + @".\Log\log.txt";
             Console.WriteLine(historyFolderPath);
             // Get Default KinectSensor
@@ -92,7 +92,7 @@ namespace kicom {
                 FrameDescription colorFrameDescription =
                     this.kinect.ColorFrameSource.CreateFrameDescription(ColorImageFormat.Bgra);
                 colorBitmap = new WriteableBitmap(colorFrameDescription.Width, colorFrameDescription.Height, 96.0, 96.0, PixelFormats.Bgr32, null);
-                
+
                 // for Handling Body Frame
                 this.BFReader = kinect.BodyFrameSource.OpenReader();
                 this.maxBodyCount = this.kinect.BodyFrameSource.BodyCount;
@@ -120,83 +120,80 @@ namespace kicom {
 
 
         private void InitializeWindowSource(object sender, EventArgs e) {
-	        hwndSource = PresentationSource.FromVisual((Visual)sender) as HwndSource;
-	        hwndSource.AddHook(new HwndSourceHook(WndProc));
+            hwndSource = PresentationSource.FromVisual((Visual)sender) as HwndSource;
+            hwndSource.AddHook(new HwndSourceHook(WndProc));
         }
 
         private IntPtr retInt = IntPtr.Zero;
         private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled) {
-	        return IntPtr.Zero;
+            return IntPtr.Zero;
         }
 
         public enum ResizeDirection {
-	        Left = 1,
-	        Right = 2,
-	        Top = 3,
-	        TopLeft = 4,
-	        TopRight = 5,
-	        Bottom = 6,
-	        BottomLeft = 7,
-	        BottomRight = 8
+            Left = 1,
+            Right = 2,
+            Top = 3,
+            TopLeft = 4,
+            TopRight = 5,
+            Bottom = 6,
+            BottomLeft = 7,
+            BottomRight = 8
         }
 
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
-        private void ResizeWindow(ResizeDirection direction)
-        {
-	        SendMessage(hwndSource.Handle, WM_SYSCOMMAND, new IntPtr(61440 + (int)direction), IntPtr.Zero);
+        private void ResizeWindow(ResizeDirection direction) {
+            SendMessage(hwndSource.Handle, WM_SYSCOMMAND, new IntPtr(61440 + (int)direction), IntPtr.Zero);
         }
 
-        private void ResetCursor(object sender, MouseEventArgs e)
-        {
-	        if (Mouse.LeftButton != MouseButtonState.Pressed) {
-		        this.Cursor = Cursors.Arrow;
-	        }
+        private void ResetCursor(object sender, MouseEventArgs e) {
+            if (Mouse.LeftButton != MouseButtonState.Pressed) {
+                this.Cursor = Cursors.Arrow;
+            }
         }
 
-        private void Resize(object sender, MouseButtonEventArgs e)
-        {
-	        if (this.WindowState == WindowState.Normal) {
-		        Rectangle clickedRectangle = sender as Rectangle;
-		        switch (clickedRectangle.Name) {
-			        case "GripTop":
-				        ResizeWindow(ResizeDirection.Top);
-				        break; // TODO: might not be correct. Was : Exit Select
+        private void Resize(object sender, MouseButtonEventArgs e) {
+            if (this.WindowState == WindowState.Normal) {
+                Rectangle clickedRectangle = sender as Rectangle;
+                switch (clickedRectangle.Name) {
+                    case "GripTop":
+                        ResizeWindow(ResizeDirection.Top);
+                        break; // TODO: might not be correct. Was : Exit Select
 
-			        case "GripBottom":
-				        ResizeWindow(ResizeDirection.Bottom);
-				        break; // TODO: might not be correct. Was : Exit Select
+                    case "GripBottom":
+                        ResizeWindow(ResizeDirection.Bottom);
+                        break; // TODO: might not be correct. Was : Exit Select
 
-			        case "GripLeft":
-				        ResizeWindow(ResizeDirection.Left);
-				        break; // TODO: might not be correct. Was : Exit Select
+                    case "GripLeft":
+                        ResizeWindow(ResizeDirection.Left);
+                        break; // TODO: might not be correct. Was : Exit Select
 
-			        case "GripRight":
-				        ResizeWindow(ResizeDirection.Right);
-				        break; // TODO: might not be correct. Was : Exit Select
+                    case "GripRight":
+                        ResizeWindow(ResizeDirection.Right);
+                        break; // TODO: might not be correct. Was : Exit Select
 
-			        case "GripTopLeft":
-				        ResizeWindow(ResizeDirection.TopLeft);
-				        break; // TODO: might not be correct. Was : Exit Select
+                    case "GripTopLeft":
+                        ResizeWindow(ResizeDirection.TopLeft);
+                        break; // TODO: might not be correct. Was : Exit Select
 
-			        case "GripTopRight":
-				        ResizeWindow(ResizeDirection.TopRight);
-				        break; // TODO: might not be correct. Was : Exit Select
+                    case "GripTopRight":
+                        ResizeWindow(ResizeDirection.TopRight);
+                        break; // TODO: might not be correct. Was : Exit Select
 
-			        case "GripBottomLeft":
-				        ResizeWindow(ResizeDirection.BottomLeft);
-				        break; // TODO: might not be correct. Was : Exit Select
+                    case "GripBottomLeft":
+                        ResizeWindow(ResizeDirection.BottomLeft);
+                        break; // TODO: might not be correct. Was : Exit Select
 
-			        case "GripBottomRight":
-				        ResizeWindow(ResizeDirection.BottomRight);
-				        break; // TODO: might not be correct. Was : Exit Select
+                    case "GripBottomRight":
+                        ResizeWindow(ResizeDirection.BottomRight);
+                        break; // TODO: might not be correct. Was : Exit Select
 
-			        default:
-				        break; // TODO: might not be correct. Was : Exit Select
+                    default:
+                        break; // TODO: might not be correct. Was : Exit Select
 
-		        }
-	        }
+                }
+            }
         }
 
         /// <summary>
@@ -247,7 +244,7 @@ namespace kicom {
         /// <param name="slender"></param>
         /// <param name="e"></param>
         private async void SaveColorMap(object slender, ColorFrameArrivedEventArgs e) {
-            
+
             using (ColorFrame colorFrame = e.FrameReference.AcquireFrame()) {
                 if (colorFrame != null) {
                     FrameDescription colorFrameDescription = colorFrame.FrameDescription;
@@ -261,7 +258,7 @@ namespace kicom {
                             (colorFrameDescription.Height == this.colorBitmap.PixelHeight)) {
                             colorFrame.CopyConvertedFrameDataToIntPtr(
                                 this.colorBitmap.BackBuffer,
-                                (uint) (colorFrameDescription.Width*colorFrameDescription.Height*4),
+                                (uint)(colorFrameDescription.Width * colorFrameDescription.Height * 4),
                                 ColorImageFormat.Bgra);
 
                             this.colorBitmap.AddDirtyRect(new Int32Rect(0, 0, this.colorBitmap.PixelWidth,
@@ -292,7 +289,7 @@ namespace kicom {
                             // 지정한 히스토리 폴더 패스에 년-월-일-시-분-초 형식으로 저장
                             string path = System.IO.Path.Combine(historyFolderPath, "[" + date + "]_" + time + ".jpeg");
                             string log = string.Format("{0}\t{1}\t{2}", date + time, "스냅샷이 촬영되어 히스토리 파일에 저장 되었습니다.", path);
-                            
+
                             using (FileStream fs = new FileStream(path, FileMode.Create)) {
                                 // 이미지 파일 저장
                                 encoder.Save(fs);
@@ -314,7 +311,7 @@ namespace kicom {
                         }
                     }
                 }
-                catch (IOException){
+                catch (IOException) {
                 }
             }
         }
@@ -355,18 +352,17 @@ namespace kicom {
             }
         }
 
-        public BitmapImage ImageLoad(string Path)
-        {
-	        BitmapImage mImage = new BitmapImage();
-	        mImage.BeginInit();
-	        mImage.UriSource = new Uri(Path);
-	        mImage.CacheOption = BitmapCacheOption.OnDemand;
-	        mImage.EndInit();
+        public BitmapImage ImageLoad(string Path) {
+            BitmapImage mImage = new BitmapImage();
+            mImage.BeginInit();
+            mImage.UriSource = new Uri(Path);
+            mImage.CacheOption = BitmapCacheOption.OnDemand;
+            mImage.EndInit();
 
-	        return mImage;
+            return mImage;
         }
 
-        public ImageSource ImageSource{
+        public ImageSource ImageSource {
             get {
                 return this.colorBitmap;
             }
@@ -377,7 +373,7 @@ namespace kicom {
         }
 
         private void Close_Button(object sender, RoutedEventArgs e) {
-            Application.Current.Shutdown(); 
+            Application.Current.Shutdown();
         }
 
         private void Max_Button(object sender, RoutedEventArgs e) {
@@ -386,7 +382,7 @@ namespace kicom {
 
         private void Min_Button(object sender, RoutedEventArgs e) {
             WindowState = WindowState.Normal;
-            
+
         }
 
         private void Setting_Loaded(object sender, RoutedEventArgs e) {
