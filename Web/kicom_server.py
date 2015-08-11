@@ -4,7 +4,9 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-from flask import Flask, render_template, request, session, jsonify, url_for, redirect
+from flask import Flask, render_template, request, session, jsonify, url_for, redirect, Response
+import time
+from threading import Thread
 
 app = Flask(__name__)
 app.config['SESSION_TYPE'] = 'memcached'
@@ -52,6 +54,12 @@ def logout():
   session['logged_in'] = False
   session.pop('id', None)
   return render_template('kicom_login.html')
+
+@app.route('/xml/<path:filename>')
+def send_file(filename):
+  filepath = './static/xml/%s' % filename
+  fp = open(filepath, "rb")
+  return Response(fp.read(), mimetype='text/xml')
 
 if __name__ == '__main__':
   app.run(debug=True)
