@@ -17,7 +17,7 @@ namespace kicom {
     /// Interaction logic for RegisterWindow.xaml
     /// </summary>
     public partial class RegisterWindow : Window {
-        public FaceAnalysis faceAnyalysis = new FaceAnalysis(@".");
+        public FaceAnalysis faceAnyalysis = null;
         private string filePath = null;
 
         public RegisterWindow() {
