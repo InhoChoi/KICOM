@@ -35,7 +35,7 @@ namespace kicom {
         public static List<ImageEntity> GetAllImageData() {
 
             // Load Xml Document
-            XDocument XDoc = XDocument.Load("ImageData.xml");
+            XDocument XDoc = XDocument.Load(@"C:\Users\상현\Desktop\KICOM\kicom\bin\Debug\ImageData.xml");
 
             // Query for retriving all Images data from XML
             var Query = (from Q in XDoc.Descendants("Image")
