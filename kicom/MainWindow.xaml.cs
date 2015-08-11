@@ -378,7 +378,7 @@ namespace kicom {
             windows.Show();
         }
 
-        private void closeKicom(object sender, RoutedEventArgs e) {
+        private void CloseKicom(object sender, RoutedEventArgs e) {
             Application.Current.Shutdown();
         }
         
@@ -386,37 +386,68 @@ namespace kicom {
             WindowState = WindowState.Minimized;
         }
 
-        private void maximaizeKicom(object sender, RoutedEventArgs e) {
+        private void MaximaizeKicom(object sender, RoutedEventArgs e) {
             WindowState = WindowState.Maximized;
             this.Maximaize.Visibility = Visibility.Hidden;
             this.unMaximaize.Visibility = Visibility.Visible;
         }
         
-        private void unMaximaizeKicom(object sender, RoutedEventArgs e) {
+        private void UnMaximaizeKicom(object sender, RoutedEventArgs e) {
             WindowState = WindowState.Normal;
             this.Maximaize.Visibility = Visibility.Visible;
             this.unMaximaize.Visibility = Visibility.Hidden;
         }
 
-        private void moveHome(object sender, RoutedEventArgs e) {
+        private void MoveHome(object sender, RoutedEventArgs e) {
             this.HomeButton.Background = Brushes.DodgerBlue;
             this.Home_icon_white.Visibility = Visibility.Visible;
             this.Home_icon_blue.Visibility = Visibility.Hidden;
             this.Home_text.Foreground = Brushes.White;
+
+            
+            this.HistoryButton.Background = Brushes.Transparent;
+            this.History_icon_white.Visibility = Visibility.Hidden;
+            this.History_icon_blue.Visibility = Visibility.Visible;
+            this.History_text.Foreground = Brushes.DodgerBlue;
+            
+            this.SettingButton.Background = Brushes.Transparent;
+            this.Setting_icon_white.Visibility = Visibility.Hidden;
+            this.Setting_icon_blue.Visibility = Visibility.Visible;
+            this.Setting_text.Foreground = Brushes.DodgerBlue;
         }
 
-        private void moveHistory(object sender, RoutedEventArgs e) {
+        private void MoveHistory(object sender, RoutedEventArgs e) {
             this.HistoryButton.Background = Brushes.DodgerBlue;
             this.History_icon_white.Visibility = Visibility.Visible;
             this.History_icon_blue.Visibility = Visibility.Hidden;
             this.History_text.Foreground = Brushes.White;
+
+            this.HomeButton.Background = Brushes.Transparent;
+            this.Home_icon_white.Visibility = Visibility.Hidden;
+            this.Home_icon_blue.Visibility = Visibility.Visible;
+            this.Home_text.Foreground = Brushes.DodgerBlue;
+            
+            this.SettingButton.Background = Brushes.Transparent;
+            this.Setting_icon_white.Visibility = Visibility.Hidden;
+            this.Setting_icon_blue.Visibility = Visibility.Visible;
+            this.Setting_text.Foreground = Brushes.DodgerBlue;
         }
 
-        private void moveSetting(object sender, RoutedEventArgs e) {
+        private void MoveSetting(object sender, RoutedEventArgs e) {
             this.SettingButton.Background = Brushes.DodgerBlue;
             this.Setting_icon_white.Visibility = Visibility.Visible;
             this.Setting_icon_blue.Visibility = Visibility.Hidden;
             this.Setting_text.Foreground = Brushes.White;
+            
+            this.HistoryButton.Background = Brushes.Transparent;
+            this.History_icon_white.Visibility = Visibility.Hidden;
+            this.History_icon_blue.Visibility = Visibility.Visible;
+            this.History_text.Foreground = Brushes.DodgerBlue;
+            
+            this.HomeButton.Background = Brushes.Transparent;
+            this.Home_icon_white.Visibility = Visibility.Hidden;
+            this.Home_icon_blue.Visibility = Visibility.Visible;
+            this.Home_text.Foreground = Brushes.DodgerBlue;
         }
     }
 }

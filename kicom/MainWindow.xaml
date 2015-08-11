@@ -45,13 +45,13 @@
                         <local:ImageButton x:Name="Minimaize" Click="minimaizeKicoom"  imgNormal="Resource/Minimaize.png" Margin="8,8,8,8" BorderBrush="{x:Null}"/>
                     </Grid>
                     <Grid Column="3">
-                        <local:ImageButton x:Name="Maximaize" Click="maximaizeKicom"  imgNormal="Resource/Maximize.png" Margin="8,8,8,8" BorderBrush="{x:Null}"/>
+                        <local:ImageButton x:Name="Maximaize" Click="MaximaizeKicom"  imgNormal="Resource/Maximize.png" Margin="8,8,8,8" BorderBrush="{x:Null}"/>
                     </Grid>
                     <Grid Column="3">
-                        <local:ImageButton x:Name="unMaximaize" Click="unMaximaizeKicom"  imgNormal="Resource/Maximize.png" Margin="8,8,8,8" BorderBrush="{x:Null}" Visibility="Hidden"/>
+                        <local:ImageButton x:Name="unMaximaize" Click="UnMaximaizeKicom"  imgNormal="Resource/Maximize.png" Margin="8,8,8,8" BorderBrush="{x:Null}" Visibility="Hidden"/>
                     </Grid>
                     <Grid Column="4">
-                        <local:ImageButton x:Name="Close" Click="closeKicom" imgNormal="Resource/Close.png" Margin="8,8,8,8" BorderBrush="{x:Null}"/>
+                        <local:ImageButton x:Name="Close" Click="CloseKicom" imgNormal="Resource/Close.png" Margin="8,8,8,8" BorderBrush="{x:Null}"/>
                     </Grid>
                 </Grid>
                 <!-- 본체 -->
@@ -81,7 +81,7 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Grid Column="0">
-                                            <Button x:Name="HomeButton" Click="moveHome" Background="DodgerBlue" BorderThickness="0">
+                                            <Button x:Name="HomeButton" Click="MoveHome" Background="DodgerBlue" BorderThickness="0">
                                                 <Grid>
                                                     <Image x:Name="Home_icon_white" Source="Resource/house_white.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" />
                                                     <Image x:Name="Home_icon_blue" Source="Resource/house_blue.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" Visibility="Hidden"/>
@@ -90,7 +90,7 @@
                                             </Button>
                                         </Grid>
                                         <Grid Column="1">
-                                            <Button x:Name="HistoryButton" Click="moveHistory" Background="{x:Null}" BorderThickness="0">
+                                            <Button x:Name="HistoryButton" Click="MoveHistory" Background="{x:Null}" BorderThickness="0">
                                                 <Grid VerticalAlignment="Center">
                                                     <Image x:Name="History_icon_white" Source="Resource/camera_white.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" Visibility="Hidden"/>
                                                     <Image x:Name="History_icon_blue" Source="Resource/camera_blue.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" />
@@ -99,7 +99,7 @@
                                             </Button>
                                         </Grid>
                                         <Grid Column="2">
-                                            <Button x:Name="SettingButton" Click="moveSetting" Background="{x:Null}" BorderThickness="0">
+                                            <Button x:Name="SettingButton" Click="MoveSetting" Background="{x:Null}" BorderThickness="0">
                                                 <Grid VerticalAlignment="Center">
                                                     <Image x:Name="Setting_icon_white" Source="Resource/setting_white.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" Visibility="Hidden" />
                                                     <Image x:Name="Setting_icon_blue" Source="Resource/setting_blue.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,6,6,6" />
