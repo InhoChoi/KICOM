@@ -18,9 +18,8 @@ namespace kicom {
     /// History.xaml에 대한 상호 작용 논리
     /// </summary>
     public partial class History : UserControl {
-        public History() {
-            InitializeComponent();
 
+        public void refreshImageList() {
             this.Loaded += (s, o) => {
                 List<ImageEntity> ListImageEntityObj = ImageView.GetAllImageData();
 
@@ -31,6 +30,12 @@ namespace kicom {
                     }
                 }
             };
+        }
+
+        public History() {
+            InitializeComponent();
+
+            refreshImageList();
         }
     }
 }

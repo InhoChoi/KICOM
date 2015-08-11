@@ -4,14 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:kicom"
-             mc:Ignorable="d" Width="auto" Height="auto">
+             mc:Ignorable="d" Width="400" Height="400">
     <UserControl.Resources>
         <ItemsPanelTemplate x:Key="ImageGalleryItemsPanelTemplate">
-            <UniformGrid Columns="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></UniformGrid>
+            <UniformGrid Columns="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></UniformGrid>
         </ItemsPanelTemplate>
 
         <DataTemplate x:Key="ListImageDataTemplate">
-            <Grid HorizontalAlignment="Left" >
+            <Grid HorizontalAlignment="Center" >
                 <Border Padding="5" Margin="10" BorderBrush="Orange">
                     <!--Bind Image Path in Image Control-->
                     <Image VerticalAlignment="Center" Source="{Binding ImagePath}" Stretch="Fill"  HorizontalAlignment="Center" Width="192" Height="108">
