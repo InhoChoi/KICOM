@@ -16,7 +16,7 @@ namespace kicom {
     /// <summary>
     /// Interaction logic for RegisterWindow.xaml
     /// </summary>
-    public partial class RegisterWindow : Window {
+    public partial class RegisterWindow : UserControl {
         public FaceAnalysis faceAnyalysis = null;
         private string filePath = null;
 
@@ -28,7 +28,7 @@ namespace kicom {
             var openDlg = new Microsoft.Win32.OpenFileDialog();
 
             openDlg.Filter = "JPEG Image(*.jpg)|*.jpg";
-            bool? result = openDlg.ShowDialog(this);
+            bool? result = openDlg.ShowDialog(Application.Current.MainWindow);
 
             if (!(bool)result) {
                 return;
@@ -45,11 +45,6 @@ namespace kicom {
             bitmapSource.EndInit();
 
             FacePhoto.Source = bitmapSource;
-        }
-
-
-        private void Cancel_Click(object sender, RoutedEventArgs e) {
-            this.Close();
         }
 
         private async void Register_Click(object sender, RoutedEventArgs e) {
@@ -74,7 +69,6 @@ namespace kicom {
 
 
             MessageBox.Show("Face is registered", "Success!");
-            this.Close();
 
         }
 
