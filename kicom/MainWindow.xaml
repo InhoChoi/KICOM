@@ -17,7 +17,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Border BorderThickness="1" BorderBrush="DodgerBlue">
+        <Border BorderThickness="1" BorderBrush="DodgerBlue" Grid.ColumnSpan="2">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="48"/>
@@ -27,21 +27,29 @@
                 <!-- 메뉴 바 -->
                 <Grid Grid.Row="0" Background="DodgerBlue">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="995*"/>
+                        <ColumnDefinition Width="56"/>
+                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="48"/>
                         <ColumnDefinition Width="48"/>
                         <ColumnDefinition Width="48"/>
                     </Grid.ColumnDefinitions>
-                    <Grid Column="1">
+                    <Grid Column="0" HorizontalAlignment="Right">
+                        <Image Source="Resource/surveillance.png"  Margin="2,2,2,2"/>
+                    </Grid>
+                    <Grid Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Label Content="Kicom" Margin="12,0,0,0" Foreground="White" FontSize="28" FontFamily="Microsoft JhengHei UI"/>
+                        <Label Content="- Smart Doorlock System" Margin="100,8,0,4" Foreground="LightGray" FontSize="20" FontFamily="Microsoft JhengHei UI Light"/>
+                    </Grid>
+                    <Grid Column="2">
                         <local:ImageButton local:Name="Minimaize" Click="minimaizeKicoom"  imgNormal="Resource/Minimaize.png" Margin="8,8,8,8" BorderBrush="{x:Null}"/>
                     </Grid>
-                    <Grid Column="2">
+                    <Grid Column="3">
                         <local:ImageButton local:Name="Maximaize" Click="maximaizeKicom"  imgNormal="Resource/Maximize.png" Margin="8,8,8,8" BorderBrush="{x:Null}"/>
                     </Grid>
-                    <Grid Column="2">
-                        <local:ImageButton local:Name="unMaximaize" Click="unMaximaizeKicom"  imgNormal="Resource/Maximize.png" Margin="8,8,8,8" BorderBrush="{x:Null}"/>
-                    </Grid>
                     <Grid Column="3">
+                        <local:ImageButton local:Name="unMaximaize" Click="unMaximaizeKicom"  imgNormal="Resource/Maximize.png" Margin="8,8,8,8" BorderBrush="{x:Null}" Visibility="Hidden"/>
+                    </Grid>
+                    <Grid Column="4">
                         <local:ImageButton local:Name="Close" Click="closeKicom" imgNormal="Resource/Close.png" Margin="8,8,8,8" BorderBrush="{x:Null}"/>
                     </Grid>
                 </Grid>
@@ -49,22 +57,29 @@
                 <Grid Grid.Row="1">
                     <Border>
                         <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="24*"/>
+                                <RowDefinition Height="41*"/>
+                                <RowDefinition Height="575*"/>
+                            </Grid.RowDefinitions>
                         </Grid>
                     </Border>
                 </Grid>
                 <!-- 상태 바 -->
                 <Grid Grid.Row="2" Background="DodgerBlue">
+                    <Grid.ColumnDefinitions>
+                    </Grid.ColumnDefinitions>
                 </Grid>
             </Grid>
         </Border>
         <!-- 확장 툴 -->
-        <Rectangle x:Name="GripTop" Fill="#00000000" Stroke="{x:Null}" VerticalAlignment="Top" Height="5" PreviewMouseDown="Resize" Margin="10,0" Cursor="SizeNS"/>
-        <Rectangle x:Name="GripBottom" Fill="#00000000" Stroke="{x:Null}" Height="5" VerticalAlignment="Bottom" PreviewMouseDown="Resize" Margin="10,0" Cursor="SizeNS" Grid.Row="2"/>
-        <Rectangle Grid.RowSpan="3" x:Name="GripLeft" Fill="#00000000" Stroke="{x:Null}" HorizontalAlignment="Left" Margin="0,10" Width="5" PreviewMouseDown="Resize" Cursor="SizeWE"/>
-        <Rectangle Grid.RowSpan="3" x:Name="GripRight" Fill="#00000000" Stroke="{x:Null}" Margin="0,10" Width="5" HorizontalAlignment="Right" PreviewMouseDown="Resize" Cursor="SizeWE"/>
-        <Rectangle x:Name="GripBottomLeft" Fill="#00000000" Stroke="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="10" Height="10" PreviewMouseDown="Resize" Cursor="SizeNESW" Grid.Row="2"/>
-        <Rectangle x:Name="GripBottomRight" Fill="#00000000" Stroke="{x:Null}" VerticalAlignment="Bottom" Height="10" Width="10" HorizontalAlignment="Right" PreviewMouseDown="Resize" Cursor="SizeNWSE" Grid.Row="2"/>
-        <Rectangle x:Name="GripTopRight" Fill="#00000000" Stroke="{x:Null}" HorizontalAlignment="Right" Width="10" Height="10" VerticalAlignment="Top" PreviewMouseDown="Resize" Cursor="SizeNESW"/>
+        <Rectangle x:Name="GripTop" Fill="#00000000" Stroke="{x:Null}" VerticalAlignment="Top" Height="5" PreviewMouseDown="Resize" Margin="10,0" Cursor="SizeNS" Grid.ColumnSpan="2"/>
+        <Rectangle x:Name="GripBottom" Fill="#00000000" Stroke="{x:Null}" Height="5" VerticalAlignment="Bottom" PreviewMouseDown="Resize" Margin="10,0" Cursor="SizeNS" Grid.ColumnSpan="2"/>
+        <Rectangle x:Name="GripLeft" Fill="#00000000" Stroke="{x:Null}" HorizontalAlignment="Left" Margin="0,10" Width="5" PreviewMouseDown="Resize" Cursor="SizeWE"/>
+        <Rectangle x:Name="GripRight" Fill="#00000000" Stroke="{x:Null}" Margin="0,10" Width="5" HorizontalAlignment="Right" PreviewMouseDown="Resize" Cursor="SizeWE" Grid.Column="1"/>
+        <Rectangle x:Name="GripBottomLeft" Fill="#00000000" Stroke="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="10" Height="10" PreviewMouseDown="Resize" Cursor="SizeNESW"/>
+        <Rectangle x:Name="GripBottomRight" Fill="#00000000" Stroke="{x:Null}" VerticalAlignment="Bottom" Height="10" Width="10" HorizontalAlignment="Right" PreviewMouseDown="Resize" Cursor="SizeNWSE" Grid.Column="1"/>
+        <Rectangle x:Name="GripTopRight" Fill="#00000000" Stroke="{x:Null}" HorizontalAlignment="Right" Width="10" Height="10" VerticalAlignment="Top" PreviewMouseDown="Resize" Cursor="SizeNESW" Grid.Column="1"/>
         <Rectangle x:Name="GripTopLeft" Fill="#00000000" Stroke="{x:Null}" HorizontalAlignment="Left" Width="10" VerticalAlignment="Top" Height="10" PreviewMouseLeftButtonDown="Resize" Cursor="SizeNWSE"/>
     </Grid>
 </Window>
