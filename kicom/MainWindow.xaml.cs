@@ -388,5 +388,11 @@ namespace kicom {
         private void Setting_Loaded(object sender, RoutedEventArgs e) {
 
         }
+
+        private void Register_Click(object sender, RoutedEventArgs e) {
+            RegisterWindow windows = new RegisterWindow();
+            windows.faceAnyalysis = this.faceAnalysis;
+            windows.Show();
+        }
     }
 }
