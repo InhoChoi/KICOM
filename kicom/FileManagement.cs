@@ -80,9 +80,8 @@ namespace kicom {
         }
 
         //저장소로 파일 복사
-        public void copyFrom(string filepath) {
+        public void copyFrom(string filepath,string fileName) {
             try {
-                string fileName = System.IO.Path.GetFileName(filepath);
                 string destFile = System.IO.Path.Combine(folderPath, fileName);
                 System.IO.File.Copy(filepath, destFile, true);
             }

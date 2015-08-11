@@ -10,7 +10,7 @@ using System.Collections;
 using System.Threading;
 
 namespace kicom {
-    class FaceAnalysis {
+    public class FaceAnalysis {
         private readonly IFaceServiceClient faceServiceClient = new FaceServiceClient("e6edd17d1bbd4ca69d14ccf572e9af20");
         private FileManagement fileMangemnet = null;
         private DBManagement dbManagement = null;
@@ -88,15 +88,15 @@ namespace kicom {
         }
 
         //저장소에 이미지 저장 및 DB 저장
-        public async void register(string name, string filepath, string realtion, string etc) {
+        public async Task<int> register(string name, string filepath, string realtion, string etc) {
             if (System.IO.File.Exists(filepath)) {
                 Face[] faces = await this.UploadAndDetectFaces(filepath);
                 if (faces.Length == 1) {
-                    string filename = Path.GetFileName(filepath);
-                    fileMangemnet.copyFrom(filepath);
+                    string date = System.DateTime.Now.ToString("MM-dd-hh-mm-ss");
+                    string filename = date + " " +  Path.GetFileName(filepath) ;
+                    fileMangemnet.copyFrom(filepath,filename);
                     Console.WriteLine(filename);
                     Person person = new Person(name, filename, realtion, etc);
-
                     dbManagement.insert(person);
                 }
                 else {
@@ -106,6 +106,7 @@ namespace kicom {
             else {
                 throw new Exception(filepath + " 파일이 존재하지 않습니다");
             }
+            return -1;
         }
 
         // 저장소에 등록된 사람들인지 아닌지 확인

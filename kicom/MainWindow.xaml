@@ -25,6 +25,7 @@
                     <local:ImageButton Width="25" Height="25" HorizontalAlignment="Right" Margin="0,5,40,0" VerticalAlignment="Top" ImgDown="Resource/expanding2.png" imgNormal="Resource/expanding2.png" ImgOver="Resource/expanding2.png" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Max_Button"/>
                     <Label HorizontalAlignment="Left" Margin="35, 0" Content="Kicom" FontSize="20" Foreground ="White" FontFamily="Microsoft JhengHei UI"/>
                     <Label HorizontalAlignment="Left" Margin="100,4,0,1" Content="- Smart DoorLock System" FontSize="16" Foreground ="DarkGray" FontFamily="Microsoft JhengHei UI Light"/>
+                    <Button HorizontalAlignment="Left" Margin="350,4,0,1" Content="Register" FontSize="16"  FontFamily="Microsoft JhengHei UI Light" Click="Register_Click"/>
                     <!--<local:ImageButton Width="20" Height="20" HorizontalAlignment="Right" Margin="0,5,35,0" VerticalAlignment="Top" ImgDown="Resource/Download-64.png" imgNormal="Resource/Download-64.png" ImgOver="Resource/Download-64.png" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Min_Button"/>-->
                 </Grid>
 
