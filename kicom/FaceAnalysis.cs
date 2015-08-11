@@ -146,12 +146,12 @@ namespace kicom {
             foreach (Face face in faces) {
                 foreach (Person person in this.persons) {
                     if (person.faceid != null) {
-                        Guid guid = new Guid(person.faceid);
+                        Guid guid = new Guid(person.faceid)
                         VerifyResult verifyresult = await faceServiceClient.VerifyAsync(face.FaceId, guid);
 
                         //DB에 저장한 사람들과 일치한 경우
                         if (verifyresult.IsIdentical) {
-                            Result result = new Result(person.name, filepath, person.relation), date;
+                            Result result = new Result(person.name, filepath, person.relation);
 
                             verifed = true;
                             results.Add(result);

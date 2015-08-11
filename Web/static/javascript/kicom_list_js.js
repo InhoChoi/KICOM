@@ -2,7 +2,7 @@ $(document).ready(function(){
   $.ajax({
     type: "GET",
     dataType: "xml",
-    url: "static/xml/broadcast.xml",
+    url: "static/xml/history.xml",
 
     success: function(xml){
       var xmlData = $(xml).find("Info");
