@@ -10,7 +10,7 @@ using System.Collections;
 using System.Threading;
 
 namespace kicom {
-    class FaceAnalysis {
+    public class FaceAnalysis {
         private readonly IFaceServiceClient faceServiceClient = new FaceServiceClient("e6edd17d1bbd4ca69d14ccf572e9af20");
         private FileManagement fileMangemnet = null;
         private DBManagement dbManagement = null;
