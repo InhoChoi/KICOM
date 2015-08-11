@@ -1,10 +1,24 @@
 var previous = "";
 
+$(document).ready(function(){
+    makeRequest();
+    httpRequest.onreadystatechange = setPrevious;
+    httpRequest.open('GET', '/xml/broadcast.xml');
+    httpRequest.send();
+    console.log("리퀘스트 받음");
+});
+
+function setPrevious() {
+  previous = httpRequest.responseText;
+}
+
 setInterval(function() {
-  makeRequest('/xml/broadcast.xml')
+  httpRequest.onreadystatechange = alertContents;
+  httpRequest.open('GET', '/xml/broadcast.xml');
+  httpRequest.send();
 }, 1000);
 
-function makeRequest(url) {
+function makeRequest() {
   if (window.XMLHttpRequest) { // Mozilla, Safari, ...
     httpRequest = new XMLHttpRequest();
   } else if (window.ActiveXObject) { // IE
@@ -24,16 +38,12 @@ function makeRequest(url) {
     return false;
   }
 
-  httpRequest.onreadystatechange = alertContents;
-  httpRequest.open('GET', url);
-  httpRequest.send();
+  console.log("리퀘스트 ")
 }
 
 function alertContents() {
   var alertMessage = "";
   var ajax = httpRequest.responseXML;
-  console.log("ajax : "+ajax);
-  console.log("text : "+httpRequest.responseText);
 
   if (httpRequest.readyState == 4) {
     if (httpRequest.status == 200) {
@@ -44,7 +54,7 @@ function alertContents() {
           + "\n관계 : " + ajax.getElementsByTagName('Relation')[0].firstChild.nodeValue
           + "\n시간 : " + ajax.getElementsByTagName('Date')[0].firstChild.nodeValue;
 
-          alert(alertMessage);
+        alert(alertMessage);
         previous = httpRequest.responseText;
         console.log(alertMessage);
         console.log(previous);
@@ -55,4 +65,8 @@ function alertContents() {
       alert('There was a problem with the request.');
     }
   }
+
+
+
+
 }
