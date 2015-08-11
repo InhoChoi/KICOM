@@ -116,7 +116,7 @@ namespace kicom {
                 throw new Exception("Person 객체가 생성되지 않았습니다");
 
             //Mutex Wait
-            this.mutex.WaitOne();
+            //this.mutex.WaitOne();
 
             string filepath = info.filepath;
             //List<Result> ret = new List<Result>();
@@ -128,7 +128,7 @@ namespace kicom {
             //얼굴이 존재하지 않을 경우
             if (faces.Length == 0) {
                 //Mutext Relase
-                this.mutex.Release();
+                //this.mutex.Release();
 
                 Result result = new Result("No face", filepath, "No face", date);
                 results.Add(result);
@@ -171,7 +171,7 @@ namespace kicom {
             xmLwriterInstance.AlertWriting(results.ToArray());
 
             //Mutext Relase
-            this.mutex.Release();
+            //this.mutex.Release();
         }
 
     }
