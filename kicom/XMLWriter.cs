@@ -34,6 +34,7 @@ namespace kicom {
                     writer.WriteEndElement();
                     writer.WriteStartElement("Relation");
                     writer.WriteString(result.relation);
+                    writer.WriteElementString("Date", System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss"));
                     writer.WriteEndElement();
                     writer.WriteStartElement("Photo_Path");
                     writer.WriteString(result.filepath);
