@@ -1,53 +1,58 @@
-$(document).ready(function() {
-  var httpRequest;
-  makeRequest('./static/xml/visitoralert.xml');
+var previous = "";
 
-  function makeRequest(url) {
-    if (window.XMLHttpRequest) { // Mozilla, Safari, ...
-      httpRequest = new XMLHttpRequest();
-    } else if (window.ActiveXObject) { // IE
+setInterval(function() {
+  makeRequest('/xml/broadcast.xml')
+}, 1000);
+
+function makeRequest(url) {
+  if (window.XMLHttpRequest) { // Mozilla, Safari, ...
+    httpRequest = new XMLHttpRequest();
+  } else if (window.ActiveXObject) { // IE
+    try {
+      httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+    } 
+    catch (e) {
       try {
-        httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
       } 
-      catch (e) {
-        try {
-          httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-        } 
-        catch (e) {}
-      }
+      catch (e) {}
     }
-
-    if (!httpRequest) {
-      alert('Giving up :( Cannot create an XMLHTTP instance');
-      return false;
-    }
-    
-    httpRequest.onreadystatechange = alertContents;
-    httpRequest.open('GET', url);
-    httpRequest.send();
   }
 
-  function alertContents() {
-    if (httpRequest.readyState === 4) {
-      if (httpRequest.status === 200) {
-        var xmlDoc = httpRequest.responseXML;
-        var alertMessage = "";
+  if (!httpRequest) {
+    alert('Giving up :( Cannot create an XMLHTTP instance');
+    return false;
+  }
+
+  httpRequest.onreadystatechange = alertContents;
+  httpRequest.open('GET', url);
+  httpRequest.send();
+}
+
+function alertContents() {
+  var alertMessage = "";
+  var ajax = httpRequest.responseXML;
+  console.log("ajax : "+ajax);
+  console.log("text : "+httpRequest.responseText);
+
+  if (httpRequest.readyState == 4) {
+    if (httpRequest.status == 200) {
+      if (previous != httpRequest.responseText) {
         
         alertMessage 
-          = "이름 : " + xmlDoc.getElementsByTagName('Name')[0].firstChild.nodeValue
-          + "\n관계 : " + xmlDoc.getElementsByTagName('Relation')[0].firstChild.nodeValue
-          + "\n시간 : " + xmlDoc.getElementsByTagName('Date')[0].firstChild.nodeValue;
+          = "이름 : " + ajax.getElementsByTagName('Name')[0].firstChild.nodeValue
+          + "\n관계 : " + ajax.getElementsByTagName('Relation')[0].firstChild.nodeValue
+          + "\n시간 : " + ajax.getElementsByTagName('Date')[0].firstChild.nodeValue;
 
-        alert(alertMessage)
-      }
-      else {
-        alert('There was a problem with the request.');
+          alert(alertMessage);
+        previous = httpRequest.responseText;
+        console.log(alertMessage);
+        console.log(previous);
+        console.log(httpRequest.responseText);
       }
     }
+    else {
+      alert('There was a problem with the request.');
+    }
   }
-  function getData(){
-    var xmlDoc = xmlhttp.responseXML;
-    var DateNode = xmlDoc.getElementsByTagName('Date')[0].firstChild.nodeValue;
-    alert(DateNode);
-  }
-});
+}
