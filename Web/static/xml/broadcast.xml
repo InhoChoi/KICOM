@@ -1,8 +1,6 @@
-<xml version='1.0'>
-	<Info>
-		<Name>ji</Name>
-		<Relation>dauther</Relation>
-		<Date>null</Date>
-		<Photo_Path>static/image/testimage.png</Photo_Path>
-	</Info>
-</xml>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Info>
+  <Name>Unknown</Name>
+  <Relation>Unknown<Date>2015-08-12 01:49:24</Date></Relation>
+  <Photo_Path>C:\Users\상현\Desktop\KICOM\kicom\bin\Debug\.\History\[2015-08-12]_01-49-23.jpeg</Photo_Path>
+</Info>

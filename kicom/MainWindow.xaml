@@ -135,13 +135,16 @@
                             <!-- 우측 인터폰 -->
                             <Grid Row="1" Column="3">
                                 <Label Content="InterPhone" Foreground="White" FontSize="28" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Image x:Name="alarm_white" Source="Resource/alarm_white.png" Margin="260,45,260,-78" Visibility="Visible"/>
+                                <Image x:Name="alarm_red" Source="Resource/alarm_red.png" Margin="260,45,260,-78" Visibility="Hidden"/>
                             </Grid>
                             <Grid Row="2" Column="3">
+                                <Image />
                                 <Viewbox x:Name="InterPhoneImage" HorizontalAlignment="Center" Margin="0,0,0,0" Visibility="Visible">
                                     <Image Source="{Binding ImageSource}" Stretch="UniformToFill" />
                                 </Viewbox>
                                 <Viewbox x:Name="InterPhoneBlinder" HorizontalAlignment="Center" Margin="0,0,0,0" Visibility="Hidden">
-                                    <Image Source="{Binding BlindImage}" Stretch="UniformToFill" />
+                                    <Image Source="Resource/blindImage.jpg"  Stretch="UniformToFill" />
                                 </Viewbox>
                             </Grid>
                         </Grid>

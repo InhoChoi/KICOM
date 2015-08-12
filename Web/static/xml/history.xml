@@ -1,14 +1,27 @@
-<xml version='1.0'>
-    <Info>
-        <Name>jiyoung</Name>
-        <Relation>dauther</Relation>
-        <Date></Date>
-        <Photo_Path>static/image/testimage.png</Photo_Path>
-    </Info>
-    <Info>
-        <Name>sang</Name>
-        <Relation>son</Relation>
-        <Date></Date>
-        <Photo_Path>static/image/testimage2.png</Photo_Path>
-    </Info>
-</xml>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<History>
+  <Info>
+    <Name>Unknown</Name>
+    <Relation>Unknown</Relation>
+    <Photo_Path>C:\Users\상현\Desktop\KICOM\kicom\bin\Debug\.\History\[2015-08-12]_01-49-23.jpeg</Photo_Path>
+    <Date>2015-08-12 01:49:23</Date>
+  </Info>
+  <Info>
+    <Name>No face</Name>
+    <Relation>No face</Relation>
+    <Photo_Path>C:\Users\상현\Desktop\KICOM\kicom\bin\Debug\.\History\[2015-08-12]_01-49-16.jpeg</Photo_Path>
+    <Date>2015-08-12 01:49:16</Date>
+  </Info>
+  <Info>
+    <Name>Unknown</Name>
+    <Relation>Unknown</Relation>
+    <Photo_Path>C:\Users\상현\Desktop\KICOM\kicom\bin\Debug\.\History\[2015-08-12]_01-48-56.jpeg</Photo_Path>
+    <Date>2015-08-12 01:48:56</Date>
+  </Info>
+  <Info>
+    <Name>Unknown</Name>
+    <Relation>Unknown</Relation>
+    <Photo_Path>C:\Users\상현\Desktop\KICOM\kicom\bin\Debug\.\History\[2015-08-12]_01-48-50.jpeg</Photo_Path>
+    <Date>2015-08-12 01:48:50</Date>
+  </Info>
+</History>
