@@ -74,12 +74,10 @@ namespace kicom {
             Person[] persons = dbManagement.select();
 
             foreach (Person person in persons) {
-                if (fileMangemnet.exists(person.imgname))
-                {
+                if (fileMangemnet.exists(person.imgname)) {
                     string filepath = fileMangemnet.getFilePath(person.imgname);
                     Face[] faces = await this.UploadAndDetectFaces(filepath);
-                    if (faces.Length == 1)
-                    {
+                    if (faces.Length == 1) {
                         person.faceid = faces[0].FaceId.ToString();
                     }
                 }
@@ -93,8 +91,8 @@ namespace kicom {
                 Face[] faces = await this.UploadAndDetectFaces(filepath);
                 if (faces.Length == 1) {
                     string date = System.DateTime.Now.ToString("MM-dd-hh-mm-ss");
-                    string filename = date + " " +  Path.GetFileName(filepath) ;
-                    fileMangemnet.copyFrom(filepath,filename);
+                    string filename = date + " " + Path.GetFileName(filepath);
+                    fileMangemnet.copyFrom(filepath, filename);
                     Console.WriteLine(filename);
                     Person person = new Person(name, filename, realtion, etc);
                     dbManagement.insert(person);
@@ -111,6 +109,7 @@ namespace kicom {
 
         // 저장소에 등록된 사람들인지 아닌지 확인
         public async void verify(VisitorInfo info) {
+            IFaceServiceClient faceServiceClient = new FaceServiceClient("e6edd17d1bbd4ca69d14ccf572e9af20");
             string date = System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
 
             if (this.persons == null)
@@ -142,21 +141,36 @@ namespace kicom {
 
             Boolean verifed = false;
 
+            // this.mutex.WaitOne();
             // DB에 사람들과 비교하는 부분
             foreach (Face face in faces) {
                 foreach (Person person in this.persons) {
                     if (person.faceid != null) {
                         Guid guid = new Guid(person.faceid);
-                        VerifyResult verifyresult = await faceServiceClient.VerifyAsync(face.FaceId, guid);
+                        /* Important region!
+                         * 
+                         * The free offer provides all Face API operations that include face detection, 
+                         * face verification, similar face searching, face grouping, and person identification.
+                         * With this free plan, calling to the Face APIs limits to 20 transactions
+                         * per minute and 5000 transactions per month.              
+                         * 
+                         * Face API의 베타 버전으로 인해 최대 1분당 20 전송량이 최대이기 때문에 제한이 걸림.
+                         */
+                        VerifyResult verifyresult = null;
+                        try {
+                            verifyresult = await faceServiceClient.VerifyAsync(face.FaceId, guid);
+                            //DB에 저장한 사람들과 일치한 경우
+                            if (verifyresult.IsIdentical) {
+                                Result result = new Result(person.name, filepath, person.relation);
 
-                        //DB에 저장한 사람들과 일치한 경우
-                        if (verifyresult.IsIdentical) {
-                            Result result = new Result(person.name, filepath, person.relation);
-
-                            verifed = true;
-                            results.Add(result);
+                                verifed = true;
+                                results.Add(result);
+                            }
                         }
-
+                        catch (Exception e) {
+                            return;
+                        }
+                        
                     }
                 }
 
@@ -168,7 +182,7 @@ namespace kicom {
                     verifed = true;
                 }
             }
-
+            //this.mutex.Release();
             xmLwriterInstance.HistoryWriting(results.ToArray());
             xmLwriterInstance.AlertWriting(results.ToArray());
 
