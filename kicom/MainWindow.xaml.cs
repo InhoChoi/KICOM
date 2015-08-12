@@ -16,6 +16,7 @@ using Microsoft.Kinect;
 using System.IO;
 using System.Globalization;
 using System.ComponentModel;
+using System.Media;
 using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Windows.Interop;
@@ -61,6 +62,9 @@ namespace kicom {
         private ArduinoSerial arduinoSerial = null;
         private FileTrigger fileTrigger = null;
 
+        // 6. soundPlayer
+        private SoundPlayer speaker = null;
+
         /// <summary>
         /// 생성자 - 초기 변수 & 객체 초기화
         /// </summary>
@@ -81,6 +85,9 @@ namespace kicom {
             logFolderPath = AppDomain.CurrentDomain.BaseDirectory + @".\Log\log.txt";
             Console.WriteLine(historyFolderPath);
 
+            // Get Speaker Source
+            speaker = new SoundPlayer(@"..\..\Resource\interPhoneBell.wav");
+            speaker.LoadAsync();
 
             // Get Default KinectSensor
             this.kinect = KinectSensor.GetDefault();
@@ -229,9 +236,13 @@ namespace kicom {
                         this.InterPhoneImage.Visibility = Visibility.Hidden;
                     }
                     else {
+                        if (!bodyEixst) {
+                            speaker.Play();
+                        }
                         bodyEixst = true;
                         this.InterPhoneBlinder.Visibility = Visibility.Hidden;
                         this.InterPhoneImage.Visibility = Visibility.Visible;
+                        
                     }
 
                     if (this.dumpCount > this.preBodyCount && !this.needSnapShot) {
