@@ -8,25 +8,28 @@
         <title>KICOM LOGIN PAGE</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/kicom_login_css.css') }}">
          <link href="http://fonts.googleapis.com/css?family=Finger+Paint" rel="stylesheet" type="text/css"> 
-    </head>
-        
+    </head>    
     <body>
-        <form method="post" action="/main">
-            <div id="container">
-                <div id="box">
-                    <div id="title">
-                        <h1>KICOM CAN KEEP YOUR HOUSE</h1>
-                    </div>
-                    <div id="subtitle">
-                        <h2>Please login</h2>
-                    </div>
+        <div id="box">
+            <header>
+                <div id="title">
+                    <h1>KICOM</h1>
+                    Please Login
                 </div>
+            </header>
+            <form method="post" action="/main">  
                 <div id="login_form">
-                    <input type="text" name="id" placeholder="ID">
-                    <input type="password" name="password" placeholder="PASSWORD">
-                    <button type="submit">로그인</button> 
+                    <div id="login">
+                        <div id="id_input">
+                            <input type="text" name="id" placeholder="ID">
+                        </div>
+                        <div id="pw_input">
+                            <input type="password" name="password" placeholder="PASSWORD">
+                        </div>
+                    </div>
+                    <button type="submit" id="btn">로그인</button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </body>
 </html>
