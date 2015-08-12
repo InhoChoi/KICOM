@@ -126,11 +126,23 @@
                                             </ImageBrush>
                                         </Grid.Background>
                                         <!-- 유저 컨트롤 페이지 -->
-                                        <pages:Home x:Name="HomePage" Visibility="Hidden" />
-                                        <local:History x:Name="HistoryPage" Visibility="Visible" />
+                                        <pages:Home x:Name="HomePage" Visibility="Visible" />
+                                        <local:History x:Name="HistoryPage" Visibility="Hidden" />
                                         <local:RegisterWindow x:Name="RegisterPage" Visibility="Hidden" />
                                     </Grid>
                                 </Border>
+                            </Grid>
+                            <!-- 우측 인터폰 -->
+                            <Grid Row="1" Column="3">
+                                <Label Content="InterPhone" Foreground="White" FontSize="28" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Grid Row="2" Column="3">
+                                <Viewbox x:Name="InterPhoneImage" HorizontalAlignment="Center" Margin="0,0,0,0" Visibility="Visible">
+                                    <Image Source="{Binding ImageSource}" Stretch="UniformToFill" />
+                                </Viewbox>
+                                <Viewbox x:Name="InterPhoneBlinder" HorizontalAlignment="Center" Margin="0,0,0,0" Visibility="Hidden">
+                                    <Image Source="{Binding BlindImage}" Stretch="UniformToFill" />
+                                </Viewbox>
                             </Grid>
                         </Grid>
                     </Border>
