@@ -114,7 +114,7 @@ namespace kicom {
             string date = System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
 
             if (this.persons == null)
-                throw new Exception("Person 객체가 생성되지 않았습니다");
+                return;
 
             //Mutex Wait
             //this.mutex.WaitOne();

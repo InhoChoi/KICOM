@@ -16,6 +16,7 @@ using Microsoft.Kinect;
 using System.IO;
 using System.Globalization;
 using System.ComponentModel;
+using System.Media;
 using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Windows.Interop;
@@ -38,7 +39,7 @@ namespace kicom {
         private string logFolderPath;
         private bool isSuspicious = true;
         private bool bodyEixst = false;
-        private int[] blackBuffer;
+        private int alarmCount = 4;
 
         private WriteImageList imageListwriter = null;
 
@@ -48,7 +49,7 @@ namespace kicom {
         // 2. 컬러 프레임을 핸들링
         private ColorFrameReader CFReader = null;
         private WriteableBitmap colorBitmap = null;
-
+        private WriteableBitmap blindBitmap = null;
 
         // 3. 바디 프레임을 핸들링
         private BodyFrameReader BFReader = null;
@@ -60,6 +61,9 @@ namespace kicom {
         // 5. Arduino HardWare
         private ArduinoSerial arduinoSerial = null;
         private FileTrigger fileTrigger = null;
+
+        // 6. soundPlayer
+        private SoundPlayer speaker = null;
 
         /// <summary>
         /// 생성자 - 초기 변수 & 객체 초기화
@@ -80,6 +84,11 @@ namespace kicom {
             historyFolderPath = AppDomain.CurrentDomain.BaseDirectory + @".\History\";
             logFolderPath = AppDomain.CurrentDomain.BaseDirectory + @".\Log\log.txt";
             Console.WriteLine(historyFolderPath);
+
+            // Get Speaker Source
+            speaker = new SoundPlayer(@"..\..\Resource\interPhoneBell.wav");
+            speaker.LoadAsync();
+
             // Get Default KinectSensor
             this.kinect = KinectSensor.GetDefault();
 
@@ -223,9 +232,17 @@ namespace kicom {
 
                     if (dumpCount == 0) {
                         bodyEixst = false;
+                        this.InterPhoneBlinder.Visibility = Visibility.Visible;
+                        this.InterPhoneImage.Visibility = Visibility.Hidden;
                     }
                     else {
+                        if (!bodyEixst) {
+                            speaker.Play();
+                        }
                         bodyEixst = true;
+                        this.InterPhoneBlinder.Visibility = Visibility.Hidden;
+                        this.InterPhoneImage.Visibility = Visibility.Visible;
+                        
                     }
 
                     if (this.dumpCount > this.preBodyCount && !this.needSnapShot) {
@@ -238,36 +255,57 @@ namespace kicom {
             }
 
         }
+        
         /// <summary>
         /// 컬러 프래임 데이터를 비트맵으로 전환 [Save Color Frame to bitmap(jpeg)]
         /// </summary>
         /// <param name="slender"></param>
         /// <param name="e"></param>
         private async void SaveColorMap(object slender, ColorFrameArrivedEventArgs e) {
+            if (bodyEixst) {
+                using (ColorFrame colorFrame = e.FrameReference.AcquireFrame()) {
+                    if (colorFrame != null) {
+                        FrameDescription colorFrameDescription = colorFrame.FrameDescription;
 
-            using (ColorFrame colorFrame = e.FrameReference.AcquireFrame()) {
-                if (colorFrame != null) {
-                    FrameDescription colorFrameDescription = colorFrame.FrameDescription;
+                        using (KinectBuffer colorBuffer = colorFrame.LockRawImageBuffer()) {
 
-                    using (KinectBuffer colorBuffer = colorFrame.LockRawImageBuffer()) {
+                            this.colorBitmap.Lock();
 
-                        this.colorBitmap.Lock();
+                            // verify data and write the new color frame data to the display bitmap
+                            if ((colorFrameDescription.Width == this.colorBitmap.PixelWidth) &&
+                                (colorFrameDescription.Height == this.colorBitmap.PixelHeight)) {
+                                colorFrame.CopyConvertedFrameDataToIntPtr(
+                                    this.colorBitmap.BackBuffer,
+                                    (uint) (colorFrameDescription.Width*colorFrameDescription.Height*4),
+                                    ColorImageFormat.Bgra);
 
-                        // verify data and write the new color frame data to the display bitmap
-                        if ((colorFrameDescription.Width == this.colorBitmap.PixelWidth) &&
-                            (colorFrameDescription.Height == this.colorBitmap.PixelHeight)) {
-                            colorFrame.CopyConvertedFrameDataToIntPtr(
-                                this.colorBitmap.BackBuffer,
-                                (uint)(colorFrameDescription.Width * colorFrameDescription.Height * 4),
-                                ColorImageFormat.Bgra);
+                                this.colorBitmap.AddDirtyRect(new Int32Rect(0, 0, this.colorBitmap.PixelWidth,
+                                    this.colorBitmap.PixelHeight));
+                            }
 
-                            this.colorBitmap.AddDirtyRect(new Int32Rect(0, 0, this.colorBitmap.PixelWidth,
-                                this.colorBitmap.PixelHeight));
+                            this.colorBitmap.Unlock();
                         }
-
-                        this.colorBitmap.Unlock();
                     }
                 }
+
+                if (this.alarm_white.Visibility == Visibility.Hidden && alarmCount == 0) {
+                    this.alarm_red.Visibility = Visibility.Hidden;
+                    this.alarm_white.Visibility = Visibility.Visible;
+                    alarmCount = 4;
+                }
+                else if (this.alarm_red.Visibility == Visibility.Hidden && alarmCount == 0) {
+                    this.alarm_red.Visibility = Visibility.Visible;
+                    this.alarm_white.Visibility = Visibility.Hidden;
+                    alarmCount = 4;
+                }
+                else {
+                    alarmCount--;
+                }
+
+            }
+            else {
+                this.alarm_red.Visibility = Visibility.Hidden;
+                this.alarm_white.Visibility = Visibility.Visible;
             }
 
             // 스냅샷을 찍어야 할 때만 컬러 프래임의 정보를 가져옴
@@ -349,7 +387,7 @@ namespace kicom {
                 using (StreamWriter logWriter = new StreamWriter(fs)) {
                     logWriter.WriteLine(_string);
                 }
-            }
+            } 
         }
 
         public BitmapImage ImageLoad(string Path) {
@@ -362,12 +400,6 @@ namespace kicom {
             return mImage;
         }
 
-        public ImageSource ImageSource {
-            get {
-                return this.colorBitmap;
-            }
-        }
-
-        
+        public ImageSource ImageSource => this.colorBitmap;
     }
 }
