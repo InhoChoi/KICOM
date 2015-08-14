@@ -48,7 +48,6 @@ namespace kicom {
             //Mutext Wait
             mutex.WaitOne();
             this.persons = await this.getFacesFromDB();
-
             //Mutext Release
             mutex.Release();
         }
@@ -94,8 +93,11 @@ namespace kicom {
                     string filename = date + " " + Path.GetFileName(filepath);
                     fileMangemnet.copyFrom(filepath, filename);
                     Console.WriteLine(filename);
-                    Person person = new Person(name, filename, realtion, etc);
+                    Person person = new Person(name, filename, realtion, etc, faces[0].FaceId.ToString());
                     dbManagement.insert(person);
+                    List<Person> ret = new List<Person>(persons);
+                    ret.Add(person);
+                    this.persons = ret.ToArray();
                 }
                 else {
                     throw new Exception("사진속의 얼굴이 하나이상이거나 없습니다");
