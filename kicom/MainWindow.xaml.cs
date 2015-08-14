@@ -400,6 +400,11 @@ namespace kicom {
             return mImage;
         }
 
-        public ImageSource ImageSource => this.colorBitmap;
+        //public ImageSource ImageSource => this.colorBitmap;
+        public ImageSource ImageSource {
+            get {
+                return this.colorBitmap;
+            }
+        }
     }
 }
