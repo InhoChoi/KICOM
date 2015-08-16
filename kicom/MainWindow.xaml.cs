@@ -406,5 +406,6 @@ namespace kicom {
                 return this.colorBitmap;
             }
         }
+        
     }
 }

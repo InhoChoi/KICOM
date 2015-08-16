@@ -26,7 +26,7 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <!-- 메뉴 바 -->
-                <Grid Grid.Row="0" Background="DodgerBlue">
+                <Grid Grid.Row="0" Background="DodgerBlue" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="56"/>
                         <ColumnDefinition Width="*"/>
