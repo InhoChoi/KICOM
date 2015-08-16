@@ -238,7 +238,7 @@ namespace kicom {
                     else {
                         if (!bodyEixst) {
                             speaker.Play();
-                        }
+                        } 
                         bodyEixst = true;
                         this.InterPhoneBlinder.Visibility = Visibility.Hidden;
                         this.InterPhoneImage.Visibility = Visibility.Visible;
@@ -400,6 +400,6 @@ namespace kicom {
             return mImage;
         }
 
-        public ImageSource ImageSource => this.colorBitmap;
+        public ImageSource ImageSource => this.ImageSource;
     }
 }

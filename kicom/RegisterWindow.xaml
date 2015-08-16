@@ -9,7 +9,11 @@
             <RowDefinition Height="128*"/>
             <RowDefinition Height="55*"/>
         </Grid.RowDefinitions>
-        <Image  x:Name="FacePhoto" Stretch="Uniform" Margin="0,0,0,30" Grid.Row="0"/>
+        <Grid Row="0">
+            <Border BorderThickness="0,0,0,1" BorderBrush="Gray">
+                <Image x:Name="FacePhoto" Stretch="Uniform" Margin="0,0,0,30"/>
+            </Border>
+        </Grid>
         <Button Grid.Row="0" x:Name="BrowseButton" Margin="20,0,20,5" Height="20" 
                 VerticalAlignment="Bottom" Content="Image Select"
                 Click="BrowseButton_Click"/>
