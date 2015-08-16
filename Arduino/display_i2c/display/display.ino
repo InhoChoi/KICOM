@@ -7,14 +7,16 @@ LiquidCrystal_I2C lcd(0x27,16,2);  // set the LCD address to 0x20 for a 16 chars
 
 String inputString = "";
 boolean stringComplete = false;
+boolean displayOn = false;
+
+long signalTime = 0;
+
 void setup()
 {
   Serial.begin(9600);
   
   lcd.init();                      // initialize the lcd 
- 
   // Print a message to the LCD.
-  lcd.backlight();
   // lcd.print("Hello, World");
 }
 
@@ -40,6 +42,13 @@ void loop()
     inputString = "";
     stringComplete = false;
   }
+  if(displayOn == true){
+    long currentTime = millis();
+    if( currentTime - signalTime > 60000){
+      lcd.noBacklight();
+      displayOn = false;
+    }
+  }
 }
 
 void serialEvent()
@@ -47,7 +56,11 @@ void serialEvent()
   while(Serial.available()){
     char inChar = (char) Serial.read();
     if(inChar == '\n'){
+      //lcd.backlight();
+      lcd.backlight();
       stringComplete = true;
+      signalTime = millis();
+      displayOn = true;
       break;
     }
     inputString += inChar;

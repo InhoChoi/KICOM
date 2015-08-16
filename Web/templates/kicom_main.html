@@ -9,9 +9,9 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/kicom_main_css.css') }}">
         <link href="http://fonts.googleapis.com/css?family=Finger+Paint" rel="stylesheet" type="text/css"> 
     </head>
-    <body>
-        <div id="container">
-            <header id="explain">
+   <body>
+        <div id="box">
+            <header>
                 <div id="title">
                     KICOM
                 </div>
@@ -20,8 +20,9 @@
                 </div>
                 <div id="login_info">WELCOME "{{ id }}" !</div>
             </header>
-            <nav id="menu">
+            <nav>
                 <ul>
+                    <li><a href="#">HOME</a></li>
                     <li><a href="list">VISITORS</a></li>
                     <li><a href="message">MESSAGE</a></li>
                     <li><a href="logout">LOGOUT</a></li>
@@ -29,9 +30,8 @@
             </nav>
             <div id="content">
                 <div id="content_main">
-                    <h1>WELCOME TO VISIT</h1>
-                    <h1>KICOM's SECURE HOMEPAGE</h1>
-                    <h2>You can guard your house!</h2>
+                    <c>Kicom, <br></c>
+                    <d>Kinect 2.0 Smartdoor System</d>
                 </div>
             </div>
         </div>

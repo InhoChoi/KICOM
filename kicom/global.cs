@@ -20,7 +20,7 @@ namespace kicom {
             this.imgname = imgname;
             this.relation = relation;
             this.etc = etc;
-            this.faceid = null;
+            this.faceid = faceid;
         }
     }
 

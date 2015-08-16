@@ -17,9 +17,9 @@
         <Button Grid.Row="0" x:Name="BrowseButton" Margin="20,0,20,5" Height="20" 
                 VerticalAlignment="Bottom" Content="Image Select"
                 Click="BrowseButton_Click"/>
-        <TextBlock HorizontalAlignment="Left" Margin="20,4,0,90" Grid.Row="1" TextWrapping="Wrap" Text="Name"/>
-        <TextBlock HorizontalAlignment="Left" Margin="20,31,0,63" Grid.Row="1" TextWrapping="Wrap" Text="Relation"/>
-        <TextBlock HorizontalAlignment="Left" Margin="20,67,0,27" Grid.Row="1" TextWrapping="Wrap" Text="ETC"/>
+        <TextBlock HorizontalAlignment="Left" Foreground="white" Margin="20,4,0,90" Grid.Row="1" TextWrapping="Wrap" Text="Name"/>
+        <TextBlock HorizontalAlignment="Left" Foreground="white" Margin="20,31,0,63" Grid.Row="1" TextWrapping="Wrap" Text="Relation"/>
+        <TextBlock HorizontalAlignment="Left" Foreground="white" Margin="20,67,0,27" Grid.Row="1" TextWrapping="Wrap" Text="ETC"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="79,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193" Grid.Row="1" Name="Name_tb"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="79,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193" Grid.Row="1" Name="Relation_tb"/>
         <TextBox HorizontalAlignment="Left" Height="36" Margin="79,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193" Grid.Row="1" Name="ETC_tb"/>

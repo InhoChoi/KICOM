@@ -5,7 +5,6 @@ $(document).ready(function(){
     httpRequest.onreadystatechange = setPrevious;
     httpRequest.open('GET', '/xml/broadcast.xml');
     httpRequest.send();
-    console.log("리퀘스트 받음");
 });
 
 function setPrevious() {
@@ -37,22 +36,19 @@ function makeRequest() {
     alert('Giving up :( Cannot create an XMLHTTP instance');
     return false;
   }
-
-  console.log("리퀘스트 ")
 }
 
 function alertContents() {
   var alertMessage = "";
-  var ajax = httpRequest.responseXML;
+  var xmlData = httpRequest.responseXML;
 
   if (httpRequest.readyState == 4) {
     if (httpRequest.status == 200) {
       if (previous != httpRequest.responseText) {
-        
         alertMessage 
-          = "이름 : " + ajax.getElementsByTagName('Name')[0].firstChild.nodeValue
-          + "\n관계 : " + ajax.getElementsByTagName('Relation')[0].firstChild.nodeValue
-          + "\n시간 : " + ajax.getElementsByTagName('Date')[0].firstChild.nodeValue;
+          = "이름 : " + xmlData.getElementsByTagName('Name')[0].firstChild.nodeValue
+          + "\n관계 : " + xmlData.getElementsByTagName('Relation')[0].firstChild.nodeValue
+          + "\n시간 : " + xmlData.getElementsByTagName('Date')[0].firstChild.nodeValue;
 
         alert(alertMessage);
         previous = httpRequest.responseText;
@@ -65,8 +61,4 @@ function alertContents() {
       alert('There was a problem with the request.');
     }
   }
-
-
-
-
 }

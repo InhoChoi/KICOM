@@ -1,79 +1,95 @@
-#container {
-    
-    margin: 10px;
-}
-#container > #explain {
-    
-    padding-top: 40px;
-}
-#container > #explain > #title {
-    
+html, body{
+    width: 100%;
+    min-width: 500px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #2196F3;
     text-align: center;
-    padding-right: 20%;
-    font-size: 600%;
-    font-family: 'Finger Paint', cursive;
-}
-#container > #explain > #subtitle {
-    
-    text-align: center;
-    padding-left: 25%;
-    padding-bottom: 1%;
-    font-size: 150%;
-    font-family: 'Finger Paint', cursive;
+    vertical-align: middle;
 }
 
-#container > #explain > #login_info {
-    
-    text-align: center;
-    margin-left: 35%;
+#box {
+    width: 100%;
+    min-width: 400px;
+    height: 100%;
+}
+
+header {
+    margin-top: 40px;
+    min-width: 400px;
+}
+
+#title {
+    color: white;
+    font-size: 40px;   
+}
+
+#subtitle {
+    color: white;
+    font-size: 20px;
+}
+
+#login_info {
+    color: white;
+    margin-bottom: 10px;
 }
 
 /* 수평 메뉴 */
-#container > #menu > ul {
+nav > ul {
+    min-width: 400px;
     
-    float: right;
-    overflow: hidden;
-    margin-right: 20%;
-}
-#container > #menu > ul > li {
-    
-    list-style-type: none;
-    float: left;
-}
-#container > #menu > ul > li > a{
-    
-    display: block;
-    width: 60px;
-    text-align: center;
-    border: 1px solid black;
-    padding: 10px 20px;
-}
-#container > #menu > ul > li > a:hover{
-    
-	background:black;
-	color:white;
-}
-#container > #menu > ul > li:first-child > a {
-    
-    border-radius:8px 0 0 8px;
-}
-#container > #menu > ul > li:last-child > a {
-    
-    border-radius:0 8px 8px 0;
-}
-#container > #content {
-    
-    height: 610px;
-    position: relative;
-    top: 70px;
-    border: 1px solid black;
-
-}
-#container > #content > #content_main {
-    
-    width: 100%;
-    margin: 0;
-    display:inline-block;
+    padding: 0;
     vertical-align: middle;
     text-align: center;
+    overflow: hidden;
+    background-color: #01579B;
+    display: inline-block;
+}
+nav > ul > li {
+    float: left;
+    list-style-type: none;
+}
+nav > ul > li > a{
+    display: block;
+    color: white;
+    width: 60px;
+    text-align: center;
+    padding: 10px 20px;
+}
+nav > ul > li > a:hover{
+    background:black;
+    color:white;
+}
+#content{animation-direction: 
+    width: auto;
+    min-width: 400px;
+    height: 670px;
+    min-height: 400px;
+    
+    background: white;
+    background-image: url("/static/webimage/mainbgimg.jpg");
+    background-size: cover;
+    border-radius: 5px;
+    margin: 30px;
+    margin-right: 10%;
+    margin-left: 10%;
+    
+}
+#content_main{
+    padding-top: 400px;
+    width: auto;
+    height: auto;
+    float: left;
+    color: white;
+}
+c{
+    margin-left: 30px;
+    float: left;
+    font-size: 70px;
+}
+d {
+    margin-left: 50px;
+    float: left;
+    font-size: 40px;
 }

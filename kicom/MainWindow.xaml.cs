@@ -56,7 +56,7 @@ namespace kicom {
         private Body[] bodies = null;
 
         // 4. FaceVerify
-        private FaceAnalysis faceAnalysis = null;
+        public static FaceAnalysis faceAnalysis = null;
 
         // 5. Arduino HardWare
         private ArduinoSerial arduinoSerial = null;
@@ -400,6 +400,11 @@ namespace kicom {
             return mImage;
         }
 
-        public ImageSource ImageSource => this.ImageSource;
+        //public ImageSource ImageSource => this.colorBitmap;
+        public ImageSource ImageSource {
+            get {
+                return this.colorBitmap;
+            }
+        }
     }
 }

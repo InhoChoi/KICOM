@@ -17,11 +17,12 @@ namespace kicom {
     /// Interaction logic for RegisterWindow.xaml
     /// </summary>
     public partial class RegisterWindow : UserControl {
-        public FaceAnalysis faceAnyalysis = null;
+        private FaceAnalysis faceAnyalysis = MainWindow.faceAnalysis;
         private string filePath = null;
 
         public RegisterWindow() {
             InitializeComponent();
+            
         }
 
         private void BrowseButton_Click(object sender, RoutedEventArgs e) {

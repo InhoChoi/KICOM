@@ -8,7 +8,7 @@ $(document).ready(function(){
       var xmlData = $(xml).find("Info");
       var listLength = xmlData.length;
       var fTag = '<a href="';
-      var bTag = '">사진보기</a><br>';
+      var bTag = '"target="_blank">사진보기</a><br>';
       var names = "";
       var relations = "";
       var dates = "";
