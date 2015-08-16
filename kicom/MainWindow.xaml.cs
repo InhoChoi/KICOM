@@ -40,6 +40,7 @@ namespace kicom {
         private bool isSuspicious = true;
         private bool bodyEixst = false;
         private int alarmCount = 4;
+        private bool mute = false;
 
         private WriteImageList imageListwriter = null;
 
@@ -236,7 +237,7 @@ namespace kicom {
                         this.InterPhoneImage.Visibility = Visibility.Hidden;
                     }
                     else {
-                        if (!bodyEixst) {
+                        if (!bodyEixst && !mute) {
                             speaker.Play();
                         } 
                         bodyEixst = true;
@@ -406,6 +407,17 @@ namespace kicom {
                 return this.colorBitmap;
             }
         }
-        
+
+        private void setMute(object sender, RoutedEventArgs e) {
+            this.mute = true;
+            toMute.Visibility = Visibility.Hidden;
+            toUnMute.Visibility = Visibility.Visible;
+        }
+
+        private void unMute(object sender, RoutedEventArgs e) {
+            this.mute = false;
+            toMute.Visibility = Visibility.Visible;
+            toUnMute.Visibility = Visibility.Hidden;
+        }
     }
 }
