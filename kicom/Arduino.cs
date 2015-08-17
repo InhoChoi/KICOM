@@ -62,7 +62,7 @@ namespace kicom {
         }
 
         public bool isOpen() {
-            return ardSerialPort.IsOpen();
+            return ardSerialPort.IsOpen;
         }
 
     }
