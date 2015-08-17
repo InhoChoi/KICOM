@@ -83,7 +83,7 @@ namespace kicom {
             this.SourceInitialized += InitializeWindowSource;
 
             // 필요 변수 초기화
-            historyFolderPath = AppDomain.CurrentDomain.BaseDirectory + @".\History\";
+            historyFolderPath = AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\Web\static\image\History\";
             logFolderPath = AppDomain.CurrentDomain.BaseDirectory + @".\Log\log.txt";
             Console.WriteLine(historyFolderPath);
 
