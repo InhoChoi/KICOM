@@ -37,7 +37,7 @@ namespace kicom {
                     writer.WriteElementString("Date", System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss"));
                     writer.WriteEndElement();
                     writer.WriteStartElement("Photo_Path");
-                    writer.WriteString(result.filepath);
+                    writer.WriteString(Path.GetFileName(result.filepath));
                     writer.WriteEndElement();
                 }
                 writer.WriteEndElement();
@@ -96,7 +96,7 @@ namespace kicom {
                     writer.WriteStartElement("Info");
                     writer.WriteElementString("Name", result.name);
                     writer.WriteElementString("Relation", result.relation);
-                    writer.WriteElementString("Photo_Path", result.filepath);
+                    writer.WriteElementString("Photo_Path", Path.GetFileName(result.filepath));
                     if (result.date == null) {
                         writer.WriteElementString("Date", System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss"));
                     }
