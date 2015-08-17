@@ -125,7 +125,6 @@ nav > ul > li > a:hover{
     padding-top: 10px;
     float: left;
     text-align: center;
-    display: inline-flex;
     border-radius: 5px;
     background: white;
 }
