@@ -8,6 +8,7 @@ using Microsoft.ProjectOxford.Face.Contract;
 using System.IO;
 using System.Collections;
 using System.Threading;
+using System.Windows;
 
 namespace kicom {
     public class FaceAnalysis {
@@ -62,7 +63,11 @@ namespace kicom {
                 }
             }
             catch (Exception e) {
-                Console.WriteLine(e.ToString());
+                Console.WriteLine(e.Message);
+                if (e.Message.Contains("sending")) {
+                    MessageBox.Show("인터넷 연결 상태를 확인해주세요!", "error");
+                    //Application.Current.Shutdown();
+                }
                 return new Face[0];
             }
 
