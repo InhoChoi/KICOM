@@ -133,7 +133,7 @@ namespace kicom {
 
             if (!this.serial.isOpen()) {
                 Console.WriteLine("아두이노 하드웨어 연결을 확인하세요!");
-                //MessageBox.Show("아두이노 하드웨어 연결을 확인하세요!", "Error");
+                MessageBox.Show("아두이노 하드웨어 연결을 확인후 프로그램을 다시 시작해주세요", "Error");
             }else{
                 //다른 프로세서가 사용하고 있을 경우에는 계속해서 기다린후에 파일 오픈
                 int count = 0;
