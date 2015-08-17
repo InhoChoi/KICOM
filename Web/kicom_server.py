@@ -30,6 +30,10 @@ def main():
       return '잘못된 접근'
   app.secret_key = 'kicom_connect'
 
+@app.route('/home')
+def home():
+  return render_template('kicom_main.html', id = session['id'])
+
 @app.route('/list')
 def list():
   return render_template('kicom_list.html', id = session['id'])
