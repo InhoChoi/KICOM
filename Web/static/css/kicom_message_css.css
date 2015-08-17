@@ -1,80 +1,90 @@
-#container {
-    
-    margin: 10px;
-}
-#container > #explain {
-    
-    padding-top: 40px;
-}
-#container > #explain > #title {
-    
+html, body{
+    width: 100%;
+    min-width: 500px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #2196F3;
     text-align: center;
-    padding-right: 20%;
-    font-size: 600%;
-    font-family: 'Finger Paint', cursive;
-}
-#container > #explain > #subtitle {
-    
-    text-align: center;
-    padding-left: 25%;
-    padding-bottom: 1%;
-    font-size: 150%;
-    font-family: 'Finger Paint', cursive;
+    vertical-align: middle;
 }
 
-#container > #explain > #login_info {
-    
-    text-align: center;
-    margin-left: 35%;
+#box {
+    width: 100%;
+    min-width: 400px;
+    height: 100%;
+}
+
+header {
+    margin-top: 40px;
+    min-width: 400px;
+}
+
+#title {
+    color: white;
+    font-size: 40px;   
+}
+
+#subtitle {
+    color: white;
+    font-size: 20px;
+}
+
+#login_info {
+    color: white;
+    margin-bottom: 10px;
 }
 
 /* 수평 메뉴 */
-#container > #menu > ul {
-    
-    float: right;
+nav > ul {
+    min-width: 400px;
+    padding: 0;
+    vertical-align: middle;
     overflow: hidden;
-    margin-right: 20%;
-}
-#container > #menu > ul > li {
+    background-color: #01579B;
     
+}
+nav > ul > li {
     list-style-type: none;
-    float: left;
+    display: inline-block;
 }
-#container > #menu > ul > li > a{
-    
+nav > ul > li > a{
     display: block;
+    color: white;
     width: 60px;
     text-align: center;
-    border: 1px solid black;
     padding: 10px 20px;
 }
-#container > #menu > ul > li > a:hover{
-    
-	background:black;
-	color:white;
+nav > ul > li > a:hover{
+    background:black;
+    color:white;
 }
-#container > #menu > ul > li:first-child > a {
+#content { 
+    width: 0 auto;
+    min-width: 400px;
+    height: 680px;
+    min-height: 400px;
     
-    border-radius:8px 0 0 8px;
+    background: white;
+    background-size: cover;
+    
+    border-radius: 5px;
+    margin: 50px;
+    margin-right: 10%;
+    margin-left: 10%;
 }
-#container > #menu > ul > li:last-child > a {
-    
-    border-radius:0 8px 8px 0;
+#wrap_form {
+    width: 0 auto;
+    height: 100%;
+    display: inline-table;
 }
-#container > #content {
-    
-    height: 610px;
-    width: 100%;
-    position: relative;
-    top: 0px;
-    border: 1px solid black;
-    display: table;
+#real_form {
+    width: 0 auto;
+    height: 0 auto;
     vertical-align: middle;
-    text-align: center;
-
+    display: table-cell;
 }
-#container > #content > #content_detail {
-    
+#content_detail {
     width: 0 auto;
     height: 0 auto;
     
@@ -86,7 +96,17 @@
     
     vertical-align: middle;
 }
-#container > #content > #wrap_content > #input_form {
+#input_form {
+    /* 중앙 정렬 */
+    width: 0 auto;
+    height: 0 auto;
+    
+    /* 절대 좌표 */
+    display: inline-flex;
+    vertical-align: middle;
+    text-align: center;
+}
+#input_form {
     
     /* 중앙 정렬 */
     width: 0 auto;
@@ -98,13 +118,13 @@
     text-align: center;
 }
 
-#container > #content > #wrap_content > #input_form > #message_box {
+#input_form > #message_box {
     
     width: 400px;
     height: 80px;
 }
 
-#container > #content > #wrap_content > #input_form > #send_button {
+#input_form > #send_button {
 
     width: 80px;
     height: 85px;

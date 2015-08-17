@@ -24,22 +24,25 @@
             </header>
             <nav id="menu">
                 <ul>
+                    <li><a href="main">HOME</a></li>
                     <li><a href="list">VISITORS</a></li>
                     <li><a href="message">MESSAGE</a></li>
                     <li><a href="logout">LOGOUT</a></li>
                 </ul>
             </nav>
             <div id="content">
-                <div id="content_detail">
-                    Put your message in this box.<br>
-                    You can show your message to visitor.<br>
-                    Just click "SEND" button.
-                </div>
-                <div id="wrap_content">
-                    <form id="input_form" method="post" action="sendMessage">
-                        <textarea id="message_box" name="message_box" placeholder="message"></textarea>
-                        <button type="submit" id="send_button" name="send_button">SEND</button>
-                    </form>
+                <div id="wrap_form">
+                    <div id="real_form">
+                        <div id="content_detail">
+                            Put your message in this box.<br>
+                            You can show your message to visitor.<br>
+                            Just click "SEND" button.
+                        </div>
+                        <form id="input_form" method="post" action="sendMessage">
+                            <textarea id="message_box" name="message_box" placeholder="message"></textarea>
+                            <button type="submit" id="send_button" name="send_button">SEND</button>
+                        </form>
+                    </div> 
                 </div>
             </div>
         </div>
