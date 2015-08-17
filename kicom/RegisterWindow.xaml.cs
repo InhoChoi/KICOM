@@ -28,7 +28,7 @@ namespace kicom {
         private void BrowseButton_Click(object sender, RoutedEventArgs e) {
             var openDlg = new Microsoft.Win32.OpenFileDialog();
 
-            openDlg.Filter = "JPEG Image(*.jpg)|*.jpg";
+            openDlg.Filter = "JPEG Image(*.jpeg)|*.jpeg";
             bool? result = openDlg.ShowDialog(Application.Current.MainWindow);
 
             if (!(bool)result) {
