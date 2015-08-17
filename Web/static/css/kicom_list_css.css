@@ -80,6 +80,7 @@ nav > ul > li > a:hover{
     width: 100%;
     margin: 0 auto;
     height: 100%;
+    display: -webkit-inline-flex;
     display: inline-flex;
 }
 #table > #name {

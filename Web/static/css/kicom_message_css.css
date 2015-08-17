@@ -99,16 +99,7 @@ nav > ul > li > a:hover{
     
     vertical-align: middle;
 }
-#input_form {
-    /* 중앙 정렬 */
-    width: 0 auto;
-    height: 0 auto;
-    
-    /* 절대 좌표 */
-    display: inline-flex;
-    vertical-align: middle;
-    text-align: center;
-}
+
 #input_form {
     
     /* 중앙 정렬 */
@@ -117,6 +108,7 @@ nav > ul > li > a:hover{
     
     /* 절대 좌표 */
     display: inline-flex;
+    display: -webkit-inline-flex;
     vertical-align: middle;
     text-align: center;
 }
@@ -128,7 +120,8 @@ nav > ul > li > a:hover{
 }
 
 #input_form > #send_button {
-
+    -webkit-appearance: none;
+    border-radius: 0;
     width: 80px;
     height: 85px;
 }

@@ -37,6 +37,7 @@ html {
     border: 1px solid #2196F3;
     margin-top: 100px;
     display: inline-flex;
+    display: -webkit-inline-flex;
     text-align: center;
 }
 #login {
