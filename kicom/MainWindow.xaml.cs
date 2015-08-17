@@ -435,5 +435,9 @@ namespace kicom {
             toPlayBorder.Visibility = Visibility.Visible;
             toUnPlayBorder.Visibility = Visibility.Hidden;
         }
+
+        private void moveWindow(object sender, MouseButtonEventArgs e) {
+            DragMove();
+        }
     }
 }
