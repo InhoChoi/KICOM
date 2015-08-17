@@ -7,6 +7,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace kicom {
     class ArduinoSerial {
@@ -58,6 +59,10 @@ namespace kicom {
                 string text = input + "\n";
                 ardSerialPort.Write(text);
             }
+        }
+
+        public bool isOpen() {
+            return ardSerialPort.IsOpen();
         }
 
     }
@@ -126,23 +131,33 @@ namespace kicom {
                 return;
             }
 
-            //다른 프로세서가 사용하고 있을 경우에는 계속해서 기다린후에 파일 오픈
-            while (true) {
-                try {
-                    using (StreamReader sr = File.OpenText(filepath)) {
-                        string s = "";
-                        while ((s = sr.ReadLine()) != null) {
-                            message = s;
+            if (!this.serial.isOpen()) {
+                Console.WriteLine("아두이노 하드웨어 연결을 확인하세요!");
+                //MessageBox.Show("아두이노 하드웨어 연결을 확인하세요!", "Error");
+            }else{
+                //다른 프로세서가 사용하고 있을 경우에는 계속해서 기다린후에 파일 오픈
+                int count = 0;
+                while (true) {
+                    try {
+                        using (StreamReader sr = File.OpenText(filepath)) {
+                            string s = "";
+                            while ((s = sr.ReadLine()) != null) {
+                                message = s;
+                            }
+                            serial.write(message);
                         }
-                        serial.write(message);
-                    }
-                    break;
+                        break;
 
-                }
-                catch (Exception err) {
+                    }
+                    catch (Exception err) {
+                        //10번이상 읽어들이지 않을 경우 break
+                        count++;
+                        if (count > 10) {
+                            break;
+                        }
+                    }
                 }
             }
-
         }
     }
 }
