@@ -82,3 +82,6 @@ nav > ul > li > a:hover{
     display: table-cell;
     font-size: 25px;
 }
+a { 
+    text-decoration:none 
+}

@@ -125,3 +125,6 @@ nav > ul > li > a:hover{
     width: 80px;
     height: 85px;
 }
+a { 
+    text-decoration:none 
+}
