@@ -1,192 +1,191 @@
-#container {
-    
-    margin: 10px;
-}
-#container > #explain {
-    
-    padding-top: 40px;
-}
-#container > #explain > #title {
-    
+html, body{
+    width: 100%;
+    min-width: 500px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #2196F3;
     text-align: center;
-    padding-right: 20%;
-    font-size: 600%;
-    font-family: 'Finger Paint', cursive;
-}
-#container > #explain > #subtitle {
-    
-    text-align: center;
-    padding-left: 25%;
-    padding-bottom: 1%;
-    font-size: 150%;
-    font-family: 'Finger Paint', cursive;
+    vertical-align: middle;
 }
 
-#container > #explain > #login_info {
-    
-    text-align: center;
-    margin-left: 35%;
+#box {
+    width: 100%;
+    min-width: 400px;
+    height: 100%;
+}
+
+header {
+    margin-top: 40px;
+    min-width: 400px;
+}
+
+#title {
+    color: white;
+    font-size: 40px;   
+}
+
+#subtitle {
+    color: white;
+    font-size: 20px;
+}
+
+#login_info {
+    color: white;
+    margin-bottom: 10px;
 }
 
 /* 수평 메뉴 */
-#container > #menu > ul {
-    
-    float: right;
+nav > ul {
+    min-width: 400px;
+    padding: 0;
+    vertical-align: middle;
     overflow: hidden;
-    margin-right: 20%;
-}
-#container > #menu > ul > li {
+    background-color: #01579B;
     
+}
+nav > ul > li {
     list-style-type: none;
-    float: left;
+    display: inline-block;
 }
-#container > #menu > ul > li > a{
-    
+nav > ul > li > a{
     display: block;
+    color: white;
     width: 60px;
     text-align: center;
-    border: 1px solid black;
     padding: 10px 20px;
 }
-#container > #menu > ul > li > a:hover{
-    
+nav > ul > li > a:hover{
     background:black;
     color:white;
 }
-#container > #menu > ul > li:first-child > a {
+
+#content{ 
+    width: auto;
+    min-width: 400px;
+    height: 680px;
+    min-height: 400px;
     
-    border-radius:8px 0 0 8px;
-}
-#container > #menu > ul > li:last-child > a {
-    
-    border-radius:0 8px 8px 0;
-}
-#container > #content {
-    
-    height: 610px;
-    width: 100%;
-    position: relative;
-    top: 10px;
-    border: 1px solid black;
-    display: inline-flex;
+    background-size: cover;
+    border-radius: 5px;
+    margin: 50px;
+    margin-right: 10%;
+    margin-left: 10%;
 }
 
-#container > #content > #table {
-    
+#table {
     width: 100%;
     margin: 0 auto;
     height: 100%;
     display: inline-flex;
 }
-
-#container > #content > #table > #name {
-    
+#table > #name {
     width: 100%;
     height: 100%;
+    margin-right: 10px;
+    border-radius: 10px;
+    float: left;
+}
+#table > #relation {
+    width: 100%;
+    height: 100%;
+    margin-right: 10px;
+    border-radius: 10px;
+    float: left;
+}
+#table > #date {
+    width: 100%;
+    height: 100%;
+    margin-right: 10px;
+    border-radius: 10px;
+    float: left;
+}
+#table > #photo {
+    width: 100%;
+    height: 100%;
+    margin-right: 10px;
+    border-radius: 10px;
     float: left;
 }
 
-#container > #content > #table > #relation {
-    
-    width: 100%;
-    height: 100%;
-    float: left;
-}
-
-#container > #content > #table > #date {
-    
-    width: 100%;
-    height: 100%;
-    float: left;
-}
-
-#container > #content > #table > #photo {
-    
-    width: 100%;
-    height: 100%;
-    float: left;
-}
-
-#container > #content > #table > #name > #name_tag {
-    
+#table > #name > #name_tag {
     width: 100%;
     height: 20px;
     padding-top: 15px;
     padding-bottom: 15px;
     float: left;
     text-align: center;
-    border: 1px solid black;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background: white;
 }
-
-#container > #content > #table > #name > #name_content {
-    
+#table > #name > #name_content {
     width: 100%;
-    height: 550px;
+    height: 610px;
     padding-top: 10px;
     float: left;
     text-align: center;
-    border: 1px solid black;
+    display: inline-flex;
+    border-radius: 5px;
+    background: white;
 }
-
-#container > #content > #table > #relation > #relation_tag {
-    
+#table > #relation > #relation_tag {
     width: 100%;
     height: 20px;
     padding-top: 15px;
     padding-bottom: 15px;
     float: left;
     text-align: center;
-    border: 1px solid black;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background: white;
 }
-
-#container > #content > #table > #relation > #relation_content {
-    
+#table > #relation > #relation_content {
     width: 100%;
-    height: 550px;
+    height: 610px;
     padding-top: 10px;
     float: left;
     text-align: center;
-    border: 1px solid black;
+    border-radius: 5px;
+    background: white;
 }
-
-#container > #content > #table > #date > #date_tag {
-    
+#table > #date > #date_tag {
     width: 100%;
     height: 20px;
     padding-top: 15px;
     padding-bottom: 15px;
     float: left;
     text-align: center;
-    border: 1px solid black;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background: white;
 }
-
-#container > #content > #table > #date > #date_content {
-    
+#table > #date > #date_content {
     width: 100%;
-    height: 550px;
+    height: 610px;
     padding-top: 10px;
     float: left;
     text-align: center;
-    border: 1px solid black;
+    border-radius: 5px;
+    background: white;
 }
-
-#container > #content > #table > #photo > #photo_tag{
-    
+#table > #photo > #photo_tag{
     width: 100%;
     height: 20px;
     padding-top: 15px;
     padding-bottom: 15px;
     float: left;
     text-align: center;
-    border: 1px solid black;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background: white;
 }
-
-#container > #content > #table > #photo > #photo_content{
-    
+#table > #photo > #photo_content{
     width: 100%;
-    height: 550px;
+    height: 610px;
     padding-top: 10px;
     float: left;
     text-align: center;
-    border: 1px solid black;
+    border-radius: 5px;
+    background: white;
 }
