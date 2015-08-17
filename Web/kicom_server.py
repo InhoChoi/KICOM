@@ -26,10 +26,8 @@ def main():
       session['id'] = request.form['id']
       
       return render_template('kicom_main.html', id = session['id'])
- 
     else:
       return '잘못된 접근'
- 
   app.secret_key = 'kicom_connect'
 
 @app.route('/list')
@@ -62,4 +60,4 @@ def send_file(filename):
   return Response(fp.read(), mimetype='text/xml')
 
 if __name__ == '__main__':
-  app.run(debug=True)
+  app.run(debug=True, host='0.0.0.0')
