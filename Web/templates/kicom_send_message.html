@@ -6,7 +6,7 @@
 <html>
     <head>
         <title>KICOM</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/kicom_message_css.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/kicom_send_message_css.css') }}">
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='javascript/kicom_message_js.js') }}"></script>
         <link href="http://fonts.googleapis.com/css?family=Finger+Paint" rel="stylesheet" type="text/css"> 
@@ -24,15 +24,18 @@
             </header>
             <nav id="menu">
                 <ul>
+                    <li><a href="main">HOME</a></li>
                     <li><a href="list">VISITORS</a></li>
                     <li><a href="message">MESSAGE</a></li>
                     <li><a href="logout">LOGOUT</a></li>
                 </ul>
             </nav>
             <div id="content">
-                <div id="content_detail">
-                    YOUR MESSAGE : <br>
-                    {{ userMessage }}
+                <div id="wrap_content">
+                    <div id="content_detail">
+                        YOUR MESSAGE : <br>
+                        {{ userMessage }}
+                </div>
                 </div>
             </div>
         </div>
