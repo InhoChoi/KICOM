@@ -61,6 +61,20 @@ namespace kicom {
             }
         }
 
+        public Boolean check() {
+            try {
+                ardSerialPort.WriteLine("open");
+                if (ardSerialPort.ReadLine().ToString().StartsWith("open")) {
+                    this.write(" ");
+                    return true;
+                }
+            }
+            catch (Exception err) {
+
+            }
+            return false;
+        }
+
         public bool isOpen() {
             return ardSerialPort.IsOpen;
         }
@@ -131,7 +145,7 @@ namespace kicom {
                 return;
             }
 
-            if (!this.serial.isOpen()) {
+            if (!this.serial.check()) {
                 Console.WriteLine("아두이노 하드웨어 연결을 확인하세요!");
                 MessageBox.Show("아두이노 하드웨어 연결을 확인후 프로그램을 다시 시작해주세요", "Error");
             }else{
