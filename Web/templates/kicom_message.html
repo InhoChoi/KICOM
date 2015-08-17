@@ -6,12 +6,23 @@
 <html>
     <head>
         <title>KICOM</title>
+        <link href='http://fonts.googleapis.com/css?family=Fugaz+One' rel='stylesheet' type='text/css'>    
+        <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/kicom_message_css.css') }}">
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='javascript/kicom_message_js.js') }}"></script>
-        <link href='http://fonts.googleapis.com/css?family=Fugaz+One' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
         <script type="text/javascript" src="{{ url_for('static', filename='javascript/kicom_visitorAlert_js.js') }}"></script>
+        <script language="javascript"> 
+            //글자수 제한 체크 
+            function len_chk(){  
+                var frm = document.getElementById('message_box');
+                console.log(frm.value.length);
+                    if(frm.value.length > 32) {  
+                        alert("글자수는 영문 32자로 제한됩니다!");  
+                        frm.value = frm.value.substring(0,32);  
+                        frm.focus();
+                    }
+                }
+        </script>
     </head>
     <body>
         <div id="container">
@@ -41,7 +52,7 @@
                             Just click "SEND" button.
                         </div>
                         <form id="input_form" method="post" action="sendMessage">
-                            <textarea id="message_box" name="message_box" placeholder="message"></textarea>
+                            <textarea id="message_box" name="message_box" placeholder="message" onKeyUp="len_chk();"></textarea>
                             <button type="submit" id="send_button" name="send_button">SEND</button>
                         </form>
                     </div> 
