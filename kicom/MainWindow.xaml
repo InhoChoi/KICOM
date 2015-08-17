@@ -150,7 +150,7 @@
                                     <Viewbox x:Name="InterPhoneImage" HorizontalAlignment="Center" Visibility="Visible" Grid.RowSpan="3" Width="auto" Margin="0,0,0,20">
                                         <Image Source="{Binding ImageSource}" Stretch="UniformToFill" />
                                     </Viewbox>
-                                    <Viewbox x:Name="InterPhoneBlinder" HorizontalAlignment="Center" Visibility="Hidden" Grid.RowSpan="3" Width="609" Margin="0,0,0,20">
+                                    <Viewbox x:Name="InterPhoneBlinder" HorizontalAlignment="Center" Visibility="Hidden" Grid.RowSpan="3" Width="auto" Margin="0,0,0,20">
                                         <Image Source="Resource/blindImage.jpg"  Stretch="UniformToFill" />
                                     </Viewbox>
                                 </Grid>

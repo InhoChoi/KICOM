@@ -20,17 +20,17 @@ namespace kicom {
     public partial class History : UserControl {
 
         public void refreshImageList() {
-            this.Loaded += (s, o) => {
-                lbImageGallery.DataContext = null;
-                List<ImageEntity> ListImageEntityObj = ImageView.GetAllImageData();
+            
+            lbImageGallery.DataContext = null;
+            List<ImageEntity> ListImageEntityObj = ImageView.GetAllImageData();
 
-                if (ListImageEntityObj != null) {
-                    if (ListImageEntityObj.Count > 0) {
-                        Console.WriteLine(ListImageEntityObj.Count);
-                        lbImageGallery.DataContext = ListImageEntityObj;
-                    }
+            if (ListImageEntityObj != null) {
+                if (ListImageEntityObj.Count > 0) {
+                    Console.WriteLine(ListImageEntityObj.Count);
+                    lbImageGallery.DataContext = ListImageEntityObj;
                 }
-            };
+            }
+            
         }
 
         public History() {

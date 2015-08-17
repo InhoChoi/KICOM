@@ -74,7 +74,7 @@ namespace kicom {
             this.HomePage.Visibility = Visibility.Hidden;
             this.HistoryPage.Visibility = Visibility.Visible;
             this.RegisterPage.Visibility = Visibility.Hidden;
-
+            
             this.HistoryPage.refreshImageList();
         }
 
