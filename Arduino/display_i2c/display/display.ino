@@ -45,6 +45,7 @@ void loop()
   if(displayOn == true){
     long currentTime = millis();
     if( currentTime - signalTime > 60000){
+      lcd.clear();
       lcd.noBacklight();
       displayOn = false;
     }
