@@ -26,7 +26,7 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <!-- 메뉴 바 -->
-                <Grid Grid.Row="0" Background="DodgerBlue">
+                <Grid Grid.Row="0" Background="DodgerBlue" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="56"/>
                         <ColumnDefinition Width="*"/>
@@ -135,17 +135,57 @@
                             <!-- 우측 인터폰 -->
                             <Grid Row="1" Column="3">
                                 <Label Content="InterPhone" Foreground="White" FontSize="28" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <Image x:Name="alarm_white" Source="Resource/alarm_white.png" Margin="260,45,260,-78" Visibility="Visible"/>
-                                <Image x:Name="alarm_red" Source="Resource/alarm_red.png" Margin="260,45,260,-78" Visibility="Hidden"/>
                             </Grid>
                             <Grid Row="2" Column="3">
-                                <Image />
-                                <Viewbox x:Name="InterPhoneImage" HorizontalAlignment="Center" Margin="0,0,0,0" Visibility="Visible">
-                                    <Image Source="{Binding ImageSource}" Stretch="UniformToFill" />
-                                </Viewbox>
-                                <Viewbox x:Name="InterPhoneBlinder" HorizontalAlignment="Center" Margin="0,0,0,0" Visibility="Hidden">
-                                    <Image Source="Resource/blindImage.jpg"  Stretch="UniformToFill" />
-                                </Viewbox>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100*"/>
+                                    <RowDefinition Height="350*"/>
+                                    <RowDefinition Height="80"/>
+                                </Grid.RowDefinitions>
+                                <Grid Row="0">
+                                    <Image x:Name="alarm_white" Source="Resource/alarm_white.png" Margin="8" Visibility="Visible"/>
+                                    <Image x:Name="alarm_red" Source="Resource/alarm_red.png" Margin="8" Visibility="Hidden"/>
+                                </Grid>
+                                <Grid Row="1">
+                                    <Viewbox x:Name="InterPhoneImage" HorizontalAlignment="Center" Visibility="Visible" Grid.RowSpan="3" Width="auto" Margin="0,0,0,20">
+                                        <Image Source="{Binding ImageSource}" Stretch="UniformToFill" />
+                                    </Viewbox>
+                                    <Viewbox x:Name="InterPhoneBlinder" HorizontalAlignment="Center" Visibility="Hidden" Grid.RowSpan="3" Width="609" Margin="0,0,0,20">
+                                        <Image Source="Resource/blindImage.jpg"  Stretch="UniformToFill" />
+                                    </Viewbox>
+                                </Grid>
+                                <Grid Row="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="50"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Column="1">
+                                        <Border x:Name="toMuteBorder" CornerRadius="100" BorderThickness="6" BorderBrush="DodgerBlue" Background="White" Visibility="Visible">
+                                            <local:ImageButton x:Name="toMute"  Margin="10" Click="setMute" imgNormal="Resource/speaker_blue.png" BorderBrush="{x:Null}"/>
+                                        </Border>
+                                        <Border x:Name="toUnMuteBorder" CornerRadius="100" BorderThickness="6" BorderBrush="#F44336" Background="White" Visibility="Hidden">
+                                            <local:ImageButton x:Name="toUnMute" Margin="10" Click="unMute" imgNormal="Resource/speaker_red.png" BorderBrush="{x:Null}"/>
+                                        </Border>
+                                    </Grid>
+                                    <Grid Column="3">
+                                        <Border x:Name="toPlayBorder" CornerRadius="100" BorderThickness="6" BorderBrush="DodgerBlue" Background="White" Visibility="Visible">
+                                            <local:ImageButton x:Name="toPlay"  Margin="12" Click="viewFrontDoor"  BorderBrush="{x:Null}" imgNormal="Resource/play_blue.png"/>
+                                        </Border>
+                                        <Border x:Name="toUnPlayBorder" CornerRadius="100" BorderThickness="6" BorderBrush="#F44336" Background="White" Visibility="Hidden">
+                                            <local:ImageButton x:Name="toUnPlay" Margin="12" Click="unViewFrontDoor" imgNormal="Resource/play_red.png" BorderBrush="{x:Null}"/>
+                                        </Border>
+                                    </Grid>
+                                    <Grid Column="4">
+                                        <Label Content="Kicom" VerticalContentAlignment="Center"  HorizontalAlignment="Center" Foreground="White" FontSize="40" FontFamily="Microsoft YaHei UI" Margin="88,11,101.333,-11" />
+                                        <Image Source="/kicom;component/Resource/openedDoor.png" Margin="190,17,61.333,10" />
+                                        <Canvas Height="3" Width="120" Background="White" Margin="92,66,108.333,11" />
+                                        <Canvas Height="3" Width="20" Background="White" Margin="231,66,68.333,11" />
+                                    </Grid>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Border>

@@ -21,6 +21,7 @@ namespace kicom {
 
         public void refreshImageList() {
             this.Loaded += (s, o) => {
+                lbImageGallery.DataContext = null;
                 List<ImageEntity> ListImageEntityObj = ImageView.GetAllImageData();
 
                 if (ListImageEntityObj != null) {

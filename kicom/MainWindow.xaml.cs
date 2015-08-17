@@ -40,6 +40,8 @@ namespace kicom {
         private bool isSuspicious = true;
         private bool bodyEixst = false;
         private int alarmCount = 4;
+        private bool mute = false;
+        private bool viewBool = false;
 
         private WriteImageList imageListwriter = null;
 
@@ -230,15 +232,15 @@ namespace kicom {
                         if (t.IsTracked) { this.dumpCount++; }
                     }
 
-                    if (dumpCount == 0) {
+                    if (dumpCount == 0 && !viewBool) {
                         bodyEixst = false;
                         this.InterPhoneBlinder.Visibility = Visibility.Visible;
                         this.InterPhoneImage.Visibility = Visibility.Hidden;
                     }
                     else {
-                        if (!bodyEixst) {
+                        if (!bodyEixst && !mute && !viewBool) {
                             speaker.Play();
-                        }
+                        } 
                         bodyEixst = true;
                         this.InterPhoneBlinder.Visibility = Visibility.Hidden;
                         this.InterPhoneImage.Visibility = Visibility.Visible;
@@ -288,18 +290,21 @@ namespace kicom {
                     }
                 }
 
-                if (this.alarm_white.Visibility == Visibility.Hidden && alarmCount == 0) {
-                    this.alarm_red.Visibility = Visibility.Hidden;
-                    this.alarm_white.Visibility = Visibility.Visible;
-                    alarmCount = 4;
-                }
-                else if (this.alarm_red.Visibility == Visibility.Hidden && alarmCount == 0) {
-                    this.alarm_red.Visibility = Visibility.Visible;
-                    this.alarm_white.Visibility = Visibility.Hidden;
-                    alarmCount = 4;
-                }
-                else {
-                    alarmCount--;
+                if (!viewBool) {
+
+                    if (this.alarm_white.Visibility == Visibility.Hidden && alarmCount == 0) {
+                        this.alarm_red.Visibility = Visibility.Hidden;
+                        this.alarm_white.Visibility = Visibility.Visible;
+                        alarmCount = 4;
+                    }
+                    else if (this.alarm_red.Visibility == Visibility.Hidden && alarmCount == 0) {
+                        this.alarm_red.Visibility = Visibility.Visible;
+                        this.alarm_white.Visibility = Visibility.Hidden;
+                        alarmCount = 4;
+                    }
+                    else {
+                        alarmCount--;
+                    }
                 }
 
             }
@@ -405,6 +410,30 @@ namespace kicom {
             get {
                 return this.colorBitmap;
             }
+        }
+
+        private void setMute(object sender, RoutedEventArgs e) {
+            this.mute = true;
+            toMuteBorder.Visibility = Visibility.Hidden;
+            toUnMuteBorder.Visibility = Visibility.Visible;
+        }
+
+        private void unMute(object sender, RoutedEventArgs e) {
+            this.mute = false;
+            toMuteBorder.Visibility = Visibility.Visible;
+            toUnMuteBorder.Visibility = Visibility.Hidden;
+        }
+
+        private void viewFrontDoor(object sender, RoutedEventArgs e) {
+            this.viewBool = true;
+            toPlayBorder.Visibility = Visibility.Hidden;
+            toUnPlayBorder.Visibility = Visibility.Visible;
+        }
+
+        private void unViewFrontDoor(object sender, RoutedEventArgs e) {
+            this.viewBool = false;
+            toPlayBorder.Visibility = Visibility.Visible;
+            toUnPlayBorder.Visibility = Visibility.Hidden;
         }
     }
 }
