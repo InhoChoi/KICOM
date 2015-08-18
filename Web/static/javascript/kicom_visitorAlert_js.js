@@ -60,8 +60,5 @@ function alertContents() {
         console.log(httpRequest.responseText);
       }
     }
-    else {
-      alert('There was a problem with the request.');
-    }
   }
 }
