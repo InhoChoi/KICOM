@@ -12,9 +12,12 @@ function setPrevious() {
 }
 
 setInterval(function() {
-  httpRequest.onreadystatechange = alertContents;
-  httpRequest.open('GET', '/xml/broadcast.xml');
-  httpRequest.send();
+  try {
+        httpRequest.onreadystatechange = alertContents;
+        httpRequest.open('GET', '/xml/broadcast.xml');
+        httpRequest.send();
+      } 
+      catch (e) {}
 }, 1000);
 
 function makeRequest() {
