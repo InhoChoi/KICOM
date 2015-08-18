@@ -81,6 +81,7 @@ nav > ul > li > a:hover{
     vertical-align: middle;
     display: table-cell;
     font-size: 25px;
+    font-family: 'Jeju Gothic', sans-serif;
 }
 a { 
     text-decoration:none 
