@@ -45,10 +45,13 @@ def message():
 @app.route('/sendMessage', methods = ['POST'])
 def sendMessage():
   if request.method == 'POST':
-    getMessage = request.form['message_box'] + '\n'
-    f = open("./messageLog.txt", 'a')
-    f.write(getMessage)
-    f.close()
+    try:
+      getMessage = request.form['message_box'] + '\n'
+      f = open("./messageLog.txt", 'a')
+      f.write(getMessage)
+      f.close()
+    except Exception, e:
+      getMessage = "send error"
     return render_template('kicom_send_message.html', id = session['id'], userMessage = getMessage)
 
 @app.route('/logout')
@@ -59,9 +62,12 @@ def logout():
 
 @app.route('/xml/<path:filename>')
 def send_file(filename):
-  filepath = './static/xml/%s' % filename
-  fp = open(filepath, "rb")
-  return Response(fp.read(), mimetype='text/xml')
+  try:
+    filepath = './static/xml/%s' % filename
+    fp = open(filepath, "rb")
+    return Response(fp.read(), mimetype='text/xml')
+  except Exception, e:
+    return ""
 
 if __name__ == '__main__':
   app.run(debug=True, host='0.0.0.0')
