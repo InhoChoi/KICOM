@@ -23,7 +23,7 @@ namespace kicom {
 
         //Result가 여러개 있을 경우의 Xml Writer
         public void AlertWriting(Result[] results) {
-            using (XmlTextWriter writer = new XmlTextWriter("../../../Web/static/xml/broadcast.xml", System.Text.Encoding.UTF8)) {
+            using (XmlTextWriter writer = new XmlTextWriter("./Web/static/xml/broadcast.xml", System.Text.Encoding.UTF8)) {
                 writer.WriteStartDocument();
                 writer.Formatting = Formatting.Indented;
                 writer.Indentation = 2;
@@ -87,7 +87,7 @@ namespace kicom {
                 }
                 history.Dequeue();
             }
-            using (XmlTextWriter writer = new XmlTextWriter("../../../Web/static/xml/history.xml", System.Text.Encoding.UTF8)) {
+            using (XmlTextWriter writer = new XmlTextWriter("./Web/static/xml/history.xml", System.Text.Encoding.UTF8)) {
                 writer.WriteStartDocument();
                 writer.Formatting = Formatting.Indented;
                 writer.Indentation = 2;

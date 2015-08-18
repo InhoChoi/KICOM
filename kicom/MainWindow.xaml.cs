@@ -74,21 +74,22 @@ namespace kicom {
             // Arduino 초기화 부분
             try {
                 arduinoSerial = new ArduinoSerial();
-                fileTrigger = new FileTrigger(@"../../../Web/", "messageLog.txt", arduinoSerial);
+                fileTrigger = new FileTrigger(@"./Web/", "messageLog.txt", arduinoSerial);
             }
             catch (Exception e) {
                 Console.WriteLine(e.ToString());
+                MessageBox.Show("아두이노 하드웨어가 존재하지 않습니다!", "error");
             }
 
             this.SourceInitialized += InitializeWindowSource;
 
             // 필요 변수 초기화
-            historyFolderPath = AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\Web\static\image\History\";
+            historyFolderPath = AppDomain.CurrentDomain.BaseDirectory + @".\Web\static\image\History\";
             logFolderPath = AppDomain.CurrentDomain.BaseDirectory + @".\Log\log.txt";
             Console.WriteLine(historyFolderPath);
 
             // Get Speaker Source
-            speaker = new SoundPlayer(@"..\..\Resource\interPhoneBell.wav");
+            speaker = new SoundPlayer(@".\Resource\interPhoneBell.wav");
             speaker.LoadAsync();
 
             // Get Default KinectSensor
