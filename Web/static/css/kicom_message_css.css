@@ -8,30 +8,25 @@ html, body{
     text-align: center;
     vertical-align: middle;
 }
-
 #box {
     width: 100%;
     min-width: 400px;
     height: 100%;
 }
-
 header {
     margin-top: 40px;
     min-width: 400px;
 }
-
 #title {
     color: white;
     font-size: 50px;  
     font-family: 'Fugaz One'; 
 }
-
 #subtitle {
     color: white;
     font-size: 20px;
     font-family: 'Yanone Kaffeesatz', sans-serif;
 }
-
 #login_info {
     color: white;
     margin-bottom: 10px;
@@ -62,6 +57,7 @@ nav > ul > li > a:hover{
     background:black;
     color:white;
 }
+
 #content { 
     width: 0 auto;
     min-width: 400px;
@@ -99,9 +95,7 @@ nav > ul > li > a:hover{
     
     vertical-align: middle;
 }
-
 #input_form {
-    
     /* 중앙 정렬 */
     width: 0 auto;
     height: 0 auto;
@@ -112,16 +106,16 @@ nav > ul > li > a:hover{
     vertical-align: middle;
     text-align: center;
 }
-
 #input_form > #message_box {
-    
     width: 400px;
     height: 80px;
 }
-
 #input_form > #send_button {
     -webkit-appearance: none;
     border-radius: 0;
     width: 80px;
     height: 85px;
+}
+a { 
+    text-decoration:none 
 }

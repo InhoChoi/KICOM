@@ -8,36 +8,30 @@ html, body{
     text-align: center;
     vertical-align: middle;
 }
-
 #box {
     width: 100%;
     min-width: 400px;
     height: 100%;
 }
-
 header {
     margin-top: 40px;
     min-width: 400px;
 }
-
 #title {
     color: white;
     font-size: 50px;  
     font-family: 'Fugaz One'; 
 }
-
 #subtitle {
     color: white;
     font-size: 20px;
     font-family: 'Yanone Kaffeesatz', sans-serif;
 }
-
 #login_info {
     color: white;
     margin-bottom: 10px;
     font-family: 'Yanone Kaffeesatz', sans-serif;
 }
-
 /* 수평 메뉴 */
 nav > ul {
     min-width: 400px;
@@ -45,7 +39,6 @@ nav > ul {
     vertical-align: middle;
     overflow: hidden;
     background-color: #01579B;
-    
 }
 nav > ul > li {
     list-style-type: none;
@@ -122,6 +115,7 @@ nav > ul > li > a:hover{
     margin-bottom: 10px;
     border-radius: 5px;
     background: white;
+    font-family: 'Jeju Gothic', sans-serif;
 }
 #table > #name > #name_content {
     width: 100%;
@@ -131,6 +125,7 @@ nav > ul > li > a:hover{
     text-align: center;
     border-radius: 5px;
     background: white;
+    font-family: 'Jeju Gothic', sans-serif;
 }
 #table > #relation > #relation_tag {
     width: 100%;
@@ -142,6 +137,7 @@ nav > ul > li > a:hover{
     margin-bottom: 10px;
     border-radius: 5px;
     background: white;
+    font-family: 'Jeju Gothic', sans-serif;
 }
 #table > #relation > #relation_content {
     width: 100%;
@@ -151,6 +147,7 @@ nav > ul > li > a:hover{
     text-align: center;
     border-radius: 5px;
     background: white;
+    font-family: 'Jeju Gothic', sans-serif;
 }
 #table > #date > #date_tag {
     width: 100%;
@@ -162,6 +159,7 @@ nav > ul > li > a:hover{
     margin-bottom: 10px;
     border-radius: 5px;
     background: white;
+    font-family: 'Jeju Gothic', sans-serif;
 }
 #table > #date > #date_content {
     width: 100%;
@@ -171,6 +169,7 @@ nav > ul > li > a:hover{
     text-align: center;
     border-radius: 5px;
     background: white;
+    font-family: 'Jeju Gothic', sans-serif;
 }
 #table > #photo > #photo_tag{
     width: 100%;
@@ -182,6 +181,7 @@ nav > ul > li > a:hover{
     margin-bottom: 10px;
     border-radius: 5px;
     background: white;
+    font-family: 'Jeju Gothic', sans-serif;
 }
 #table > #photo > #photo_content{
     width: 100%;
@@ -191,4 +191,8 @@ nav > ul > li > a:hover{
     text-align: center;
     border-radius: 5px;
     background: white;
+    font-family: 'Jeju Gothic', sans-serif;
+}
+a { 
+    text-decoration:none 
 }

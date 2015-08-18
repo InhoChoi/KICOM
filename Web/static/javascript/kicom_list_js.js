@@ -9,19 +9,20 @@ $(document).ready(function(){
       var listLength = xmlData.length;
       var fTag = '<a href="';
       var bTag = '"target="_blank">사진보기</a><br>';
+      var location = "static/image/History/"
+      var filepath = "";
       var names = "";
       var relations = "";
       var dates = "";
       var photos = "";
 
       if (listLength) {
-        var location = $(this).find("Photo_Path").text();
-        
         $(xmlData).each(function(){
+          filepath = $(this).find("Photo_Path").text();
           names += $(this).find("Name").text() + "<br>";
           relations += $(this).find("Relation").text() + "<br>";
           dates += $(this).find("Date").text() + "<br>"; 
-          photos += fTag + $(this).find("Photo_Path").text() + bTag;
+          photos += fTag + location + filepath + bTag;
         });
 
         $("#name_content").append(names);
